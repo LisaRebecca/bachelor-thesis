@@ -12,9 +12,9 @@
 \setboolean{e-Abgabe}{false}    % false=gedruckte Fassung
 
 % ---- Persönlichen Daten:
-\newcommand{\titel}{Bachelorarbeit}
+\newcommand{\titel}{Data Mining enterprise-scale financial data with SAP AI Core}
 \newcommand{\titelheader}{BA Lisa Schmidt}
-\newcommand{\arbeit}{Bachelorarbeit}
+\newcommand{\arbeit}{Bachelor Thesis}
 \newcommand{\studiengang}{Internationale Wirtschaftsinformatik}
 \newcommand{\studienjahr}{2019}
 \newcommand{\autor}{Lisa Schmidt}
@@ -62,10 +62,10 @@
 \onehalfspacing
 
 % ------ Erklärung, Sperrvermerk, Abstact
-\include{Inhalt/01_Standard/erklaerung}
-\include{Inhalt/01_Standard/sperrvermerk}
-\include{Inhalt/02_Abstract/abstract-en}
-\include{Inhalt/02_Abstract/abstract-de}
+%\include{Inhalt/01_Standard/erklaerung}
+%\include{Inhalt/01_Standard/sperrvermerk}
+%\include{Inhalt/02_Abstract/abstract-en}
+%\include{Inhalt/02_Abstract/abstract-de}
 
 % ------ Inhaltsverzeichnis
 \singlespacing
@@ -74,13 +74,13 @@
 % ------ Verzeichnisse
 \renewcommand*{\chapterpagestyle}{plain}
 \pagestyle{plain}
-\include{Inhalt/03_Verzeichnisse/formelgroessen}
-\include{Inhalt/03_Verzeichnisse/abkuerzungen}
-\listoffigures                          % Erzeugen des Abbildungsverzeichnisses 
-\listoftables                           % Erzeugen des Tabellenverzeichnisses
-\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
-\lstlistoflistings                      % Erzeugen des Listenverzeichnisses
-\setcounter{savepage}{\value{page}}
+%\include{Inhalt/03_Verzeichnisse/formelgroessen}
+%\include{Inhalt/03_Verzeichnisse/abkuerzungen}
+%\listoffigures                          % Erzeugen des Abbildungsverzeichnisses 
+%\listoftables                           % Erzeugen des Tabellenverzeichnisses
+%\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+%\lstlistoflistings                      % Erzeugen des Listenverzeichnisses
+%\setcounter{savepage}{\value{page}}
 
 
 % ---- Inhalt der Arbeit
@@ -91,12 +91,16 @@
 \renewcommand*{\chapterpagestyle}{scrheadings}
 \pagestyle{scrheadings}
 \onehalfspacing
-\include{Inhalt/04_Inhalt/einleitung}
-\include{Inhalt/04_Inhalt/formatText}
-\include{Inhalt/04_Inhalt/abbildungen}
-\include{Inhalt/04_Inhalt/mathematische-formeln}
-\include{Inhalt/04_Inhalt/quellcode}
-\include{Inhalt/04_Inhalt/literaturHinweis}
+% \include{Inhalt/04_Inhalt/einleitung}
+%\include{Inhalt/04_Inhalt/formatText}
+% \include{Inhalt/04_Inhalt/abbildungen}
+%\include{Inhalt/04_Inhalt/mathematische-formeln}
+%\include{Inhalt/04_Inhalt/quellcode}
+%\include{Inhalt/04_Inhalt/literaturHinweis}
+\include{Inhalt/04_Inhalt/Objectives and Criteria.tex}
+\include{Inhalt/04_Inhalt/State of the Art.tex}
+\include{Inhalt/04_Inhalt/Different Approaches.tex}
+\include{Inhalt/04_Inhalt/Evaluation.tex}
 
 % ---- Literaturverzeichnis
 \cleardoublepage
