@@ -120,10 +120,56 @@ For each step in the \ac{CRISP-DM} process, a multitude of different approaches 
 		Also, \ac{TF-IDF} fails to represent the topical relationship between $ d_{1} $ and $ d_{3}$. 
 		
 		\subsubsection{Word Embeddings}
-		This lack of "understanding" of related words, and the problem of high-dimensionality is corrected with the third presented option: Word Embeddings.
-
-
+		 Again, the most desirable vector representation consists of dense low-dimensional vectors which are close to each other if the words are considered similar. The lack of "understanding" of related words, and the problem of high-dimensionality is corrected with the third presented option: Word Embeddings.
+		
+		An embedding is a translation of a word into a high-quality vector. The model does so, as it has been trained on a large set of natural language data. Popular embeddings include word2vec, fasttext and doc2vec. Word2Vec is the original model and will be discussed in the following. 
+		
+		The word2vec model assumes that words appearing in a similar context are also similar to each other. There are two options for the input and output: the word $w_i$ and its context $c_i$.
+		
+		\includegraphics[height=4cm]{Bilder/word2vec/documents.png}
+		
+		\subparagraph{\aclu{CBOW}} 
+		With the \ac{CBOW} architecture the word2vec model is trained to predict a word using the context as input. A sliding window of a predefined size is moved along the text. 
+		
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[height=6cm]{Bilder/word2vec/architecture_cbow.png}
+			\caption{\aclu{CBOW} architecture\\\ with sliding window of size $C=5$ }
+			\label{fig:cbow-architecture}
+		\end{figure}
+	
+		\subparagraph{Skipgram} 
+		With the skipgram architecture the word2vec model is trained to predict the context of the input word.
+		
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[height=6cm]{Bilder/word2vec/architecture_skipgram.png}
+			\caption{Skipfram architecture\\\ with sliding window of size $C=5$ }
+			\label{fig:cbow-architecture}
+		\end{figure}
+	
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[height=8cm]{Bilder/word2vec/skipgram.png}
+			\caption{Observations for training with skipgram architecture}
+			\label{fig:cbow-architecture}
+		\end{figure}
+		
+		\subparagraph{Negative Sampling}
+		
+		
+		Word2Vec uses either SKIPGram or CBOW.
+		
+		Word2vec can utilize two models for selecting observations: either skipgram or \ac{CBOW}. 
+		
+	
+		
 \section{Modelling}
+	The objective of this thesis is the grouping of expenses with the methods of \ac{NLP}. Grouping, or clustering, is the practise of sorting data points into groups in such a way that the similarity inside a group (intra-cluster similarity) is high while the similarity between clusters (inter-cluster similarity) is low. The defintion of similarity as well as different clustering algorithms are presented and contrasted in the following sections.
+	
+	\subsection{Similarity and distance measures}
+	\subparagraph{Euclidean Distance} \label{euclidean}
+	
 	\subsection{K-Means with Euclidean Distance}
 \section{Evaluation}
 	\subsection{Elbow Diagram}
