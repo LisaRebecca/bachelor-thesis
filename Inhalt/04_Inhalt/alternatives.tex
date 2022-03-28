@@ -21,12 +21,9 @@ For each step in the \ac{CRISP-DM} process, a multitude of different approaches 
 	Secondly, data can be sourced outside the company. A vast number of online registries for data exist, both with paid and free of charge service offerings. Data sources include real-life data and data generated for educational purposes. Because of its publication, the data is stripped from all parts which could expose confidential information such as corporate secrets. Additionally, data is anonymized and processed to limit the usefulness to potential competitors.
 	
 	It can be stated, that both sources are suited for different goals. 
-		
-\section{Data Retrieval}
-	- how is the dataset stored?
 
 \section{Business Understanding}
-
+	In \cite{CRISPDM2000}, different methods for business understanding are mentioned. Firstly, a 
 	- why did i decide for clustering?
 
 \section{Data Understanding}
@@ -144,7 +141,7 @@ For each step in the \ac{CRISP-DM} process, a multitude of different approaches 
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[height=6cm]{Bilder/word2vec/architecture_skipgram.png}
-			\caption{Skipfram architecture\\\ with sliding window of size $C=5$ }
+			\caption{Skipgram architecture\\\ with sliding window of size $C=5$ }
 			\label{fig:cbow-architecture}
 		\end{figure}
 	
@@ -154,6 +151,7 @@ For each step in the \ac{CRISP-DM} process, a multitude of different approaches 
 			\caption{Observations for training with skipgram architecture}
 			\label{fig:cbow-architecture}
 		\end{figure}
+		
 		
 		\subparagraph{Negative Sampling}
 		
@@ -168,7 +166,18 @@ For each step in the \ac{CRISP-DM} process, a multitude of different approaches 
 	The objective of this thesis is the grouping of expenses with the methods of \ac{NLP}. Grouping, or clustering, is the practise of sorting data points into groups in such a way that the similarity inside a group (intra-cluster similarity) is high while the similarity between clusters (inter-cluster similarity) is low. The defintion of similarity as well as different clustering algorithms are presented and contrasted in the following sections.
 	
 	\subsection{Similarity and distance measures}
+	A distance measure is a quantification of how near objects in space are. Distance measures can be defined for spaces of arbitrary numbers of dimensions. 
+	
+	
+	
 	\subparagraph{Euclidean Distance} \label{euclidean}
+	The most intuitive and popular distance measure is the euclidean distance. This measure is applicable for vector spaces $F^{n}$ with $n \in \mathbb{N}_0 $. For low-dimensional applications, this distance works well and shows great results. Euclidean distance can be calculated in a highly efficient manner, even for n dimensions. This suggests, that euclidean distance is particularly suitable for high-dimensional data. Unfortunately, euclidean distance falls victim to the curse of dimensionality. In \cite{beyerNearestNeighbor} it is proven that with increasing dimensions, the distance between data points approaches an uniform value for all datapoints. This effect could be demonstrated for spaces with as little as ten dimensions. Therefore, it can be said that euclidean distance is not suitable for high-dimensional data. With vectors in \ac{NLP} ranging from 100 to 800 dimensions, this distance measure is not suitable.
+	
+	\subparagraph{Dot Product}
+	
+	
+	\subparagraph{Cosine Distance}
+	
 	
 	\subsection{K-Means with Euclidean Distance}
 \section{Evaluation}
