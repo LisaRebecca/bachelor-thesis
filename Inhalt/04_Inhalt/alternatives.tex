@@ -39,28 +39,37 @@ Data preparation includes data wrangling, data cleaning, and feature extraction.
 	The chosen dataset consists of files in \ac{JSON}. Several alternatives for storage and transforming the data exist. 
 	
 	\paragraph{Storage}
-	Data can either be stored locally, remote inside a company, or externally on paid server instances.
+	Within the constraints of the thesis, three options are available for data storage. Firstly, data can be stored locally on the available machine. The data is available without internet access, and the local machine has high read/write speeds. This option requires no additional learning, and is free of charge for the department. A multitude of libraries exist for accessing files on a local filesystem. A downside is the limited scalability in terms of storage capacity and read/write operations. Additionally, local storage makes the data only available to this specific machine.
+	
+	Storing data on a cloud filesharing system is easy to operate and free of usage-bound charges. The storage space is virtually unlimited. Accessing files on sharing platforms is feasible but tedious. The access can be shared within the company context, but everyone is subject to the limited accessibility. Using a files storage service could be of use for transferring data without a physical connection. Still, this is the only recommended use case in this context.
+	
+	The third option is storing the data using a specialized storage service, such as AWS S3. While the learning overhead is higher in the beginning, the scalability is a convincing argument. Billing is according to usage, but adequate because of the high connectivity with other cloud-based ML service offerings inside and outside of SAP.
 	
 	\begin{table}[ht]
 		\centering
-		\caption{Comparison of Storage Options}
+		\caption{Comparison of available Storage Options}
 		\begin{tabular}{c|lll}
 			\toprule
-			&\textbf{Local} & \textbf{Cloud Filesharing} & \textbf{Cloud ML Services} \\
+			&\textbf{Local} & \textbf{Cloud Filesharing} & \textbf{Specialized Storage Services} \\
 			\midrule
-			Example     & 2.6GHz 512GB SSD & Microsoft OneDrive             & AWS S3                                                   \\
-			Ease of use & high             & high                           & higher learning overhead                                 \\
-			Cost        & free of charge   & free of charge                 & billing according to used storage space                  \\
-			Scalability & limited          & unlimited                      & unlimited                                                \\
-			Data access & local            & limited remote access capacity & local, remote, high connectivity to ML service offerings
-
+			\vspace{0.5cm}
+			Example     & \begin{tabular}[c]{@{}l@{}}2.6GHz \\ 512GB SSD\end{tabular} & Microsoft OneDrive                                                        & AWS S3                                                                                                 \\
+			\vspace{0.5cm}
+			Ease of use & high                                                        & high                                                                      & higher learning overhead                                                                               \\
+			\vspace{0.5cm}
+			Cost        & free of charge                                              & free of charge                                                            & \begin{tabular}[c]{@{}l@{}}billing according to \\ used storage space\end{tabular}                     \\
+			\vspace{0.5cm}
+			Scalability & limited                                                     & unlimited                                                                 & unlimited                                                                                              \\
+			\vspace{0.5cm}
+			Data access & local                                                       & \begin{tabular}[c]{@{}l@{}}limited remote \\ access capacity\end{tabular} & \begin{tabular}[c]{@{}l@{}}local, remote, high \\ connectivity to \\ ML service offerings\end{tabular}
+			
 		\end{tabular}
 		\label{tabelle:storage}
 	\end{table}
 	
-	
-	
 	\paragraph{Transformation}
+	The data is still available only in the from \ac{JSON} documents.
+	
 	- transforming json documents into dataframe rows
 	
 	
