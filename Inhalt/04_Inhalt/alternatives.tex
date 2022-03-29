@@ -24,24 +24,52 @@ For each step in the \ac{CRISP-DM} process, a multitude of different approaches 
 
 \section{Business Understanding}
 	In \cite{CRISPDM2000}, different methods for business understanding are mentioned. Firstly, a 
+
 	- why did i decide for clustering?
 
 \section{Data Understanding}
 	- different data exploration tools can be used for the data understanding.
 
 \section{Data preparation}
-- transforming json documents into dataframe rows
 
-- removing stopwords from several languages
-
-- removing numbers and interpunction
-
-- tokenization
+Data preparation is the process of transforming the acquired dataset into a dataset which can be fed into learning algorithms and is cleaned of impurities in such a way, that the learning results are likely satisfactory. Impurities may be missing values, shifted columns, encoding errors or different data formats. 
+Data preparation includes data wrangling, data cleaning, and feature extraction. What is left should be a uniform dataset, which is in a format that is understandable by the desired algorithms.
 
 	\subsection{Data processing and data wrangling}
+	The chosen dataset consists of files in \ac{JSON}. Several alternatives for storage and transforming the data exist. 
+	
+	\paragraph{Storage}
+	Data can either be stored locally, remote inside a company, or externally on paid server instances.
+	
+	\begin{table}[ht]
+		\centering
+		\caption{Comparison of Storage Options}
+		\begin{tabular}{c|lll}
+			\toprule
+			&\textbf{Local} & \textbf{Cloud Filesharing} & \textbf{Cloud ML Services} \\
+			\midrule
+			Example     & 2.6GHz 512GB SSD & Microsoft OneDrive             & AWS S3                                                   \\
+			Ease of use & high             & high                           & higher learning overhead                                 \\
+			Cost        & free of charge   & free of charge                 & billing according to used storage space                  \\
+			Scalability & limited          & unlimited                      & unlimited                                                \\
+			Data access & local            & limited remote access capacity & local, remote, high connectivity to ML service offerings
+
+		\end{tabular}
+		\label{tabelle:storage}
+	\end{table}
+	
+	
+	
+	\paragraph{Transformation}
+	- transforming json documents into dataframe rows
 	
 	
 	\subsection{Data cleaning}
+	- removing stopwords from several languages
+	
+	- removing numbers and interpunction
+	
+	- tokenization
 	
 	\subsection{Feature Extraction and Feature Engineering}
 	The majority of pupular ML algorithms require the input of scalar, vector or matrix data. A form of ML models, which work with textual input will be discussed later in this section. 
