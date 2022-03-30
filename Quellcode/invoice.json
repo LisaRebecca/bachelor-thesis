@@ -1,0 +1,24 @@
+{
+        "annotations": [
+            {
+                "label": "vendorName.value",
+                "text": "Example IT Vendor"
+            },
+            {
+                "label": "invoiceDate.value",
+                "text": "2020-02-32"
+            },
+            {
+                "label": "lineItem.description.value",
+                "text": "Mouse"
+            },
+            {
+                "label": "lineItem.description.value",
+                "text": "HDMI Adapter"
+            },
+            {
+                "label": "lineItem.description.value",
+                "text": "Shipping Cost"
+            }
+        ]
+}
