@@ -73,6 +73,16 @@
 	
 	\subsection{Data cleaning}
 	
+	The task of data cleaning was also completed using python scripts. The library \ac{NLTK}
+	
+	\begin{lstlisting}[language=sh]
+$ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking flour type 504"))' 
+>>>  ['of', 'special', 'baking', 'flour', 'type']
+	\end{lstlisting}
+	 
+
+	
+	
 	\subsection{Considerations of Space and Time Complexity}
 	The dataset consists of over 150.000 invoices, and in those invoices, over 350.000 items are listed. 
 	With hardware-limitation in place, an optimized approach for storing and processing the data is required. 
