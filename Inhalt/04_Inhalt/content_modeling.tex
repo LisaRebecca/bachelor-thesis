@@ -1,0 +1,18 @@
+\chapter{Modelling}
+The objective of this thesis is the grouping of expenses with the methods of \ac{NLP}. Grouping, or clustering, is the practise of sorting data points into groups in such a way that the similarity inside a group (intra-cluster similarity) is high while the similarity between clusters (inter-cluster similarity) is low. The defintion of similarity as well as different clustering algorithms are presented and contrasted in the following sections.
+
+\subsection{Similarity and distance measures}
+A distance measure is a quantification of how near objects in space are. Distance measures can be defined for spaces of arbitrary numbers of dimensions. 
+
+
+
+\subparagraph{Euclidean Distance} \label{euclidean}
+The most intuitive and popular distance measure is the euclidean distance. This measure is applicable for vector spaces $F^{n}$ with $n \in \mathbb{N}_0 $. For low-dimensional applications, this distance works well and shows great results. Euclidean distance can be calculated in a highly efficient manner, even for n dimensions. This suggests, that euclidean distance is particularly suitable for high-dimensional data. Unfortunately, euclidean distance falls victim to the curse of dimensionality. In \cite{beyerNearestNeighbor} it is proven that with increasing dimensions, the distance between data points approaches an uniform value for all datapoints. This effect could be demonstrated for spaces with as little as ten dimensions. Therefore, it can be said that euclidean distance is not suitable for high-dimensional data. With vectors in \ac{NLP} ranging from 100 to 800 dimensions, this distance measure is not suitable.
+
+\subparagraph{Dot Product}
+
+
+\subparagraph{Cosine Distance}
+
+
+\subsection{K-Means with Euclidean Distance}
