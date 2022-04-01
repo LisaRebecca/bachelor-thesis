@@ -6,11 +6,29 @@
 	The dataset is the fundament of a data-science project. The quality, size and closeness to reality decide the degree to which the findings can be helpful for solving real problems. 
 	In this section, a classification for data-science projects is introduced.
 	
-	\includegraphics[height=4cm]{Bilder/meta_project.png}
+\begin{table}[ht]
+	\caption{Comparison of available Storage Options}
+	\begin{tabular}{l|ll}
+		\toprule
+		& \textbf{Problem-First}                                                                                                              & \textbf{Data-First}                                                                                                                                                \\
+		\midrule
+		Systematics                                                             & Applied Data Science                                                                                                                & Exploratory Data Science                                                                                                                                           \\
+		\vspace{0.5cm}
+		\begin{tabular}[c]{@{}l@{}}Underlying\\ Question\end{tabular}           & \begin{tabular}[c]{@{}l@{}}How can a problem be \\ solved?\end{tabular}                                                             & \begin{tabular}[c]{@{}l@{}}Which problems can be \\ solved with the solution?\end{tabular}                                                                         \\
+		\vspace{0.5cm}
+		\begin{tabular}[c]{@{}l@{}}Role of the \\ dataset\end{tabular}          & \begin{tabular}[c]{@{}l@{}}Different datasets can be \\ considered for one \\ problem statement.\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}The dataset is the core of \\ the project, with a new \\ dataset, a new project begins.\end{tabular}                                    \\
+		\vspace{0.5cm}
+		\begin{tabular}[c]{@{}l@{}}Requirements \\ for the dataset\end{tabular} & \begin{tabular}[c]{@{}l@{}}Require a ground truth or \\ established methods for \\ evaluating the goal \\ achievement.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Compared to problem-first projects, \\ larger datasets are required because\\ there is no prior assumption of \\ patterns.\end{tabular} \\
+		\vspace{0.5cm}
+		Fixed component                                                         & Problem statement.                                                                                                                  & Dataset.                                                                                                                                                           \\
+		\vspace{0.5cm}
+		Innovative Aspect                                                       & \begin{tabular}[c]{@{}l@{}}Defined during formu-\\ lation of the goal.\end{tabular}                                                 & Found during the project.                                                                                                                                         
+	\end{tabular}
+\end{table}
+
+	The problem-first project type is characterized by a predefined problem statement or research goal. The underlying question is, how a specific or a set of problems can be solved \cite{dataScienceProjectTypes}.  For the selection of the dataset, this requires that goal achievement can be measured with existing ground truth. In some cases, also other methods such as expert judgements can be sufficient. In a problem-first project, different datasets can and should be considered. \cite{dataScienceProjectTypes} give the metaphor of "mining for valuable minerals or metals at a given geo- graphic location where the existence of the minerals or metals has been established".
 	
-	The problem-first project type is characterized by a predefined problem statement or research goal. The underlying question is, how a specific or a set of problems can be solved. For the selection of the dataset, this requires that goal achievement can be measured with existing ground truth. In some cases, also other methods such as expert judgements can be sufficient. In a problem-first project, different datasets can and should be considered.
-	
-	The complementary project type is the data-first project, which describes most data-mining projects. This type is characterized by a more explorative approach, and the goal to find problems and patterns. Here, the dataset is at the core of the project and the fixed aspect of a project. In turn, this means swapping the dataset is the start of a new project.
+	The complementary project type is the data-first project, which describes most data-mining projects. This type is characterized by a more explorative approach, and the goal to find problems and patterns. Here, the dataset is at the core of the project and the fixed aspect of a project. In turn, this means swapping the dataset is the start of a new project. When turning to the metaphor of mining for minerals, this type of project would be the exploration of different test pits that promise mineral occurences \cite{dataScienceProjectTypes}.
 	
 	With the project type as a decisive factor for the dataset explained, the other evaluation criteria for the dataset is described. In the corporate environment two fundamental sources for data exist. 
 	
