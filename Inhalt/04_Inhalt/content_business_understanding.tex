@@ -12,9 +12,59 @@ The created solution can be evaluated with the business success criterion: "Does
 \section{Assess Situation}
 
 \subsection{Inventory of Resources}
-An \ref{tabelle:inventory} was created for assessing the situation. Most notably is the availability of experts through excellent intercorporational cooperation. Also, a large collection of datasets is available. Hardware platforms include personal machines as well as hosted environments with GPU capabilities. Available software are data science tools included in the Anaconda Navigator, such as Jupyter Notebook. All open-source libraries are of course also included.
+An inventory of resources (\ref{tabelle:inventory}) was created for assessing the situation. Most notably is the availability of experts through excellent intercorporational cooperation. Also, a large collection of datasets is available. Hardware platforms include personal machines as well as hosted environments with GPU capabilities. Available software are data science tools included in the Anaconda Navigator, such as Jupyter Notebook. All open-source libraries are of course also included.
 
-\section{Determine Data Mining Goals}
+\subsection{Requirements, assumptions, and constraints}
+The project is to be completed the latest on June 7$^{th}$ 2022. 
+
+Several assumptions underly the process of data mining. First, it is assumed that the descriptions of the invoices is speaking enough to identify the product referenced.
+Second, the analysis assumes that invoices can be logically grouped into clusters, in other words, several invoices refering to similar topics.
+
+From a legal perspective, the project is constrained in the publication of data. While the use and processing of the supplied data is permitted within the context of the thesis, publication and further use is prohibited. The dataset is to be kept only on the local machine and SAP owned hyperscaler instances.
+
+\subsection{Risks and contingencies}
+One specific risk that may arise in this project, is a dataset too large to be processed. Only a limited size of data is able to be loaded into memory. If the dataset turns out to be too big, four solutions are proposed.
+
+- compress
+- data types
+- chunking
+- AI Core
+
+- data too dirty
+
+- calculations highly inefficient
+
+- clustering does not give speaking results
+
+\subsection{Terminology}
+
+\subsection{Costs and benefits}
+
+\section{Determine data mining goals}
+The following data mining goals were identified during the phase of business understanding:
+
+\begin{enumerate}
+\item Identifying and applying appropriate methods for feature extracting tailored to this type of dataset.
+\item Identifying and applying appropriate methods for clustering documents in this type of dataset.
+\item Identifying and applying appropriate methods for topic modelling with this type of dataset.
+\item Aggregating expenses by their clusters and visualizing the output.
+\end{enumerate}
+
+The successful outcome is defined by reaching all named criteria. The achievment will be evaluated by the author and the supervisor, also people referenced in the inventory of resources will be considered to evaluate the outcome.
 
 
 \section{Produce Project Plan}
+
+\subsection{Project Plan}
+
+\subsection{Initial assessment of tools and techniques}
+
+
+
+
+
+
+
+
+
+
