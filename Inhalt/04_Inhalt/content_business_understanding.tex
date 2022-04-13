@@ -23,20 +23,40 @@ Second, the analysis assumes that invoices can be logically grouped into cluster
 From a legal perspective, the project is constrained in the publication of data. While the use and processing of the supplied data is permitted within the context of the thesis, publication and further use is prohibited. The dataset is to be kept only on the local machine and SAP owned hyperscaler instances.
 
 \subsection{Risks and contingencies}
-One specific risk that may arise in this project, is a dataset too large to be processed. Only a limited size of data is able to be loaded into memory. If the dataset turns out to be too big, four solutions are proposed.
+\subparagraph{Dataset too Large} One specific risk that may arise in this project, is a dataset too large to be processed. Only a limited size of data is able to be loaded into memory. If the dataset turns out to be too big, four solutions are proposed.
 
-- compress
-- data types
-- chunking
-- AI Core
+\begin{enumerate}
+	\item The dataset can be compressed using either a lossy compression (sampling, truncating floating point values) or a lossless compression (choosing only specific columns, using a sparse-column representation or choosing efficient data types) \cite{largeDataSetMedium}.
+	\item Memory problems often arise out of computations that are not thought through. Most of the time, not the whole data needs to be in memory. Streaming the data or loading it progressively is a great option, if the algorithms permits it \cite{largeDataSetBrownlee}. Programming languages often have built in lazy evaluation capabilities, such as python generators.
+	\item Another approach for storing and querying large datasets is the use of a relational database. The database can be queried using \ac{SQL}. Again, this option has the premise of \ac{ML} algorithms permitting iterative learning \cite{largeDataSetBrownlee}. 
+	\item Finally, using a platform for \ac{ML} workloads, such as AI Core helps with handling large amounts of data. This approach requires aligning of the source code to fit the specifications and endpoints of the platform.
+\end{enumerate}
 
-- data too dirty
+\subparagraph{Messy Data} Of course, data collected from operational sources is not perfect and ready to feed into an algorithm. Data cleaning is one of the main activities of data scientist's everyday workload. But what if the dataset is untidy to such a severe extent, that it is not able to be cleaned in a reasonable amount of time?
+Particular problems can be column shifts in tables, different units for values without naming the unit, or feature encodings without keys for decoding.
+Depending on the extent of the case, a different dataset should be evaluated. Also, the remark has to be made that this case is highly unlikely as the datasets have been used for other applications in the past.
 
-- calculations highly inefficient
+\subparagraph{Inefficient Calculation} Calculations can quickly grow into inefficient and obfuscated code, taking hours or even days to complete. To mitigate this risk, :
 
-- clustering does not give speaking results
+\begin{enumerate}
+	\item Different methods for calculating the same operation should be identified, evaluated and implemented.
+	\item Regular benchmarking of smaller chunks of the data helps to extrapolate processing times and decide for one solution.
+	\item Implementations in libraries should be, in general, favored over self-made implementation. Literature research in industry-specific blogs helps to find even more efficient implementations than those contained in popular libraries.
+	\item A sophisticated design of data structures is crucial in utilizing optimized code. Even the most elaborate way of calculating operations can turn into a resource-intensive task if the input data is structured poorly. Considering different data structures and selecting the most appropriate one for each specific task is crucial.
+\end{enumerate}
+
+\subparagraph{Results are of no value}
+The business objectives were determined in a prior section. But what is the procedure if the business objectives are not reached? Especially the criterion of giving useful insights is the crux.
+A simple laissez-faire attitude towards the definition of "useful" is unsatisfactory, although creating the illusion of a positive outcome of the project.
+With not reaching the original goal of a research project, the work does not automatically become useless. Identifying problems and causes for the failure can facilitate other research.
 
 \subsection{Terminology}
+To summarize both relevant data mining and business terminology, a glossary was compiled.
+
+	\subparagraph{Clustering Algorithm} is a sequence of instructions, which arranges a set of instances into groups, which contain items of high similarity to each other.
+	\subparagraph{\ac{NLP}}is often attributed to computer science, but after closer examination, \ac{NLP} is a discipline comprised of linguistics, computer science, artificial intelligence an mathematics \cite{chowdhury2003}.
+	
+	\textcolor{red}{This is not yet completed, as the glossary of terms will be expanded while writing the thesis.}
 
 \subsection{Costs and benefits}
 
