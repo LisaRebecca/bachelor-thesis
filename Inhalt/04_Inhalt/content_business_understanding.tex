@@ -58,6 +58,8 @@ To summarize both relevant data mining and business terminology, a glossary was 
 	
 	\subparagraph{SAP AI Foundation}
 	\subparagraph{SAP AI Launchpad}
+	
+	
 	\textcolor{red}{This is not yet completed, as the glossary of terms will be expanded while writing the thesis.}
 
 \subsection{Costs and benefits}
@@ -81,15 +83,24 @@ The successful outcome is defined by reaching all named criteria. The achievment
 \subsection{Project Plan}
 
 \subsection{Initial assessment of tools and techniques}
-Programming Language
-- Python
-- R?
-- ??
 
-Development Environment
+\paragraph{Programming Language}
+A multitude of programming languages for statistical analyses and machine learning applications exist. The most popular and best supported are Python and R. Both languages are open source and targeted at data science tasks.
+Following criteria will be used to evaluate the best fit for this project:
+\begin{enumerate}
+\item Understandability, as the availability of learning resources and the ease of reading and writing source code.
+\item Availability of resources such as libraries, packages and modules.
+\item Compatibility with existing solutions, availability of scaling and deployment options.
+\end{enumerate}
 
-Deployment
+Python is a general purpose programming language with a straightforward syntax. Python is regularly taught at schools and suited for beginners. R is a language built by statisticians. Therefore, R is suited primarily for data-science tasks. While a data analysis can be created easily, more complex functionality requires experience and is considered challenging \cite{pythonVsR}. For understandability, Python is rated as the more favorable choice.
 
+For the availability of resources, R clearly scores. Python has a large number of libraries available. Since python is not exclusively for data science, only a fraction of them are suited for statistical analyses. For R on the other hand, over 13.000 packages are available in the R archives \cite{pythonVsR}.
+
+Deploying a python solution is easily possible via APIs, webapps and containerization technologies. R is also displayable on the web using specific packages. Both R and Python can be deployed in docker containers \cite{rDocker} \cite{pythonDocker} paving the way to be deployed on all major hyperscalers.
+It can be stated that python has superior ability to be scaled and deployed as it is a general purpose programming language. 
+
+\paragraph{Programming Environment}
 
 
 
