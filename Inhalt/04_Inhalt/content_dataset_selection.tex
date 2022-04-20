@@ -1,7 +1,7 @@
 \chapter{Dataset selection}
-\section{Choosing a dataset}
-	The dataset is the fundament of a data-science project. The quality, size and closeness to reality decide the degree to which the findings can be helpful for solving real problems. 
-	In this section, a classification for data-science projects is introduced.
+\section{Choosing a Dataset}
+	The dataset is the fundament of a data-science project. The quality, size, and closeness to reality decide the helpfulness of findings made using the data.
+	In this section, a classification for data-science projects is introduced as a guide for dataset selection.
 	
 	\subsection{Project Types}
 \begin{table}[ht]
@@ -25,45 +25,47 @@
 	\end{tabular}
 \end{table}
 
-	The problem-first project type is characterized by a predefined problem statement or research goal. The underlying question is, how a specific or a set of problems can be solved \cite{dataScienceProjectTypes}.  For the selection of the dataset, this requires that goal achievement can be measured with existing ground truth. In some cases, also other methods such as expert judgements can be sufficient. In a problem-first project, different datasets can and should be considered. \cite{dataScienceProjectTypes} give the metaphor of "mining for valuable minerals or metals at a given geo- graphic location where the existence of the minerals or metals has been established".
+	The problem-first project type is characterized by a predefined problem statement or research goal. The underlying question is how a specific problem can be solved \cite{dataScienceProjectTypes}.  For the selection of the dataset, this requires that goal achievement can be measured with existing ground truth. In some cases, also other methods such as expert judgements can be sufficient. In a problem-first project different datasets can and should be considered. \cite{dataScienceProjectTypes} give the metaphor of "mining for valuable minerals or metals at a given geographic location where the existence of the minerals or metals has been established". This means that it is already verified that the business goal can be reached with this specific dataset, hence the metaphor of already discovered mineral occurrence.
 	
-	The complementary project type is the data-first project. This type is characterized by a more explorative approach, and the goal to find problems and patterns. Here, the dataset is at the core of the project and the fixed aspect of a project. In turn, this means swapping the dataset is the start of a new project. When turning to the metaphor of mining for minerals, this type of project would be the exploration of different test pits that promise mineral occurences \cite{dataScienceProjectTypes}.
+	The complementary project type is the data-first project. This type is characterized by a more explorative approach, and the goal to find problems and patterns. Here, the dataset is at the core of the project and the fixed aspect of the project. In turn, this means swapping the dataset is the start of a new project. When turning to the metaphor of mining for minerals, this type of project would be the exploration of different test pits that promise mineral occurences \cite{dataScienceProjectTypes}. It is not clear if a problem can be solved with the investigation, and problem to solve is not known.
 	
-	\subsection{Systematization of this project}
+	\subsection{Systematization of this Project}
 	Usually, the project type is not decided on, but implicitly arises out of environmental parameters. This is also the case in this project. While there was no initial business goal defined, a dataset was chosen and agreed upon. The decision process is detailed in the next section, \ref{data-source}. The dataset being the anchor of the project, this data science project can easily be classified as a Data-First project.
 	
-	\subsection{Resulting Requirements for selecting a dataset}
+	\subsection{Resulting Requirements for Selecting a Dataset}
 	In a data-first project, there is no assumption of patterns. This for once means that a large dataset is required to cover enough ground for accurate derivation of insights. Second, a data-first project does not require structured data \cite{srivastavaDataMining}. Instead, unstructured and semi-structured data is also applicable for data-first projects.
 	
-	\section{Choosing a data source}
+	\section{Choosing a Data Source}
 	\label{data-source}
 	
 	With the project type as a decisive factor for the dataset explained, the other evaluation criteria for the dataset is described. In the corporate environment two fundamental sources for data exist. 
 	
+	\begin{table}[]
+		\caption{Comparison of Data Sources}
+		\begin{tabular}{l|ll}
+			\toprule
+			& \textbf{Internal}                                                                                             & \textbf{External}                                                                                               \\
+			\midrule
+			\vspace{0.5cm}
+			Source       & \begin{tabular}[c]{@{}l@{}}Internal or customer data, \\ bought or generated\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Publicly available, \\ generated or supplied by companies\end{tabular}      \\
+			\vspace{0.5cm}
+			Relevance    & Business-relevant                                                                                    & Anonymized, processed                                                                                  \\
+			\vspace{0.5cm}
+			Value        & Relevant specific business                                                                           & Of general relevance                                                                                   \\
+			\vspace{0.5cm}
+			Availability & \begin{tabular}[c]{@{}l@{}}Authorization processes in place,\\ data protection measures\end{tabular} & Ubiquitously available                                                                                 \\
+			\vspace{0.5cm}
+			Examples     & \begin{tabular}[c]{@{}l@{}}Sales records, usage statistics, \\ customer feedback\end{tabular}        & \begin{tabular}[c]{@{}l@{}}Historic weather information, \\ consumer statistics, social media data\end{tabular}
+		\end{tabular}
+	\end{table}
+
 	\subsection{Data Sources}
-	Firstly, data can be sourced from inside the company. This can include customer data or data generated from observation and monitoring processes inside the company \cite{internalExternalData}. Data is either directly or very closely related to the company's business. Depending on the solution, it can be of use to customers or it can be utilized inside the company. Internally sourced data is almost exclusively rated confidential, limiting even intra-company access to it. Authorization processes and more than often not existing registries for data may hinder project progress.
+	Firstly, data can be sourced from inside the company. This can include customer data or data generated from observation and monitoring processes inside the company \cite{internalExternalData}. Data is either directly or very closely related to the company's business. Because internally sourced data is of utter utility and a possible target for industrial espionage, internally sourced data is almost exclusively rated confidential, limiting even intra-company access to it. Authorization processes and more than often not existing registries for data may hinder project progress.
 	
-	Secondly, data can be sourced outside the company. A vast number of online registries for data exist, both with paid and free of charge service offerings \cite{whyExternalData}. Data sources include real-life data and data generated for educational purposes. Because of its publication, the data is sometimes stripped from all parts which could expose confidential information such as corporate secrets. Additionally, data is anonymized for privacy reasons.
+	Secondly, data can be sourced outside the company. A vast number of online registries for data exist, both with paid and free of charge service offerings \cite{whyExternalData}. Data sources include social media data, sensory data and weather data. Because of its publication, the data is sometimes stripped from all parts which could expose confidential information such as corporate secrets. Additionally, data is anonymized for privacy reasons. External Data can give valuable insights into industries and markets.
 	
-\begin{table}[]
-	\caption{Comparison of Data Sources}
-	\begin{tabular}{l|ll}
-		\toprule
-		& \textbf{Internal}                                                                                             & \textbf{External}                                                                                               \\
-		\midrule
-		\vspace{0.5cm}
-		Source       & \begin{tabular}[c]{@{}l@{}}Internal or customer data, \\ bought or generated\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Publicly available, \\ generated or supplied by companies\end{tabular}      \\
-	   	\vspace{0.5cm}
-		Relevance    & Business-relevant                                                                                    & Anonymized, processed                                                                                  \\
-		\vspace{0.5cm}
-		Value        & Relevant specific business                                                                           & Of general relevance                                                                                   \\
-		\vspace{0.5cm}
-		Availability & \begin{tabular}[c]{@{}l@{}}Authorization processes in place,\\ data protection measures\end{tabular} & Ubiquitously available                                                                                 \\
-		\vspace{0.5cm}
-		Examples     & \begin{tabular}[c]{@{}l@{}}Sales records, usage statistics, \\ customer feedback\end{tabular}        & \begin{tabular}[c]{@{}l@{}}Historic weather information, \\ consumer statistics, research\end{tabular}
-	\end{tabular}
-\end{table}
+
 	
 	\subsection{Selected Data Source}
-	It can be stated, that both sources are suited for different goals and different contexts. For data scientists with internal sources available, this type of source seems more appealing. The resulting data sets often are of higher quality and relevance. Of course, external data sets are important especially for independent data scientists without access to paid databases, or for small businesses without the option for an own data collection.
+	It can be stated, that both sources are suited for different goals and different contexts. For data scientists with internal sources available, this type of source seems more appealing. The resulting data sets often are of higher quality and relevance. Of course, external data sets are important especially for independent data scientists without access to paid databases, or for small businesses without the option for an own data collection. An approach of connecting both internal and external data is also an option, but not within the scope of this project.
 	
