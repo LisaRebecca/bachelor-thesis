@@ -68,7 +68,7 @@
 	giveninits = true,              % Vornamen werden abgekürzt
 	doi=false,                      % DOI nicht anzeigen
 	isbn=false,                     % ISBN nicht anzeigen
-    alldates=short                  % Datum immer als DD.MM.YYYY anzeigen
+    alldates=iso                  % Datum immer als DD.MM.YYYY anzeigen
 ]{biblatex}
 \addbibresource{Inhalt/literatur.bib}
 \setcounter{biburlnumpenalty}{3000}     % Umbruchgrenze für Zahlen
@@ -78,7 +78,7 @@
 \AtBeginBibliography{\renewcommand{\multinamedelim}{\addslash\space
 }\renewcommand{\finalnamedelim}{\multinamedelim}}  % Schrägstrich zwischen den Autorennamen
 \DefineBibliographyStrings{german}{
-  urlseen = {Einsichtnahme:},                      % Ändern des Titels von "besucht am"
+  urlseen = {Last visited },                      % Ändern des Titels von "besucht am"
 }
 \usepackage[babel,german=quotes]{csquotes}         % Deutsche Anführungszeichen + Zitate
 
