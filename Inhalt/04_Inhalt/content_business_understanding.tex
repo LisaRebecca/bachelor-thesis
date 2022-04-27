@@ -1,20 +1,19 @@
 \chapter{Business Understanding}
-In \cite{CRISPDM2000}, different tasks, and outputs for developting a business understanding are mentioned. The task and respective output will be dicussed in the following sections.
+In the guide complementing the \ac{CRISP-DM} model \cite{CRISPDM2000}, different tasks, and outputs for developing a business understanding are mentioned. The task and respective output will be dicussed in the following sections.
 
-\section{Determine Business Objectives}
+\section{Business Objectives}
 Businesses without existing an \ac{ERP} solution in place can easily be overwhelmed by the number of invoices reaching them daily. Even more, the controlling department can easily lose the overview of spending. To quickly gain a perspective on the most important spending topics, spending should be sorted in categories of similar nature.
 
 The primary goal is the development of a solution for automatic aggregation of documents, based on topics adressed in those documents. The focus is on shorter text segments, such as product descriptions. The business objective is an information gain, on how spending is distributed among cross-cutting topics in a company.
 
-The created solution can be evaluated with the business success criterion: "Does the solution identify and give useful insights in the money pits?". This judgement of having achieved the goal is a subjective matter. Evaluating the success should therefore be distributed among several stakeholders, including but not limited to the author, the supervisor and the supplier of the data.
+The created solution can be evaluated with the business success criterion: "Does the solution identify and give useful insights in the money pits?". The judgement of goal achievment is a subjective matter. Evaluating the success should therefore be distributed among several stakeholders, including but not limited to the author, the supervisor and the supplier of the data.
 
-
-\section{Assess Situation}
+\section{Assessment of the Situation}
 
 \subsection{Inventory of Resources}
 An inventory of resources (\ref{tabelle:inventory}) was created for assessing the situation. Most notably is the availability of experts through excellent intercorporational cooperation. Also, a large collection of datasets is available. Hardware platforms include personal machines as well as hosted environments with GPU capabilities. Available software are data science tools included in the Anaconda Navigator, such as Jupyter Notebook. All open-source libraries are of course also included.
 
-\subsection{Requirements, assumptions, and constraints}
+\subsection{Requirements, Assumptions, and Constraints}
 The project is to be completed the latest on June 7$^{th}$ 2022. 
 
 Several assumptions underly the process of data mining. First, it is assumed that the descriptions of the invoices is speaking enough to identify the product referenced.
@@ -22,21 +21,21 @@ Second, the analysis assumes that invoices can be logically grouped into cluster
 
 From a legal perspective, the project is constrained in the publication of data. While the use and processing of the supplied data is permitted within the context of the thesis, publication and further use is prohibited. The dataset is to be kept only on the local machine and SAP owned hyperscaler instances.
 
-\subsection{Risks and contingencies}
-\subparagraph{Dataset too Large} One specific risk that may arise in this project, is a dataset too large to be processed. Only a limited size of data is able to be loaded into memory. If the dataset turns out to be too big, four solutions are proposed.
+\subsection{Risks and Contingencies}
+\paragraph{Dataset too Large for Processing} One specific risk that may arise in this project, is a dataset too large to be processed. Only a limited size of data is able to be loaded into memory. If the dataset turns out to be too big, four solutions are proposed.
 
 \begin{enumerate}
 	\item The dataset can be compressed using either a lossy compression (sampling, truncating floating point values) or a lossless compression (choosing only specific columns, using a sparse-column representation or choosing efficient data types) \cite{largeDataSetMedium}.
-	\item Memory problems often arise out of computations that are not thought through. Most of the time, not the whole data needs to be in memory. Streaming the data or loading it progressively is a great option, if the algorithms permits it \cite{largeDataSetBrownlee}. Programming languages often have built in lazy evaluation capabilities, such as python generators.
+	\item Memory problems often arise out of computations that are not thought through. Most of the time, not the whole data needs to be in memory. Streaming the data or loading it progressively is a great option, if the algorithms permit this \cite{largeDataSetBrownlee}. Programming languages often have built in lazy evaluation capabilities, such as Python's generators.
 	\item Another approach for storing and querying large datasets is the use of a relational database. The database can be queried using \ac{SQL}. Again, this option has the premise of \ac{ML} algorithms permitting iterative learning \cite{largeDataSetBrownlee}. 
-	\item Finally, using a platform for \ac{ML} workloads, such as AI Core helps with handling large amounts of data. This approach requires aligning of the source code to fit the specifications and endpoints of the platform.
+	\item Finally, using a platform for \ac{ML} workloads, such as SAP AI Core helps with handling large amounts of data. This approach requires aligning of the source code to fit the specifications and endpoints of the platform.
 \end{enumerate}
 
-\subparagraph{Messy Data} Of course, data collected from operational sources is not perfect and ready to feed into an algorithm. Data cleaning is one of the main activities of data scientist's everyday workload. But what if the dataset is untidy to such a severe extent, that it is not able to be cleaned in a reasonable amount of time?
+\paragraph{Messy Data} Of course, data collected from operational sources is not perfect and ready to feed into an algorithm. Data cleaning is one of the main activities of data scientist's everyday workload. But what if the dataset is untidy to such a severe extent, that it is not able to be cleaned in a reasonable amount of time?
 Particular problems can be column shifts in tables, different units for values without naming the unit, or feature encodings without keys for decoding.
 Depending on the extent of the case, a different dataset should be evaluated. Also, the remark has to be made that this case is highly unlikely as the datasets have been used for other applications in the past.
 
-\subparagraph{Inefficient Calculation} Calculations can quickly grow into inefficient and obfuscated code, taking hours or even days to complete. To mitigate this risk, :
+\paragraph{Inefficient Calculation} Calculations can quickly grow into inefficient and obfuscated code, taking hours or even days to complete. To mitigate this risk the following contingencies are proposed:
 
 \begin{enumerate}
 	\item Different methods for calculating the same operation should be identified, evaluated and implemented.
@@ -45,27 +44,24 @@ Depending on the extent of the case, a different dataset should be evaluated. Al
 	\item A sophisticated design of data structures is crucial in utilizing optimized code. Even the most elaborate way of calculating operations can turn into a resource-intensive task if the input data is structured poorly. Considering different data structures and selecting the most appropriate one for each specific task is crucial.
 \end{enumerate}
 
-\subparagraph{Results are of no value}
+\paragraph{Results are of no Value}
 The business objectives were determined in a prior section. But what is the procedure if the business objectives are not reached? Especially the criterion of giving useful insights is the crux.
 A simple laissez-faire attitude towards the definition of "useful" is unsatisfactory, although creating the illusion of a positive outcome of the project.
 With not reaching the original goal of a research project, the work does not automatically become useless. Identifying problems and causes for the failure can facilitate other research.
 
 \subsection{Terminology}
 To summarize both relevant data mining and business terminology, a glossary was compiled.
-
-	\subparagraph{Clustering Algorithm} is a sequence of instructions, which arranges a set of instances into groups, which contain items of high similarity to each other.
-	\subparagraph{\ac{NLP}}is often attributed to computer science, but after closer examination, \ac{NLP} is a discipline comprised of linguistics, computer science, artificial intelligence an mathematics \cite{chowdhury2003}.
+\textcolor{red}{This is not yet completed, as the glossary of terms will be expanded while writing the thesis.}
+	\paragraph{Clustering Algorithm} is a sequence of instructions, which arranges a set of instances into groups, which contain items of high similarity to each other.
+	\paragraph{Document}
+	\paragraph{\ac{NLP}}is often attributed to computer science, but after closer examination, \ac{NLP} is a discipline comprised of linguistics, computer science, artificial intelligence an mathematics \cite{chowdhury2003}.
 	
-	\subparagraph{SAP AI Foundation}
-	\subparagraph{SAP AI Launchpad}
-	
-	
-	\textcolor{red}{This is not yet completed, as the glossary of terms will be expanded while writing the thesis.}
+	\paragraph{SAP AI Foundation} is a term describing SAP's offerings of the AI Launchpad and AI Core.
+	\paragraph{SAP AI Launchpad} is a tool for the operation of AI content inside an SAP system.
+	\paragraph{SAP AI Core} allows for training and serving AI scenarios \cite{schmitzLeonardo}.
+	\paragraph{Hyperscaler}
 
-\subsection{Costs and benefits}
-	\textcolor{red}{Propably won't include this...}
-
-\section{Determine data mining goals}
+\section{Data Mining Goals}
 The following data mining goals were identified during the phase of business understanding:
 
 \begin{enumerate}
@@ -78,9 +74,10 @@ The following data mining goals were identified during the phase of business und
 The successful outcome is defined by reaching all named criteria. The achievment will be evaluated by the author and the supervisor, also people referenced in the inventory of resources will be considered to evaluate the outcome.
 
 
-\section{Produce Project Plan}
+\section{Project Plan}
 
 \subsection{Project Plan}
+\textcolor{red}{I don't think I will need this...}
 
 \subsection{Initial assessment of tools and techniques}
 
@@ -95,12 +92,20 @@ Following criteria will be used to evaluate the best fit for this project:
 
 Python is a general purpose programming language with a straightforward syntax. Python is regularly taught at schools and suited for beginners. R is a language built by statisticians. Therefore, R is suited primarily for data-science tasks. While a data analysis can be created easily, more complex functionality requires experience and is considered challenging \cite{pythonVsR}. For understandability, Python is rated as the more favorable choice.
 
-For the availability of resources, R clearly scores. Python has a large number of libraries available. Since python is not exclusively for data science, only a fraction of them are suited for statistical analyses. For R on the other hand, over 13.000 packages are available in the R archives \cite{pythonVsR}.
+For the availability of resources, R clearly scores. In general, Python has a large number of libraries available. Since python is not exclusively for data science, only a fraction of them are suited for statistical analyses. For R on the other hand, over 13.000 packages are available in the R archives \cite{pythonVsR}.
 
 Deploying a python solution is easily possible via APIs, webapps and containerization technologies. R is also displayable on the web using specific packages. Both R and Python can be deployed in docker containers \cite{rDocker} \cite{pythonDocker} paving the way to be deployed on all major hyperscalers.
 It can be stated that python has superior ability to be scaled and deployed as it is a general purpose programming language. 
 
 \paragraph{Programming Environment}
+With the programming language decided, the basic programming paradigm has to be chosen.
+
+
+- modular
+- script
+
+- jupyter
+- 
 
 
 
