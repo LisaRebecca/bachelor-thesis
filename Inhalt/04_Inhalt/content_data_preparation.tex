@@ -105,16 +105,7 @@
 	
 	Different python libraries exploit this speciality and allow to spawn a pool of different processes, which then execute calls asynchronously. One example is the ProcessPoolExecutor. A notable restriction is that only picklable objects can be submitted for multiprocessing. This concerns both fuction and its parameters. While this is not a problem in this task, this restriction will become important later on in the section about feature extraction.
 	
-	\lstinputlisting[
-	label=code:JSONSchema,    % Label; genutzt für Referenzen auf dieses Code-Beispiel
-	caption=Shortened JSON Schema of one invoice document representation,
-	captionpos=b,               % Position, an der die Caption angezeigt wird t(op) oder b(ottom)
-	style=EigenerPythonStyle,   % Eigener Style der vor dem Dokument festgelegt wurde
-	firstline=0,                % Zeilennummer im Dokument welche als erste angezeigt wird
-	lastline=23                 % Letzte Zeile welche ins LaTeX Dokument übernommen wird
-	]{Quellcode/json-schema.json}
-	
-	
+
 
 	
 	\section{Data cleaning}
