@@ -2,7 +2,7 @@
 
 	\section{Data processing and data wrangling}
 	
-    Data preparation is the process of transforming the acquired dataset into a dataset which can be fed into learning algorithms and is cleaned of impurities in such a way, that the learning results are likely satisfactory. Impurities may be missing values, shifted columns, encoding errors or different data formats. 
+    Data preparation is the process of transforming the acquired dataset into a dataset which can be fed into learning algorithms and is cleaned of impurities in such a way, that the learning results are likely satisfactory. Impurities to some extent were already identified in the prior chapter, additionally, shifted columns, encoding errors or different data formats have to be accounted for.
     Data preparation includes data wrangling, data cleaning, and feature extraction. What is left should be a uniform dataset, which is in a format that is understandable by the desired algorithms.
     
         \subsection{Alternatives}
@@ -65,10 +65,8 @@
 	]{Quellcode/invoice.json}
 	
     \subsection{Practical Implementation}
-
-	The files are processed in python, using the library "json". Each file is opened, and decoded with python's build in json decoder. The hierarchy is traversed until the array "annotations" is reached. Now, the tuples of label and text are saved. This process is split up into invoice and item labels.
 	
-	The information on invoices is stored in a tabular data structure, a python pandas DataFrame. Worth mentioning is that some invoices contain more information than others. In this case, invoices are still appended into one table, but fields for non-existent values are left empty. The filename is the unique identificator for one invoice.
+	The information on invoices is stored in a tabular data structure, a python pandas DataFrame. Worth mentioning is that some invoices contain more information than others. In this case, invoices are still appended into one table, but fields for non-existent values are left empty. The filename is the unique identifier for one invoice.
 	
 	\begin{figure}[ht]
 		\centering
@@ -116,10 +114,10 @@
     - tokenization
 	The task of data cleaning was also completed using python scripts. The library \ac{NLTK}
 	
-	\begin{lstlisting}[language=sh]
-$ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking flour type 504"))' 
+\begin{lstlisting}[language=sh]
+$ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking flour type 504"))' \\
 >>>  ['of', 'special', 'baking', 'flour', 'type']
-	\end{lstlisting}
+\end{lstlisting}
 	 
 	\section{Considerations of Space and Time Complexity}
 	The dataset consists of over 150.000 invoices, and in those invoices, over 350.000 items are listed. 
