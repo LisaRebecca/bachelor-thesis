@@ -1,23 +1,23 @@
 \chapter{Business Understanding}
-In the guide complementing the \ac{CRISP-DM} model, different tasks, and outputs for developing a business understanding are mentioned. The task and respective output will be dicussed in the following sections.
+In the guide complementing the \ac{CRISP-DM} model, different tasks, and outputs for developing a business understanding are mentioned. The task and respective output will be discussed in the following sections.
 
 \section{Business Objectives}
 Businesses without existing an \ac{ERP} solution in place can easily be overwhelmed by the number of invoices reaching them daily. Even more, the controlling department can easily lose the overview of spending. To quickly gain a perspective on the most important spending topics, spending should be sorted in categories of similar nature.
 
-The primary goal is the development of a solution for automatic aggregation of documents, based on topics adressed in those documents. The focus is on shorter text segments, such as product descriptions. The business objective is an information gain, on how spending is distributed among cross-cutting topics in a company.
+The primary goal is the development of a solution for automatic aggregation of documents, based on topics addressed in those documents. The focus is on shorter text segments, such as product descriptions. The business objective is an information gain, on how spending is distributed among cross-cutting topics in a company.
 
-The created solution can be evaluated with the business success criterion: "Does the solution identify and give useful insights in the money pits?". The judgement of goal achievment is a subjective matter. Evaluating the success should therefore be distributed among several stakeholders, including but not limited to the author, the supervisor and the supplier of the data.
+The created solution can be evaluated with the business success criterion: "Does the solution identify and give useful insights in the money pits?". The judgment of goal achievement is a subjective matter. Evaluating the success should therefore be distributed among several stakeholders, including but not limited to the author, the supervisor and the supplier of the data.
 
 \section{Assessment of the Situation}
 
 \subsection{Inventory of Resources}
-An inventory of resources (\ref{tabelle:inventory}) was created for assessing the situation. Most notably is the availability of experts through excellent intercorporational cooperation. Also, a large collection of datasets is available. Hardware platforms include personal machines as well as hosted environments with GPU capabilities. Available software are data science tools included in the Anaconda Navigator, such as Jupyter Notebook. All open-source libraries are of course also included.
+An inventory of resources (\ref{tabelle:inventory}) was created for assessing the situation. Most notably is the availability of experts through excellent inter-corporation cooperation. Also, a large collection of datasets is available. Hardware platforms include personal machines as well as hosted environments with GPU capabilities. Available software are data science tools included in the Anaconda Navigator, such as Jupyter Notebook. All open-source libraries are of course also included.
 
 \subsection{Requirements, Assumptions, and Constraints}
 The project is to be completed the latest on June 7$^{th}$ 2022. 
 
-Several assumptions underly the process of data mining. First, it is assumed that the descriptions of the invoices is speaking enough to identify the product referenced.
-Second, the analysis assumes that invoices can be logically grouped into clusters, in other words, several invoices refering to similar topics.
+Several assumptions underlay the process of data mining. First, it is assumed that the descriptions of the invoices is speaking enough to identify the product referenced.
+Second, the analysis assumes that invoices can be logically grouped into clusters, in other words, several invoices referring to similar topics.
 
 From a legal perspective, the project is constrained in the publication of data. While the use and processing of the supplied data is permitted within the context of the thesis, publication and further use is prohibited. The dataset is to be kept only on the local machine and SAP owned hyperscaler instances.
 
@@ -39,7 +39,7 @@ Depending on the extent of the case, a different dataset should be evaluated. Al
 
 \begin{enumerate}
 	\item Different methods for calculating the same operation should be identified, evaluated and implemented.
-	\item Regular benchmarking of smaller chunks of the data helps to extrapolate processing times and decide for one solution.
+	\item Regular bench-marking of smaller chunks of the data helps to extrapolate processing times and decide for one solution.
 	\item Implementations in libraries should be, in general, favored over self-made implementation. Literature research in industry-specific blogs helps to find even more efficient implementations than those contained in popular libraries.
 	\item A sophisticated design of data structures is crucial in utilizing optimized code. Even the most elaborate way of calculating operations can turn into a resource-intensive task if the input data is structured poorly. Considering different data structures and selecting the most appropriate one for each specific task is crucial.
 \end{enumerate}
@@ -54,7 +54,7 @@ To summarize both relevant data mining and business terminology, a glossary was 
 \textcolor{red}{This is not yet completed, as the glossary of terms will be expanded while writing the thesis.}
 	\paragraph{Clustering Algorithm} A clustering algorithm is a sequence of instructions, which arranges a set of instances into groups, which contain items of high similarity to each other.
 	\paragraph{Document} A document is a unit of data most typically containing natural language text.
-	\paragraph{Hyperscaler} A hyperscaler is a company offering achitecture to adapt to changing workloads in cloud computing, networking and internet services.
+	\paragraph{Hyperscaler} A hyperscaler is a company offering architecture to adapt to changing workloads in cloud computing, networking and internet services.
 	\paragraph{\acf{NLP}} \ac{NLP} is often attributed to computer science, but after closer examination, \ac{NLP} is a discipline comprised of linguistics, computer science, artificial intelligence an mathematics \cite{chowdhury2003}.
 	\paragraph{Script} A script is  a small piece of code contained in a single file, most commonly written in a dynamic high-level programming language.
 	\paragraph{SAP AI Foundation} The SAP AI Foundation is a term describing SAP's offerings of the AI Launchpad and AI Core.
@@ -68,11 +68,11 @@ The following data mining goals were identified during the phase of business und
 \begin{enumerate}
 \item Identifying and applying appropriate methods for feature extracting tailored to this type of dataset.
 \item Identifying and applying appropriate methods for clustering documents in this type of dataset.
-\item Identifying and applying appropriate methods for topic modelling with this type of dataset.
+\item Identifying and applying appropriate methods for topic modeling with this type of dataset.
 \item Aggregating expenses by their clusters and visualizing the output.
 \end{enumerate}
 
-The successful outcome is defined by reaching all named criteria. The achievment will be evaluated by the author and the supervisor, also people referenced in the inventory of resources will be considered to evaluate the outcome.
+The successful outcome is defined by reaching all named criteria. The achievement will be evaluated by the author and the supervisor, also people referenced in the inventory of resources will be considered to evaluate the outcome.
 
 
 \section{Project Plan}
@@ -86,16 +86,16 @@ The successful outcome is defined by reaching all named criteria. The achievment
 A multitude of programming languages for statistical analyses and machine learning applications exist. The most popular and best supported are Python and R. Both languages are open source and targeted at data science tasks.
 Following criteria will be used to evaluate the best fit for this project:
 \begin{enumerate}
-\item Understandability, as the availability of learning resources and the ease of reading and writing source code.
+\item Understanding, as the availability of learning resources and the ease of reading and writing source code.
 \item Availability of resources such as libraries, packages and modules.
 \item Compatibility with existing solutions, availability of scaling and deployment options.
 \end{enumerate}
 
-Python is a general purpose programming language with a straightforward syntax. Python is regularly taught at schools and suited for beginners. R is a language built by statisticians. Therefore, R is suited primarily for data-science tasks. While a data analysis can be created easily, more complex functionality requires experience and is considered challenging \cite{pythonVsR}. For understandability, Python is rated as the more favorable choice.
+Python is a general purpose programming language with a straightforward syntax. Python is regularly taught at schools and suited for beginners. R is a language built by statisticians. Therefore, R is suited primarily for data-science tasks. While a data analysis can be created easily, more complex functionality requires experience and is considered challenging \cite{pythonVsR}. For understanding, Python is rated as the more favorable choice.
 
 For the availability of resources, R clearly scores. In general, Python has a large number of libraries available. Since python is not exclusively for data science, only a fraction of them are suited for statistical analyses. For R on the other hand, over 13.000 packages are available in the R archives \cite{pythonVsR}.
 
-Deploying a python solution is easily possible via APIs, webapps and containerization technologies. R is also displayable on the web using specific packages. Both R and Python can be deployed in docker containers \cite{rDocker} \cite{pythonDocker} paving the way to be deployed on all major hyperscalers.
+Deploying a python solution is easily possible via APIs, web apps and containerization technologies. R is also displayable on the web using specific packages. Both R and Python can be deployed in docker containers \cite{rDocker} \cite{pythonDocker} paving the way to be deployed on all major hyperscalers.
 It can be stated that python has superior ability to be scaled and deployed as it is a general purpose programming language. 
 
 \paragraph{Programming Paradigm}
@@ -103,9 +103,9 @@ With the programming language decided, the basic programming paradigm has to be 
 For data scientist, the decision between modular code and code contained in a notebook presents itself in the beginning of every project. Python code in modules can be organized into several files calling each other when needed. This option requires careful documentation, as there is no graphical interface showing dependencies between the modules.
 
 Python notebooks are structured to represent code, descriptions and the output. The most popular notebook format are Jupyter Notebooks, representing code and additional information as \ac{JSON} data \cite{jupyterteamArchitecture}.
-While notebooks allow to tell a story using visualizations and descriptions, they lack in ability to be easily deployed using common methods. Of course, the deplyoment of a Jupyter Notebook is not impossible, but disproportionately more difficult than deploying python modules.
+While notebooks allow to tell a story using visualizations and descriptions, they lack in ability to be easily deployed using common methods. Of course, the deployment of a Jupyter Notebook is not impossible, but disproportionately more difficult than deploying python modules.
 
-Since not every part of a data-science project has to be deployed, a hybrid approach to Juypter Notebooks and modular coding makes sense. The data understanding part of the project will be completed using notebooks. The data preparation and the modelling will be completed in python modules to ensure deployability if desired.
+Since not every part of a data-science project has to be deployed, a hybrid approach to Juypter Notebooks and modular coding makes sense. The data understanding part of the project will be completed using notebooks. The data preparation and the modeling will be completed in python modules to ensure being able to be deployed, if desired.
 
 
 

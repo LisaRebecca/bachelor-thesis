@@ -3,7 +3,7 @@
 \section{Initial Data Collection}
 
 \paragraph{Data Requirements Planning}
-The business objective is the development of a solution for the automatic aggregation of documents based on their topics. To achieve this goal, a sufficient number of documents are required. Also, the documents must contain enough text to be assigned a topic. After clustering the value of each expense in a cluster have to be summed, to gain the desired insight of spendings in one category. So the value an expense amounts to has to be included in the data.
+The business objective is the development of a solution for the automatic aggregation of documents based on their topics. To achieve this goal, a sufficient number of documents are required. Also, the documents must contain enough text to be assigned a topic. After clustering the value of each expense in a cluster have to be summed, to gain the desired insight of spending in one category. So the value an expense amounts to has to be included in the data.
 
 \paragraph{Selection Criteria}
 An initial look a the data has shown that each invoice item can easily contain more than 100 pieces of information, which can be considered as attributed in the dataset. The part of the data that is of interest for the research is the description and payment data. Other data needs to be retained for a coherent and informative presentation of the results, such as location information and information on seller and buyer.
@@ -33,7 +33,7 @@ lastline=23                 % Letzte Zeile welche ins LaTeX Dokument übernommen
 
 
 \section{Data Exploration}
-The exploration focuses on the descriptions and related metadata, as only this part of the data is used for modelling.
+The exploration focuses on the descriptions and related metadata, as only this part of the data is used for modeling.
 \paragraph{Descriptions}
 The descriptions of invoice items vary greatly in their length. While the largest portion of descriptions is under 600 characters, there are outliers with over 1000 characters. 
 \begin{figure}[h!]
@@ -49,15 +49,15 @@ The descriptions of invoice items vary greatly in their length. While the larges
 	\caption{Top ten most frequent descriptions}
 	\label{fig:descr-most-frequent}
 \end{figure}
-The top ten most frequent descriptions are led by two values which will be removed during data cleaning. The first value ('nan') is short for 'not a number'. The second most frequent description is an empty value. Unfortunately, these descriptions amout for one fourth of all text elements. The next descriptions are more speaking, for example consulting fees, credit card transaction fees, and payments for room and board.
+The top ten most frequent descriptions are led by two values which will be removed during data cleaning. The first value ('nan') is short for 'not a number'. The second most frequent description is an empty value. Unfortunately, these descriptions amount for one fourth of all text elements. The next descriptions are more speaking, for example consulting fees, credit card transaction fees, and payments for room and board.
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[height=8cm]{Bilder/data_understanding/descriptions_pareto.pdf}
+	\includegraphics[height=6cm]{Bilder/data_understanding/descriptions_pareto.pdf}
 	\caption{Percentage of Invoices by cumulative unique Descriptions}
 	\label{fig:descr-hist}
 \end{figure}
-The frequency distribution of unique descriptions shows that the top third (36\%) of the descriptions covers 80\% of the invoices. It is notable, that the slope shows an edge at the point of the 24212th description. After this point, each following description only occurs once in the whole dataset. In turn, this means that only 20\% of the descriptions occur more than once.
+The frequency distribution of unique descriptions shows that the top third (36\%) of the descriptions covers 80\% of the invoices. It is notable, that the slope shows an edge at the point of the 24212the description. After this point, each following description only occurs once in the whole dataset. In turn, this means that only 20\% of the descriptions occur more than once.
 \paragraph{Language Distribution}
 The description of the invoices is related to the feature 'language', which describes the language of the invoice and its text fields. The most popular languages are English, Spanish, and German. It is noticeable, that there are over 700 languages or combinations of more than one language. 58878 invoices were not assigned a language, which is roughly one third of the total number.
 \begin{figure}[h!]
@@ -90,7 +90,7 @@ The invoice item total amount stands for the charge corresponding to one line in
 The five-number summary shows that the values are skewed to the right in a considerable manner. The so-called tail of the price distribution reaches almost the 200,000 mark. For the further analysis, it will be interesting if very large charges belong into a similar group of spending.
 
 \section{Data Quality}
-In the analyses before several problems with the data could already be identified. Firstly, a lot of descriptions are empty or have the unusable value 'nan'. Secondly, the language distribution has shown that the spread is highly biased towards english. 
+In the analyses before several problems with the data could already be identified. Firstly, a lot of descriptions are empty or have the unusable value 'nan'. Secondly, the language distribution has shown that the spread is highly biased towards English. 
 Both the unusable values and the uneven language distribution will be addressed in the data cleaning part of the thesis.
 
 The quality of data for text mining purposes can be evaluated using four elementary dimensions \cite[p.~1279]{dataQualityAzeroual} :
@@ -105,14 +105,14 @@ The quality of data for text mining purposes can be evaluated using four element
 \end{table}
 
 \paragraph{Completeness}
-The invoices cover only a part of all billing documents received in the timeframe. As a result, the analysis may not give an insight into the whole spending of one company but only into a fraction of it. 
+The invoices cover only a part of all billing documents received in the time frame. As a result, the analysis may not give an insight into the whole spending of one company but only into a fraction of it. 
 Additionally, the data exploration has shown, that about one fourth of the descriptions are either empty or contain a placeholder for a missing value ('nan'). During data cleaning, even more unusable values will turn up. Still, a pessimistic estimate of 100,000 unique descriptions is a large enough dataset for telling analyses.
 
 \paragraph{Correctness}
 The data was created with the help of an annotation service. The vendor specializes on \ac{OCR} and \acf{NLP} to extract data from real documents, including invoices. Extractions results by this vendor have a guaranteed accuracy of 99\% \cite{scaleaiScaleDocumentAI}.
 \paragraph{Timeliness}
-The dataset consists of invoices in the timeframe from 2015 to 2019, which makes it timely enough for the task.
+The dataset consists of invoices in the time frame from 2015 to 2019, which makes it timely enough for the task.
 \paragraph{Consistency}
- Annotations supplied by the annotation service always follow the given structure detailed in example \ref{code:JSONSchema}. This ensures consistency of data generated over a timespan.
+ Annotations supplied by the annotation service always follow the given structure detailed in example \ref{code:JSONSchema}. This ensures consistency of data generated over a time span.
  
  To sum the data quality report up, the data has flaws in the dimension of completeness, but these minor issues with data quality will likely not impact further data analyses.
