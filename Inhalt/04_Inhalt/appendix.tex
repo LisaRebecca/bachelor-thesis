@@ -248,3 +248,21 @@
 		\item[] lineItem.unitPrice.value
 	\end{itemize}
 \end{multicols}
+\newpage
+\section{Benchmarking DataFrames and Dictionaries}
+\label{benchmarkDF}
+		 \begin{figure}[h!]
+	\centering
+	\includegraphics[height=18cm]{Bilder/appendix/dfvsdict.png}
+	\label{fig:dbscan-plot}
+\end{figure}
+The \lstinline|.loc| indexing is  130.24 times slower than dictionary access.\\
+The \lstinline|.at|  indexing is  62.06 times slower than dictionary access.\\
+The \lstinline|.iloc|  indexing is  310.28 times slower than dictionary access.\\
+The \lstinline|.iat|  indexing is  213.44 times slower than dictionary access.
+
+
+
+
+
+
