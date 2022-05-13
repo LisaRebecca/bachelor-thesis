@@ -1,0 +1,19 @@
+def read_invoice(filename):
+    
+    path = '../data/'+filename
+    with open(path) as data_file:    
+        data = json.load(data_file)
+        annotations = data.get('response').get('annotations')
+        
+    labels = ['filename']
+    texts = [filename] 
+    
+    for ann in annotations:
+        label = ann.get('label')
+        if 'lineItem' in label or label in labels:
+            pass
+        else:
+            labels.append(ann.get('label'))
+            texts.append(ann.get('text'))
+
+    return pd.DataFrame([texts], columns=labels)

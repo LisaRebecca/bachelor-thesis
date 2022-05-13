@@ -80,7 +80,6 @@
 	
 	After the deletion of duplicate descriptions, the relationship between one line item and its description is not one-to-one, but rather one description belonging to several different line items. Model outputs will be a classification of one description, so to restore the relationship between the classification result and one line item, a mapping is constructed.
 	This dictionary maps one description to all line items (ID) which have this description value.
-	
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[height=6cm]{Bilder/description_map.png}
@@ -88,12 +87,12 @@
 		\label{fig:mapping}
 	\end{figure}
 
-	
+
 	After the construction of both tables and the mapping, these artifacts should be serialized. This way, they can easily be loaded into memory without the effort to reconstruct them from scratch.
 	
     \subsection{Practical Implementation}
 	
-	The information on invoices is stored in a tabular data structure, a \lstinline|pandas DataFrame|. Worth mentioning is that some invoices contain more information than others. In this case, invoices are still appended into one table, but fields for non-existent values are left empty. In figure \ref{fig:df-invoices}, the first invoice does not have a total amount included, but since the second one does, this column is created.
+	The files were processed using a Python script (\ref{code:InvoiceReader}). The information on invoices is stored in a tabular data structure, a \lstinline|pandas DataFrame|. Worth mentioning is that some invoices contain more information than others. In this case, invoices are still appended into one table, but fields for non-existent values are left empty. In figure \ref{fig:df-invoices}, the first invoice does not have a total amount included, but since the second one does, this column is created.
 	The filename of one invoice contains the unique identifier for one invoice.
 	
 	\begin{figure}[ht]
@@ -131,27 +130,41 @@
 	
 	Different python libraries exploit this specialty and allow to spawn a pool of different processes, which then execute calls asynchronously. One example is the \lstinline|ProcessPoolExecutor|. A notable restriction is that only picklable objects can be submitted for multiprocessing. This concerns both function and its parameters. While this is not a problem in this task, this restriction will become important later on in the section about feature extraction.
 	
-	For now, 
-	
-	how do I read in the files?
-	example code for a process pool
+\begin{lstlisting}[language=python, 
+label=code:process-pool,
+caption=Spawning a Process Pool in Python,
+style=EigenerPythonStyle]   
+with concurrent.futures.ProcessPoolExecutor() as executor:
+	results = process_map(r.read_invoice, filenames, chunksize=2000)
+\end{lstlisting}
 
-
+	The \lstinline|ProcessPoolExecutor| (s. listing \ref{code:process-pool}) can distribute a list of input values for functions (\lstinline|filenames| ) onto a function (\lstinline|r.read_invoice|). Additionally, the \lstinline|chunksize| as parameter specifies how large the bundles of input values for each process are. Distributing the workload onto all \acs{CPU} cores, the processing time was reduced from 27 hours to under 4 minutes. 
 	
 	\section{Data cleaning}
-    - removing stopwords from several languages
-        
-    - removing numbers and interpunction
-    
-    - tokenization
-	The task of data cleaning was also completed using python scripts. The library \ac{NLTK}
+	Data cleaning concerns removing all impurities from the data. This includes deleting duplicates, using an uniform data type, and removing unnecessary information.
+	Just the descriptions of all the line items will be fed into models, therefore only those have to be cleaned. The Python library \ac{NLTK} provides useful methods for cleaning textual data.
 	
-\begin{lstlisting}[language=sh]
+	\lstinputlisting[
+	label=code:cleaner,    % Label; genutzt für Referenzen auf dieses Code-Beispiel
+	caption=Python Script for extracting JSON Data into a DataFrame,
+	captionpos=b,               % Position, an der die Caption angezeigt wird t(op) oder b(ottom)
+	style=EigenerPythonStyle,   % Eigener Style der vor dem Dokument festgelegt wurde
+	firstline=0,                % Zeilennummer im Dokument welche als erste angezeigt wird
+	lastline=23                 % Letzte Zeile welche ins LaTeX Dokument übernommen wird
+	]{Quellcode/cleaner}
+	
+	In the code example \ref{code:cleaner}, the text is firstly separated into tokens. Then each token is examined whether it contains non-alphabetic characters. Only alphabetic tokens are retained. Again, this process is highly computationally intensive due to the size of the data. Therefore, this task was completed using the same procedure for multiprocessing as detailed in the prior section.
+	
+\begin{lstlisting}[
+	language=sh,
+	caption=A description before and after Data Cleaning,
+	label=code:cleaned_descr
+	]
 $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking flour type 504"))' \\
 >>>  ['of', 'special', 'baking', 'flour', 'type']
 \end{lstlisting}
 	 
-	
+	 The code example \ref{code:cleaned_descr} shows the input and output of this procedure. A token is completely discarded if it contains non-alphabetical characters, as these tokens are often not an accurate descriptor of the text's meaning.	
 
         
         \section{Feature Extraction and Feature Engineering}
@@ -172,7 +185,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
             Firstly, the vocabulary is determined. 
             The vocabulary is a collection of all words occuring in the corpus. Every word is contained exactly once, regardless of the actual number of occurrences. The vector represenation of one document is of the same length as the vocabulary. One document being represented by one vector, a corpus of several documents can be represented as a matrix. The resulting matrix has the size $ |D|*|V| $, with $|D|$ being the number of documents in the corpus, and $|V|$ being the size of the vocabulary.
             
-            Secondly, for each combination of one document $ d_{i} $ and one word $ v_{j} $ in the vocabulary, the occurrences are counted. The times, how often the specific word is contained in the document is noted in the matrix at location$  ij $.
+            Secondly, for each combination of one document $ d_{i} $ and one word $ v_{j} $ in the vocabulary, the occurrences are counted. The times, how often the specific word is contained in the document is noted in the matrix at location $  ij $.
             
             \includegraphics[height=2.9cm]{Bilder/bow.png}
     
