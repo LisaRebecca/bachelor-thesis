@@ -250,12 +250,16 @@
 \end{multicols}
 \newpage
 \section{Benchmarking DataFrames and Dictionaries}
+
 \label{benchmarkDF}
-		 \begin{figure}[h!]
+\begin{figure}[h!]
 	\centering
-	\includegraphics[height=18cm]{Bilder/appendix/dfvsdict.png}
+	\includegraphics[height=17cm]{Bilder/appendix/dfvsdict.png}
 	\label{fig:dbscan-plot}
 \end{figure}
+\begin{lstlisting}[caption={Benchmark of Indexing with Python Data Structures}]
+	   
+\end{lstlisting}
 The \lstinline|.loc| indexing is  130.24 times slower than dictionary access.\\
 The \lstinline|.at|  indexing is  62.06 times slower than dictionary access.\\
 The \lstinline|.iloc|  indexing is  310.28 times slower than dictionary access.\\
@@ -272,5 +276,18 @@ lastline=23                 % Letzte Zeile welche ins LaTeX Dokument übernommen
 ]{Quellcode/reader}
 
 
-
+\section{\ac{TF-IDF}}
+\label{appendix:tfidf}
+\begin{figure}[]
+	\centering
+	\includegraphics[height=6cm]{Bilder/preprocessing/tfidf.png}
+	\label{fig:tfidf}
+	\caption{Features extracted with TF-IDF}
+\end{figure}
+\begin{figure}[]
+	\centering
+	\includegraphics[height=6cm]{Bilder/preprocessing/tfidf_sparse.png}
+	\label{fig:tfidf_sparse}
+	\caption{Ten words from the Vocabulary and their summed Weight}
+\end{figure}
 

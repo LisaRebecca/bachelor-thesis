@@ -157,72 +157,88 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
 	
 \begin{lstlisting}[
 	language=sh,
-	caption=A description before and after Data Cleaning,
+	caption=A Description before and after Data Cleaning,
 	label=code:cleaned_descr
 	]
 $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking flour type 504"))' \\
 >>>  ['of', 'special', 'baking', 'flour', 'type']
 \end{lstlisting}
 	 
-	 The code example \ref{code:cleaned_descr} shows the input and output of this procedure. A token is completely discarded if it contains non-alphabetical characters, as these tokens are often not an accurate descriptor of the text's meaning.	
+	 The code example \ref{code:cleaned_descr} shows the input and output of this procedure. A token is completely discarded if it contains non-alphabetical characters, as these tokens are more than often not an accurate descriptor of the text's meaning.	
 
         
         \section{Feature Extraction and Feature Engineering}
-        The majority of pupular ML algorithms require the input of scalar, vector or matrix data. A form of ML models, which work with textual input will be discussed later in this section. 
+        The majority of popular \ac{ML} algorithms require the input of scalar, vector or matrix data. A form of \ac{ML} models, which work with textual input will be discussed later in this section. 
         But since many algorithms were not designed to work with textual data, a transformation is required before already existing algorithms can be applied. Several methods for representing text as mathematical object will be discussed in the following.
     
             \subsection{Alternatives}
-            \subsubsection{One-hot encoding}
+            \subsubsection{Term-Document Incidence Matrix}
+
+            \begin{figure}[h]
+            	\centering
+            	 \includegraphics[height=3.5cm]{Bilder/corpus_bow.png}
+            	\caption{Example Corpus}
+            	\label{fig:corpus}
+            \end{figure}
+            The three documents in figure \ref{fig:corpus} will be considered to explain the workings of the one-hot encoding. A corpus is transformed into a term-document incidence matrix representation in two steps. 
             
-    
-            \subsubsection{Bag of Words Model}
-            Following three documents will be considered to explain the workings of the \ac{BoW} model:
-    
-            \includegraphics[height=3cm]{Bilder/corpus_bow.png}
-            
-            A corpus is transformed into the \ac{BoW} representation in two steps. 
+            \begin{figure}[h!]
+            	\centering
+            	\includegraphics[height=2.5cm]{Bilder/preprocessing/term-document-incidence.png}
+            	\caption{Term-Document Incidence Matrix}
+            	\label{fig:corpus}
+            \end{figure}
             
             Firstly, the vocabulary is determined. 
-            The vocabulary is a collection of all words occuring in the corpus. Every word is contained exactly once, regardless of the actual number of occurrences. The vector represenation of one document is of the same length as the vocabulary. One document being represented by one vector, a corpus of several documents can be represented as a matrix. The resulting matrix has the size $ |D|*|V| $, with $|D|$ being the number of documents in the corpus, and $|V|$ being the size of the vocabulary.
+            It is a collection of all words occurring in the corpus. Every word is contained exactly once, regardless of the actual number of occurrences. The vector representation of one document is of the same length as the vocabulary. One document being represented by one vector, a corpus of several documents can be represented as a matrix. The resulting matrix $M$ has the size $ |D|*|V| $, with $|D|$ being the number of documents in the corpus, and $|V|$ being the size of the vocabulary.
             
-            Secondly, for each combination of one document $ d_{i} $ and one word $ v_{j} $ in the vocabulary, the occurrences are counted. The times, how often the specific word is contained in the document is noted in the matrix at location $  ij $.
-            
-            \includegraphics[height=2.9cm]{Bilder/bow.png}
+            Secondly, for each combination of one document $ d_{i} $ and one word $ v_{j} $ in the vocabulary, it is determined whether the word occurs in the document. This information is encoded binary with a "1" at $m_{ij}$ for occurrence and a "0" for no occurrence. The resulting vectors for the three documents are:
+            \[ d_{1} = [0,1,0,0,0,1,0,0] \]
+            \[ d_{2} = [1,0,1,0,1,0,1,1] \]
+            \[ d_{3} = [0,0,0,1,0,0,0,1]\]
+    		The drawback of this method is that no consideration is paid to words being repeated in one document. Additionally, no semantic relationship between words or documents can be inferred. 
+    		Further, it can be stated, that the \ac{BoW} representation fails to capture the meaning of synonyms. This becomes obvious with an example: document $ d_{1} $ and $ d_{3}$ would be considered to belong into the topic of transportation or automotive. The \ac{BoW} representation suggests topical proximity between document $ d_{2} $ and $ d_{3}$ , through the shared word "ticket". "Ticket" here is used in both the meaning of an entrance pass ($d_{2}$) and in the meaning of a note for a traffic offense  ($d_{3}$). 
+    		Further, this feature extraction method strongly suffers from high dimensionality, since the matrix dimensions depend on the size of the vocabulary.
     
+            \subsubsection{Bag of Words Model}
+ 			With the \ac{BoW} model, the only difference to a term-document incidence matrix is that the occurrences of a word are counted, instead of a binary encoding.
+             \begin{figure}[ht]
+            	\centering
+            	\includegraphics[height=2.9cm]{Bilder/bow.png}
+            	\caption{\acl{BoW} Representation of Documents}
+            	\label{fig:corpus}
+            \end{figure}
+            
             The result of vectorization are three vectors:
             \[ d_{1} = [0,1,0,0,0,1,0,0] \]
             \[ d_{2} = [1,0,1,0,1,0,1,2] \]	
             \[ d_{3} = [0,0,0,1,0,0,0,1]\]
     
     
-            This vectorization method can be implemented with ease and in a computationally efficient manner. The \ac{BoW} model allows for a very intuitive understanding of documents, since texts consisting of the same words are considered topically related. 
-            
-            One of the drawbacks of this method is that no consideration is paid to words being repeated in one document. Additionally, no semantic relationship between words or documents can be inferred. 
-            Further, it can be stated, that the \ac{BoW} representation fails to capture the meaning of synonyms. This becomes obvious with an example: document $ d_{1} $ and $ d_{3}$ would be considered to belong into the topic of transportation or automotives. The \ac{BoW} representation suggests topical proximity between document $ d_{2} $ and $ d_{3}$ , through the shared word "ticket". "Ticket" here is used in both the meaning of an entrace pass ($d_{2}$) and in the meaning of a note for a traffic offence  ($d_{3}$). 
+            This vectorization method can be implemented with ease and in a computationally efficient manner. The \ac{BoW} model allows for a very intuitive understanding of documents, since texts consisting of the same words are considered topically related. Still, this model fails to capture words with two meanings. Therefore, no semantic relationship between documents and words is shown.
             
             To conclude, the \ac{BoW} model is a straightforward text representation method. Still, it fails to capture several aspects of the natural language.
             
             \subsubsection{Tf-Idf}
-            The \ac{TF-IDF} model aims to capture more meaning from the corpus by considering the composition of the whole corpus for the calculation of individual document vectors.
+            The \ac{TF-IDF} model aims to capture more meaning from the corpus by considering the composition of the whole corpus for the calculation of individual document vectors. \ac{TF-IDF} makes two assumptions about natural language:
+            \begin{enumerate}
+            	\item A word $t_{i} $ which occurs very frequently in one document is considered to describe a text very well (term frequency).
+            	\item A word $t_{i} $ which occurs in a large number of documents does not describe one document well (inverse document frequency).
+            \end{enumerate}
             
-            \ac{TF-IDF} makes two assumptions about natural language:
-            
-            \subparagraph{1 Term Frequency}
-            
-            A word $t_{i} $ which occurs very frequently in one document is considered to describe a text very well. The occurences of one word in one document is denoted as $ \#( t_{i}) $.
-            One additional consideration needs to be made regarding the document length. In a document of length $ |d_{2}| = 6 $ and a document of length  $ |d_{3}| = 2 $, the word $ t_{i} $occuring once would be considered equally important to each document. Of course, the word should be considered more important to $ d_{3} $, since it accounts for a larger share of the text. The measure resulting from both ideas is the term frequency:
+            \subparagraph{Term Frequency}
+            The occurrences of one word in one document is denoted as $ \#( t_{i}) $.
+            One additional consideration needs to be made regarding the document length. In a document of length $ |d_{2}| = 6 $ and a document of length  $ |d_{3}| = 2 $, the word $ t_{i} $occurring once should be considered more important to $ d_{3} $, since it accounts for a larger share of the text. The measure resulting from this idea is the term frequency:
             
             \[ TF(t_{i}, d_{j}) =   \dfrac{\#( t_{i})}{|d_{j}|} = \dfrac{occurences \; of \; word \; t_{i} \: in \; document \;\:   d_{j}}{legth \; of \; d_{j}} \]
             
-            \subparagraph{2 Inverse Document Frequency}
-            A word $t_{i} $ which occurs in a large number of documents does not describe one document well. Words occuring in many documents often are articles or pronouns (stopwords) which do not provide value when inspecting the content of a text. The inverse document frequence is a measure accounting for this fact. The inverse document frequency of a word is the proportion between the number of documents in the corpus and the number of documents containing the word. The logarithm is applied, as the importance of a word does not increase proportionally to the number of occurrences.
+            \subparagraph{Inverse Document Frequency}
+            Words occurring in many documents often are articles or pronouns (stop words) which do not provide value when inspecting the content of a text. The inverse document frequency is a measure accounting for this fact. The inverse document frequency of a word is the proportion between the number of documents in the corpus and the number of documents containing the word. The logarithm is applied, as the importance of a word does not increase proportionally to the number of occurrences.
         
-            
-            \[ TF(t_{i}, d_{j}) = \log \dfrac{|D|}{\#(d_{t_{i}}) } =  \log \dfrac{number \;  of\;  documents \;  in \; corpus \; D}{ number \; of \; documents \; containing \; word \; t_{i}} \]
+            \[ IDF(t_{i}, d_{j}) = \log \dfrac{|D|}{\#(d_{t_{i}}) } =  \log \dfrac{number \;  of\;  documents \;  in \; corpus \; D}{ number \; of \; documents \; containing \; word \; t_{i}} \]
             
             Combining both assumptions, the \ac{TF-IDF} measure is created:
-            
-            \[ TFIDF(t_{i}, d_{j}) \;=\; TF(t_{i}, d_{j}) * TF(t_{i}, d_{j})\]
+             \[ TFIDF(t_{i}, d_{j}) \;=\; TF(t_{i}, d_{j}) * TF(t_{i}, d_{j})\]
             
             For the corpus displayed in the previous section the document vectors calculated with the \ac{TF-IDF} measure are:
             
@@ -236,15 +252,15 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
                 d_2 =  \;\begin{bmatrix} 0.39798\;	0\;	0.39798\;	0\;	0.39798	0\;	0.39798	0.605349 \end{bmatrix} \\
                 d_3 = \;\begin{bmatrix} 0\;	0\;	0\;	0.795961	0\;	0\;	0\;	0.605349 \end{bmatrix} \]
                 
-            The \ac{TF-IDF} measure corrects some of the pitfalls of the \ac{BoW} model. It certainly is less vulnerable to skewing by stopwords as words are ranked by importance to each document and the all over corpus. 
+            The \ac{TF-IDF} measure corrects some of the pitfalls of the \ac{BoW} model. It certainly is less vulnerable to skewing by stop words,  as words are ranked by importance to each document and the all over corpus. 
             
-            Just as the \ac{BoW} representation, \ac{TF-IDF} suffers from high-dimensionality. The vectors contain one element for each word in the vocabulary, resulting in vectors which are inefficient to handle.
+            Just as the term-document incidence and \ac{BoW} representations, \ac{TF-IDF} suffers from high-dimensionality. The vectors contain one element for each word in the vocabulary, resulting in vectors which are inefficient to handle.
             Also, \ac{TF-IDF} fails to represent the topical relationship between $ d_{1} $ and $ d_{3}$. 
             
             \subsubsection{Word Embeddings}
-             Again, the most desirable vector representation consists of dense low-dimensional vectors which are close to each other if the words are considered similar. The lack of "understanding" of related words, and the problem of high-dimensionality is corrected with the third presented option: Word Embeddings.
+             The most desirable vector representation consists of dense low-dimensional vectors which are close to each other if the words are considered similar. The lack of understanding of related words, and the problem of high-dimensionality is corrected with the third presented option: word embeddings.
             
-            An embedding is a translation of a word into a high-quality vector. The model does so, as it has been trained on a large set of natural language data. Popular embeddings include word2vec, fasttext and doc2vec. Word2Vec is the original model and will be discussed in the following. 
+            An embedding is a translation of a word into a high-quality vector. The model does so, as it has been trained on a large set of natural language data. Popular embeddings include \lstinline|word2vec|, \lstinline|fasttext| and \lstinline|doc2vec|.
             
             \paragraph{Word2Vec}
             The word2vec model assumes that words appearing in a similar context are also similar to each other. There are two options for the input and output: the word $w_i$ and its context $c_i$.
@@ -292,10 +308,18 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
             
             \subsection{Theoretical Implementation}
             \subsubsection{Tf-Idf}
+            The \ac{TF-IDF} measure is very popular in \ac{NLP}, and many implementations already exist. This transformation will be performed using the \ac{sklearn} Python library \cite{sklearn}. The library's class \lstinline|sklearn.feature_extraction.text.TfidfVectorizer| takes a sequence of strings and among other outputs returns a matrix with all documents and their vectors.
+            
             \subsubsection{Word Embedding Averaged}
             \subsubsection{Word Embedding Tf-Idf}
             \subsection{Practical Implementation}
             \subsubsection{Tf-Idf}
+            The \ac{sklearn} \lstinline|TfidfVectorizer| \cite{sklearn} outputs a matrix of size (79741, 68286). It contains each document as a row, and each column represents one word in the vocabulary (see \ref{appendix:tfidf}). The output is a sparse matrix, meaning most values are zero. This is explained by the large vocabulary - many words occur in only a handful of documents, and their weight for all other documents will be zero.
+            The matrix was in fact so sparse, that an overview shows only zeroes (\ref{fig:tfidf}). Values could only be found with a column-wise sum (\ref{fig:tfidf_sparse}).
+            
+            
+            
+            
             \subsubsection{Word Embedding Averaged}
             \subsubsection{Word Embedding Tf-Idf}
             
