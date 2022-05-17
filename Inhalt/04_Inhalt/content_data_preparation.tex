@@ -57,7 +57,7 @@
     \begin{figure}[ht]
         \centering
         \includegraphics[height=5cm]{Bilder/practical/entity_relationship.png}
-        \caption{Entity Relationship Diagram for Invoce Documents}
+        \caption{Entity Relationship Diagram for Invoice Documents}
         \label{fig:er}
     \end{figure}
 	The documents can be separated into two fundamental entities: the invoice and the line items. The entity relationship diagram (\ref{fig:er}) shows how invoices and line items are related. The invoice contains at least one line item, and the information in the invoice is relevant to all of its line items. This includes information about the vendor, and the invoice date. The line items of an invoice contain specific information on the products, such as the material number and the description.
@@ -198,7 +198,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
             \[ d_{3} = [0,0,0,1,0,0,0,1]\]
     		The drawback of this method is that no consideration is paid to words being repeated in one document. Additionally, no semantic relationship between words or documents can be inferred. 
     		Further, it can be stated, that the \ac{BoW} representation fails to capture the meaning of synonyms. This becomes obvious with an example: document $ d_{1} $ and $ d_{3}$ would be considered to belong into the topic of transportation or automotive. The \ac{BoW} representation suggests topical proximity between document $ d_{2} $ and $ d_{3}$ , through the shared word "ticket". "Ticket" here is used in both the meaning of an entrance pass ($d_{2}$) and in the meaning of a note for a traffic offense  ($d_{3}$). 
-    		Further, this feature extraction method strongly suffers from high dimensionality, since the matrix dimensions depend on the size of the vocabulary.
+    		Further, this feature extraction method strongly suffers from high dimensionality \cite[c.~ I.3.]{practicalNLP}, since the matrix dimensions depend on the size of the vocabulary. 
     
             \subsubsection{Bag of Words Model}
  			With the \ac{BoW} model, the only difference to a term-document incidence matrix is that the occurrences of a word are counted, instead of a binary encoding.
@@ -260,52 +260,36 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
             \subsubsection{Word Embeddings}
              The most desirable vector representation consists of dense low-dimensional vectors which are close to each other if the words are considered similar. The lack of understanding of related words, and the problem of high-dimensionality is corrected with the third presented option: word embeddings.
             
-            An embedding is a translation of a word into a high-quality vector. The model does so, as it has been trained on a large set of natural language data. Popular embeddings include \lstinline|word2vec|, \lstinline|fasttext| and \lstinline|doc2vec|.
+            An embedding is a translation of a word into a high-quality vector. The model does so, as it has been trained on a large set of natural language data. 
             
             \paragraph{Word2Vec}
             The word2vec model assumes that words appearing in a similar context are also similar to each other. There are two options for the input and output: the word $w_i$ and its context $c_i$.
             
-            \includegraphics[height=4cm]{Bilder/word2vec/documents.png}
+            %\includegraphics[height=4cm]{Bilder/word2vec/documents.png}
             
-            \subparagraph{\aclu{CBOW}} 
-            With the \ac{CBOW} architecture the word2vec model is trained to predict a word using the context as input. A sliding window of a predefined size is moved along the text. 
+           
             
-            \begin{figure}[ht]
-                \centering
-                \includegraphics[height=6cm]{Bilder/word2vec/architecture_cbow.png}
-                \caption{\aclu{CBOW} architecture\\\ with sliding window of size $C=5$ }
-                \label{fig:cbow-architecture}
-            \end{figure}
-        
-            \subparagraph{Skipgram} 
-            With the skipgram architecture the word2vec model is trained to predict the context of the input word.
+            \paragraph{BERT} The \ac{BERT} model can represent unlabeled text by learning on large textual corpora with a \ac{MLM}. Each component of the model is explained and evaluated with relevance to the task.
             
-            \begin{figure}[ht]
-                \centering
-                \includegraphics[height=6cm]{Bilder/word2vec/architecture_skipgram.png}
-                \caption{Skipgram architecture\\\ with sliding window of size $C=5$ }
-                \label{fig:cbow-architecture}
-            \end{figure}
-        
-            \begin{figure}[ht]
-                \centering
-                \includegraphics[height=8cm]{Bilder/word2vec/skipgram.png}
-                \caption{Observations for training with skipgram architecture}
-                \label{fig:cbow-architecture}
-            \end{figure}
+            \subparagraph{\acl{MLM}} In contrast to word2vec's skipgram (\ref{fig:skipgram-architecture}), \ac{BERT} uses a \ac{MLM} for training. This method is able to transform an unsupervised task into a supervised one. It does so by blacking out a part of the input text. The model then is tasked with predicting the missing parts. Its success is calculated with a loss function (the correct solution for the missing part is known), which then allows for adapting the model using gradient changes \cite{MLM}. 
+         
+             The \ac{CBOW} architecture (\ref{fig:cbow-architecture}), is a more rudimentary form of the \ac{MLM}, as it has a sliding window and not a probabilistic approach to masking.
+            
+             \subparagraph{Encoder} An encoder aims to map an input sequence (e.g. text) onto a continuous vector representation.
+             
+             An encoder is a crucial part of the Transformer-architecture.
+            
+            \subparagraph{Transformer}
+            \cite{transformersAttention}
             
             
-            \subparagraph{Negative Sampling}
             
             
-            Word2Vec uses either SKIPGram or CBOW.
+           
             
-            Word2vec can utilize two models for selecting observations: either skipgram or \ac{CBOW}. 
+            \subparagraph{Bidirectional}
             
-            \paragraph{GloVe}
-            
-            \paragraph{FastText}
-            
+            considering both left context (previous words) and the right context (following words) during learning the representation
             \subsection{Theoretical Implementation}
             \subsubsection{Tf-Idf}
             The \ac{TF-IDF} measure is very popular in \ac{NLP}, and many implementations already exist. This transformation will be performed using the \ac{sklearn} Python library \cite{sklearn}. The library's class \lstinline|sklearn.feature_extraction.text.TfidfVectorizer| takes a sequence of strings and among other outputs returns a matrix with all documents and their vectors.

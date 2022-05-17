@@ -291,3 +291,40 @@ lastline=23                 % Letzte Zeile welche ins LaTeX Dokument übernommen
 	\caption{Ten words from the Vocabulary and their summed Weight}
 \end{figure}
 
+\newpage
+
+\section{Architectures for Learning Word Embeddings}
+ \subparagraph{\aclu{CBOW}} 
+With the \ac{CBOW} architecture the word2vec model is trained to predict a word using the context as input. A sliding window of a predefined size is moved along the text. 
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=6cm]{Bilder/word2vec/architecture_cbow.png}
+	\caption{\aclu{CBOW} architecture\\\ with sliding window of size $C=5$ }
+	\label{fig:cbow-architecture}
+\end{figure}
+
+\subparagraph{Skipgram} 
+With the skipgram architecture the word2vec model is trained to predict the context of the input word.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=6cm]{Bilder/word2vec/architecture_skipgram.png}
+	\caption{Skipgram architecture\\\ with sliding window of size $C=5$ }
+	\label{fig:skipgram-architecture}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=8cm]{Bilder/word2vec/skipgram.png}
+	\caption{Observations for training with skipgram architecture}
+	
+\end{figure}
+
+
+\subparagraph{Negative Sampling}
+
+
+Word2Vec uses either SKIPGram or CBOW.
+
+Word2vec can utilize two models for selecting observations: either skipgram or \ac{CBOW}. 
