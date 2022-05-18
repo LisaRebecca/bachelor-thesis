@@ -1,4 +1,13 @@
 
+@book{40algorithms,
+  title = {40 {{Algorithms Every Programmer Should Know}}: {{Hone}} Your Problem-Solving Skills by Learning Different Algorithms and Their Implementation in {{Python}}},
+  author = {Ahmad, I.},
+  date = {2020},
+  publisher = {{Packt Publishing}},
+  url = {https://books.google.de/books?id=4IzrDwAAQBAJ},
+  isbn = {978-1-78980-986-2}
+}
+
 @online{AIOverviewResearch,
   title = {{{AI Research}}},
   author = {{SAP SE}},
@@ -45,6 +54,16 @@
   issn = {0066-4200},
   doi = {10.1002/aris.1440370103},
   url = {https://strathprints.strath.ac.uk/2611/1/strathprints002611.pdf}
+}
+
+@online{Clustering,
+  title = {2.3. {{Clustering}}},
+  url = {https://scikit-learn/stable/modules/clustering.html},
+  urldate = {2022-05-18},
+  abstract = {Clustering of unlabeled data can be performed with the module sklearn.cluster. Each clustering algorithm comes in two variants: a class, that implements the fit method to learn the clusters on trai...},
+  langid = {english},
+  organization = {{scikit-learn}},
+  file = {/Users/I518232/Zotero/storage/5NWR9U9L/clustering.html}
 }
 
 @book{corePython,
@@ -119,6 +138,15 @@
   abstract = {CRISP-DM(CRoss-Industry Standard Process for Data Mining) has its origins in the second half of the nineties and is thus about two decades old. According to many surveys and user polls it is still the de facto standard for developing data mining and knowledge discovery projects. However, undoubtedly the field has moved on considerably in twenty years, with data science now the leading term being favoured over data mining. In this paper we investigate whether, and in what contexts, CRISP-DM is still fit for purpose for data science projects. We argue that if the project is goal-directed and process-driven the process model view still largely holds. On the other hand, when data science projects become more exploratory the paths that the project can take become more varied, and a more flexible model is called for. We suggest what the outlines of such a trajectory-based model might look like and how it can be used to categorise data science projects (goal-directed, exploratory or data management). We examine seven real-life exemplars where exploratory activities play an important role and compare them against 51 use cases extracted from the NIST Big Data Public Working Group. We anticipate this categorisation can help project planning in terms of time and cost characteristics.},
   langid = {english},
   file = {/Users/I518232/Zotero/storage/3QPU4C26/Martinez-Plumed et al. - 2021 - CRISP-DM Twenty Years Later From Data Mining Proc.pdf}
+}
+
+@article{DBSCAN,
+  title = {A {{Density-Based Algorithm}} for {{Discovering Clusters}} in {{Large Spatial Databases}} with {{Noise}}},
+  author = {Ester, Martin and Kriegel, Hans-Peter and Xu, Xiaowei},
+  pages = {6},
+  abstract = {Clusteringalgorithmasreattractivefor the taskof classidentification in spatial databases.Howevetrh, e applicationto large spatial databasesrises the followingrequirementfsor clustering algorithms: minimalrequirementsof domain knowledgteo determinethe input parameters,discoveryof clusters witharbitraryshapeandgoodefficiencyonlarge databases. Thewell-knowcnlusteringalgorithmsoffer nosolution to the combinatioonf theserequirementsI.n this paper, wepresent the newclustering algorithmDBSCAreNlying on a density-basednotionof clusters whichis designedto discoverclusters of arbitrary shape.DBSCrAeNquiresonly one input parameterandsupportsthe user in determiningan appropriatevaluefor it. Weperformeadn experimentaelvaluation of the effectiveness and efficiency of DBSCAusNing synthetic data and real data of the SEQUO2IA000benchmark.Theresults of our experimentsdemonstratethat (1) DBSCiAsNsignificantlymoreeffective in discoveringclusters of arbitrary shapethan the well-knowanlgorithmCLARANS,and that (2) DBSCAoNutperforms CLARANbyS factorof morethan100in termsof efficiency.},
+  langid = {english},
+  file = {/Users/I518232/Zotero/storage/GQU8AMLM/Ester et al. - A Density-Based Algorithm for Discovering Clusters.pdf}
 }
 
 @online{DFvsJSON,
@@ -233,6 +261,16 @@
   file = {/Users/I518232/Zotero/storage/PL4PH5EP/Koch - The E-Invoicing Journey 2019-2025.pdf}
 }
 
+@article{kodinariyaReviewDeterminingCluster2013,
+  title = {Review on {{Determining}} of {{Cluster}} in {{K-means Clustering}}},
+  author = {Kodinariya, Trupti and Makwana, Prashant},
+  date = {2013-01-01},
+  journaltitle = {International Journal of Advance Research in Computer Science and Management Studies},
+  shortjournal = {International Journal of Advance Research in Computer Science and Management Studies},
+  volume = {1},
+  pages = {90--95}
+}
+
 @online{largeDataSetBrownlee,
   title = {7 {{Ways}} to {{Handle Large Data Files}} for {{Machine Learning}}},
   author = {Brownlee, Jason},
@@ -247,6 +285,54 @@
   author = {Metwalli, Sara A.},
   url = {https://towardsdatascience.com/what-to-do-when-your-data-is-too-big-for-your-memory-65c84c600585},
   urldate = {2022-04-13}
+}
+
+@article{maierOptimalConstructionKnearest2009,
+  title = {Optimal Construction of K-Nearest Neighbor Graphs for Identifying Noisy Clusters},
+  author = {Maier, Markus and Hein, Matthias and von Luxburg, Ulrike},
+  options = {useprefix=true},
+  date = {2009-04},
+  journaltitle = {Theoretical Computer Science},
+  shortjournal = {Theoretical Computer Science},
+  volume = {410},
+  number = {19},
+  eprint = {0912.3408},
+  eprinttype = {arxiv},
+  primaryclass = {math, stat},
+  pages = {1749--1764},
+  issn = {03043975},
+  doi = {10.1016/j.tcs.2009.01.009},
+  url = {http://arxiv.org/abs/0912.3408},
+  urldate = {2022-05-18},
+  abstract = {We study clustering algorithms based on neighborhood graphs on a random sample of data points. The question we ask is how such a graph should be constructed in order to obtain optimal clustering results. Which type of neighborhood graph should one choose, mutual k-nearest neighbor or symmetric k-nearest neighbor? What is the optimal parameter k? In our setting, clusters are defined as connected components of the t-level set of the underlying probability distribution. Clusters are said to be identified in the neighborhood graph if connected components in the graph correspond to the true underlying clusters. Using techniques from random geometric graph theory, we prove bounds on the probability that clusters are identified successfully, both in a noise-free and in a noisy setting. Those bounds lead to several conclusions. First, k has to be chosen surprisingly high (rather of the order n than of the order log n) to maximize the probability of cluster identification. Secondly, the major difference between the mutual and the symmetric k-nearest neighbor graph occurs when one attempts to detect the most significant cluster only.},
+  archiveprefix = {arXiv},
+  keywords = {Mathematics - Statistics Theory,Statistics - Machine Learning},
+  file = {/Users/I518232/Zotero/storage/9KFUTJGF/Maier et al. - 2009 - Optimal construction of k-nearest neighbor graphs .pdf;/Users/I518232/Zotero/storage/U5JQJPVV/0912.html}
+}
+
+@online{maklinDBSCANPythonExample2022,
+  title = {{{DBSCAN Python Example}}: {{The Optimal Value For Epsilon}} ({{EPS}})},
+  shorttitle = {{{DBSCAN Python Example}}},
+  author = {Maklin, Cory},
+  date = {2022-05-09T23:36:00},
+  url = {https://towardsdatascience.com/machine-learning-clustering-dbscan-determine-the-optimal-value-for-epsilon-eps-python-example-3100091cfbc},
+  urldate = {2022-05-17},
+  abstract = {Density-Based Spatial Clustering of Applications with Noise, or DBSCAN for short, is an unsupervised machine learning algorithm…},
+  langid = {english},
+  organization = {{Medium}}
+}
+
+@online{maklinDBSCANPythonExample2022a,
+  title = {{{DBSCAN Python Example}}: {{The Optimal Value For Epsilon}} ({{EPS}})},
+  shorttitle = {{{DBSCAN Python Example}}},
+  author = {Maklin, Cory},
+  date = {2022-05-09T23:36:00},
+  url = {https://towardsdatascience.com/machine-learning-clustering-dbscan-determine-the-optimal-value-for-epsilon-eps-python-example-3100091cfbc},
+  urldate = {2022-05-18},
+  abstract = {Density-Based Spatial Clustering of Applications with Noise, or DBSCAN for short, is an unsupervised machine learning algorithm…},
+  langid = {english},
+  organization = {{Medium}},
+  file = {/Users/I518232/Zotero/storage/V9W98M9Y/machine-learning-clustering-dbscan-determine-the-optimal-value-for-epsilon-eps-python-example-3.html}
 }
 
 @online{manualInvoiceProcessing,
@@ -274,6 +360,18 @@
   file = {/Users/I518232/Zotero/storage/LKTG7ZQV/Mikolov et al. - 2013 - Distributed Representations of Words and Phrases a.pdf}
 }
 
+@online{MLM,
+  title = {Masked-{{Language Modelling With BERT}}},
+  author = {Briggs, James},
+  date = {2021-09-02T09:11:03},
+  url = {https://towardsdatascience.com/masked-language-modelling-with-bert-7d49793e5d2c},
+  urldate = {2022-05-17},
+  abstract = {Transformer models like BERT are incredibly powerful when fine-tuned for specific tasks using masked-language modeling (MLM), we explore how here.},
+  langid = {english},
+  organization = {{Medium}},
+  file = {/Users/I518232/Zotero/storage/XPGYDXR5/masked-language-modelling-with-bert-7d49793e5d2c.html}
+}
+
 @online{modernInvoiceManagement,
   title = {Invoice Management for Modern Businesses: {{A}} Guide},
   shorttitle = {Invoice Management for Modern Businesses},
@@ -283,6 +381,16 @@
   abstract = {Invoice management hasn't kept up with the times. In most companies, it's still harder than it should be to pay suppliers quickly and easily. This guide will fix that.},
   langid = {british},
   file = {/Users/I518232/Zotero/storage/T39ZUH2P/invoice-management.html}
+}
+
+@book{vajjala2020practical,
+  title = {Practical Natural Language Processing: {{A}} Comprehensive Guide to Building Real-World {{NLP}} Systems},
+  author = {Vajjala, S. and Majumder, B. and Gupta, A. and Surana, H.},
+  date = {2020},
+  publisher = {{O'Reilly Media}},
+  url = {https://books.google.de/books?id=G40jywEACAAJ},
+  isbn = {978-1-4920-5405-4},
+  lccn = {2021275226}
 }
 
 @online{pythonDocker,
@@ -367,6 +475,23 @@
   file = {/Users/I518232/Zotero/storage/X4YGSRA7/scrum-and-the-solo-dev-fb8e810ed42b.html}
 }
 
+@inproceedings{sculleyWebscaleKmeansClustering2010,
+  title = {Web-Scale k-Means Clustering},
+  booktitle = {Proceedings of the 19th International Conference on {{World}} Wide Web - {{WWW}} '10},
+  author = {Sculley, D.},
+  date = {2010},
+  pages = {1177},
+  publisher = {{ACM Press}},
+  location = {{Raleigh, North Carolina, USA}},
+  doi = {10.1145/1772690.1772862},
+  url = {http://portal.acm.org/citation.cfm?doid=1772690.1772862},
+  urldate = {2022-05-18},
+  eventtitle = {The 19th International Conference},
+  isbn = {978-1-60558-799-8},
+  langid = {english},
+  file = {/Users/I518232/Zotero/storage/TD6DTQVJ/Sculley - 2010 - Web-scale k-means clustering.pdf}
+}
+
 @article{sklearn,
   title = {Scikit-Learn: {{Machine}} Learning in {{Python}}},
   author = {Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V. and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P. and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.},
@@ -374,6 +499,27 @@
   journaltitle = {Journal of Machine Learning Research},
   volume = {12},
   pages = {2825--2830}
+}
+
+@article{sklearn,
+  title = {Scikit-Learn: {{Machine}} Learning in Python},
+  author = {Pedregosa, Fabian and Varoquaux, Gaël and Gramfort, Alexandre and Michel, Vincent and Thirion, Bertrand and Grisel, Olivier and Blondel, Mathieu and Prettenhofer, Peter and Weiss, Ron and Dubourg, Vincent and Vanderplas, Jake and Passos, Alexandre and Cournapeau, David and Brucher, Matthieu and Perrot, Matthieu and Duchesnay, Édouard},
+  date = {2011},
+  journaltitle = {Journal of Machine Learning Research},
+  volume = {12},
+  number = {85},
+  pages = {2825--2830},
+  url = {http://jmlr.org/papers/v12/pedregosa11a.html}
+}
+
+@online{SklearnClusterDBSCAN,
+  title = {Sklearn.Cluster.{{DBSCAN}}},
+  url = {https://scikit-learn/stable/modules/generated/sklearn.cluster.DBSCAN.html},
+  urldate = {2022-05-18},
+  abstract = {Examples using sklearn.cluster.DBSCAN: Comparing different clustering algorithms on toy datasets Comparing different clustering algorithms on toy datasets, Demo of DBSCAN clustering algorithm Demo ...},
+  langid = {english},
+  organization = {{scikit-learn}},
+  file = {/Users/I518232/Zotero/storage/Q7DKI5QP/sklearn.cluster.DBSCAN.html}
 }
 
 @online{srivastavaDataMining,
@@ -399,6 +545,23 @@
   langid = {american},
   organization = {{Datamation}},
   file = {/Users/I518232/Zotero/storage/8I9BQTGZ/structured-vs-unstructured-data.html}
+}
+
+@unpublished{transformersAttention,
+  title = {Attention {{Is All You Need}}},
+  author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, Lukasz and Polosukhin, Illia},
+  date = {2017-12-05},
+  number = {arXiv:1706.03762},
+  eprint = {1706.03762},
+  eprinttype = {arxiv},
+  primaryclass = {cs},
+  publisher = {{arXiv}},
+  url = {http://arxiv.org/abs/1706.03762},
+  urldate = {2022-05-17},
+  abstract = {The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning},
+  file = {/Users/I518232/Zotero/storage/9I2FHG3P/Vaswani et al. - 2017 - Attention Is All You Need.pdf;/Users/I518232/Zotero/storage/VJKYV9JW/1706.html}
 }
 
 @article{turing1950,
@@ -454,6 +617,14 @@
 
 @article{zotero-1,
   type = {article}
+}
+
+@book{zotero-undefined,
+  type = {book}
+}
+
+@online{zotero-undefineda,
+  url = {https://towardsdatascience.com/masked-language-modelling-with-bert-7d49793e5d2c}
 }
 
 
