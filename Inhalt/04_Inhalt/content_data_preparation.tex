@@ -251,7 +251,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
             \subsubsection{Word Embedding BERT}
              The most desirable vector representation consists of dense low-dimensional vectors which are close to each other if the words are considered similar. The lack of understanding of related words, and the problem of high-dimensionality is corrected with the third presented option: word embeddings.
             
-            An embedding is a translation of a word into a high-quality vector. The model does so, as it has been trained on a large set of natural language data. The first model for continuous vector representations was word2vec \cite{word2vec2013}. Being published in 2013, the model has been replaced by new state-of-the-art models such as \acs{BERT}. This new model builds on the premised of word2vec, but was able to obtain astonishing results at tasks such as answering questions using the Stanford Question Answering Dataset \cite{BERT}. 
+            An embedding is a translation of a word into a high-quality vector. The model does so, as it has been trained on a large set of natural language data. The first model for continuous vector representations was word2vec \cite{word2vec2013}. Being published in 2013, the model has been already replaced by new state-of-the-art models such as \acs{BERT}. This new model builds on the premised of word2vec, but was able to obtain astonishing results at tasks such as answering questions using the Stanford Question Answering Dataset \cite{BERT}. 
             
             The \ac{BERT} model can represent unlabeled text by learning on large textual corpora. Its name is assembled from its different components:
             
@@ -271,25 +271,22 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
 			\end{table}
 
            
-           The model is trained on two tasks. Firstly, it is trained on word prediction. \ac{BERT} had to predict one missing word in a text unit. The objective of course is to get the right word. The loss in this task is measuring if and how wrong a prediction is. The second task is to predict the next sentence after a text section. The objective is to predict the correct words and their order. The model is trained by adjusting internal weights in such a way, that both losses are minimized. In turn this means, the model can predict missing words and next sentences with minimized error.
+           The model is trained on two tasks. Firstly, it is trained on word prediction (\ref{fig:mlm}). \ac{BERT} had to predict one missing word in a text unit. The objective of course is to get the right word. The loss in this task is measuring if and how wrong a prediction is. The second task is to predict the next sentence after a text section. The objective is to predict the correct words and their order. The model is trained by adjusting internal weights in such a way, that both losses are minimized. In turn this means, the model can predict missing words and next sentences with minimized error.
            
-           In the following, each component of the model is explained.
-            
-            \subparagraph{\ac{MLM}} \ac{BERT} uses a \acl{MLM} for training. The model has the basic task of predicting a missing word in a sequence of words. This method is able to transform an unsupervised task into a supervised one. It does so by blacking out a part of the input text. The model then is tasked with predicting the missing parts. If the model did not predict the missing part correctly, the model will be adapted using gradient changes \cite{MLM}. 
-             
+          
              \begin{figure}[h!]
-             	\label{fig:transformer}
+             	\label{fig:mlm}
              	\centering
-             	\includegraphics[height=10cm]{Bilder/preprocessing/BERT/transformer_architecture.png}
-             	\caption{The Transformer Architecture  \cite{transformersAttention}}
+             	\includegraphics[height=10cm]{ Bilder/preprocessing/BERT/BERT-language-modeling-masked-lm.png}
+             	\caption{Training BERT with the MLM task \cite{alammarIllustratedBERTELMo}}
              \end{figure}
+            
          
-                      
-               \subparagraph{Transformer}
-               Fundamentally, BERT is powered by a transformer (\ref{fig:transformer}). A transformer describes a fundamental architecture for learning word representations \cite{transformersAttention}.
-               BERT is trained with millions of wikipedia articles, meaning the inputs is a large text database. Each text segment is fed into the transformer. The text segment is split into tokens, which are then encoded as a vector of length 768 \cite{BERTEmbeddingLayer}. Next follows the positional encoding. When applying the transformer to a sequence of words, the output should be dependent of the sequence of the input words. E.g. the sentences "Bob is taller than Alice" and "Alice is taller than Bob" should be encoded as two different vectors. This can be realized with encoding the position of each token. 
+               BERT is trained with millions of wikipedia articles, meaning the inputs is a large text database. The text segment is split into tokens, which are then encoded as a vector of length 768 \cite{BERTEmbeddingLayer}. Next follows the positional encoding. When applying the transformer encoder to a sequence of words, the output should be dependent of the sequence of the input words. E.g. the sentences "Bob is taller than Alice" and "Alice is taller than Bob" should be encoded as two different vectors. This can be realized with encoding the position of each token. 
                
-               The token embedding and its positional encoding are now added, and fed into the encoder \cite{illustratedTransformer}. The encoder makes up the left half on an transformer. A transformer can consist of several sequential encoders, but requires at least one. Inside the encoder, four elements process the input sequentially:
+
+               
+               The token embedding and its positional encoding are now added, and fed into the encoder \cite{illustratedTransformer}. Inside the encoder, four elements process the input sequentially:
                
                \begin{enumerate}
                	\item The self-attention mechanism allows for the model to incorporate the context of a token into its encoding. The mechanism does so by calculating the importance of inputs with themselves ("self") and returns which tokens are important to each other's meaning ("attention").
@@ -298,24 +295,22 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
                	\item Finally, the results are normalized again.
                \end{enumerate}
        			
-       			
-       			The decoder is the right part of the transformer architecture. It has several components in common with the encoder.
+       			 \begin{figure}[h!]
+       				\label{fig:encoder}
+       				\centering
+       				\includegraphics[height=7cm]{Bilder/preprocessing/BERT/encoder.png}
+       				\caption{The Transformer Encoder Architecture  \cite{illustratedTransformer}}
+       			\end{figure}
+			
             
-            \subparagraph{Bidirectional}
-            
-            considering both left context (previous words) and the right context (following words) during learning the representation
-            
-            The advantage of bert over count-based
-            
-            
-            The advantage of bert over word2vec
-            
-            
-            \cite{evaluationTopicModelling}
-            
+            Evaluating all different models for word vectorization, BERT clearly outperforms the distribustional representations.
+            \begin{itemize}
+            	\item Word embeddings produce dense and lower-dimensional vectors than distributional representations.
+            	\item With word embeddings, the resulting vectors perform a lot better on common \ac{NLP} tasks, meaning the resulting vectors are of higher quality than with distributional representations.
+            	\item BERT can process out-of-vocabulary words, this is a big advantage to previous embeddings.
+            \end{itemize}
+
             \subsection{Theoretical Implementation}
-            \subsubsection{Tf-Idf}
-            The \ac{TF-IDF} measure is very popular in \ac{NLP}, and many implementations already exist. This transformation will be performed using the \ac{sklearn} Python library \cite{sklearn}. The library's class \lstinline|sklearn.feature_extraction.text.TfidfVectorizer| takes a sequence of strings and among other outputs returns a matrix with all documents and their vectors.
             
            	After explaining and evaluating the alternatives, the most favorable one, the word embeddings using \ac{BERT} will be put into practice. In theory, a BERT model would have to be trained using a large text dataset. This took the developers of BERT at Google 4 whole days, and required 4 \ac{TPU}s \cite{BERTTraining}. Fortunately, the researchers published this trained model, making it free to use for the public \cite{BERT}.
             	
