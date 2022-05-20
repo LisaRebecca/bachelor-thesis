@@ -168,10 +168,11 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
 
         
         \section{Feature Extraction and Feature Engineering}
-        The majority of popular \ac{ML} algorithms require the input of scalar, vector or matrix data. A form of \ac{ML} models, which work with textual input will be discussed later in this section. 
-        But since many algorithms were not designed to work with textual data, a transformation is required before already existing algorithms can be applied. Several methods for representing text as mathematical object will be discussed in the following.
+        The majority of popular \ac{ML} algorithms require the input of scalar, vector or matrix data. Several methods for representing text as mathematical object will be discussed in the following.
     
             \subsection{Alternatives}
+            Firstly, the distributional representations will be explained and evaluated.
+            
             \subsubsection{Term-Document Incidence Matrix}
 
             \begin{figure}[h]
@@ -213,11 +214,6 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
             \[ d_{1} = [0,1,0,0,0,1,0,0] \]
             \[ d_{2} = [1,0,1,0,1,0,1,2] \]	
             \[ d_{3} = [0,0,0,1,0,0,0,1]\]
-    
-    
-            This vectorization method can be implemented with ease and in a computationally efficient manner. The \ac{BoW} model allows for a very intuitive understanding of documents, since texts consisting of the same words are considered topically related. Still, this model fails to capture words with two meanings. Therefore, no semantic relationship between documents and words is shown.
-            
-            To conclude, the \ac{BoW} model is a straightforward text representation method. Still, it fails to capture several aspects of the natural language.
             
             \subsubsection{Tf-Idf}
             The \ac{TF-IDF} model aims to capture more meaning from the corpus by considering the composition of the whole corpus for the calculation of individual document vectors. \ac{TF-IDF} makes two assumptions about natural language:
@@ -241,72 +237,94 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
              \[ TFIDF(t_{i}, d_{j}) \;=\; TF(t_{i}, d_{j}) * TF(t_{i}, d_{j})\]
             
             For the corpus displayed in the previous section the document vectors calculated with the \ac{TF-IDF} measure are:
-            
-                    
-            \begin{align}
-                &d_1 = & [ 0\;	&0.707107\;	0\;	0\;	0\;	0.707107\;	0\;	0 \\
-                &d_2 = & [ 0.39798\;	&0\;	0.39798\;	0\;	0.39798	0\;	0.39798	0.605349 
-            \end{align}
-                
                 \[d_1 = \begin{bmatrix} 0\;	0.707107\;	0\;	0\;	0\;	0.707107\;	0\;	0 \end{bmatrix}	 \\
                 d_2 =  \;\begin{bmatrix} 0.39798\;	0\;	0.39798\;	0\;	0.39798	0\;	0.39798	0.605349 \end{bmatrix} \\
                 d_3 = \;\begin{bmatrix} 0\;	0\;	0\;	0.795961	0\;	0\;	0\;	0.605349 \end{bmatrix} \]
                 
             The \ac{TF-IDF} measure corrects some of the pitfalls of the \ac{BoW} model. It certainly is less vulnerable to skewing by stop words,  as words are ranked by importance to each document and the all over corpus. 
             
-            Just as the term-document incidence and \ac{BoW} representations, \ac{TF-IDF} suffers from high-dimensionality. The vectors contain one element for each word in the vocabulary, resulting in vectors which are inefficient to handle.
-            Also, \ac{TF-IDF} fails to represent the topical relationship between $ d_{1} $ and $ d_{3}$. 
             
-            \subsubsection{Word Embeddings}
+            The above mentioned methods are distributional representations \cite{practicalNLP}. They all suffer from similar problems. The vectors contain one element for each word in the vocabulary, resulting in vectors which are high-dimensional and very sparse. Also, \ac{TF-IDF} fails to represent the topical relationship between $ d_{1} $ and $ d_{3}$. Finally, these methods can not handle an inference for words which are not in their vocabulary \cite{practicalNLP}.
+            
+            Following methods are distributed representations. They are designed to alleviate the drawbacks of distributional word representations.
+            
+            \subsubsection{Word Embedding BERT}
              The most desirable vector representation consists of dense low-dimensional vectors which are close to each other if the words are considered similar. The lack of understanding of related words, and the problem of high-dimensionality is corrected with the third presented option: word embeddings.
             
-            An embedding is a translation of a word into a high-quality vector. The model does so, as it has been trained on a large set of natural language data. 
+            An embedding is a translation of a word into a high-quality vector. The model does so, as it has been trained on a large set of natural language data. The first model for continuous vector representations was word2vec \cite{word2vec2013}. Being published in 2013, the model has been replaced by new state-of-the-art models such as \acs{BERT}. This new model builds on the premised of word2vec, but was able to obtain astonishing results at tasks such as answering questions using the Stanford Question Answering Dataset \cite{BERT}. 
             
-            \paragraph{Word2Vec}
-            The word2vec model assumes that words appearing in a similar context are also similar to each other. There are two options for the input and output: the word $w_i$ and its context $c_i$.
+            The \ac{BERT} model can represent unlabeled text by learning on large textual corpora. Its name is assembled from its different components:
             
-            %\includegraphics[height=4cm]{Bilder/word2vec/documents.png}
-            
+			\begin{table}[!h]
+				\begin{tabular}{lll}
+					\vspace{0.5cm}
+					B & Bidirectional   & \begin{tabular}[c]{@{}l@{}}The model considers both left context (previous words) and \\ the right context (following words) during learning.\end{tabular}        \\
+					\vspace{0.5cm}
+					E & Encoder         & The model consists of several encoder layers.                                                                                                                     \\
+					\vspace{0.1cm}
+					R & Representations & \begin{tabular}[c]{@{}l@{}}Sequence representations are a projection of a sequence \\ onto a vector which is able to reflect the sequence's meaning.\end{tabular} \\
+					\vspace{0.1cm}
+					& from            &                                                                                                                                                                   \\
+					\vspace{0.1cm}
+					T & Transformers    & \begin{tabular}[c]{@{}l@{}}BERT belongs into the family of transformer models and \\ utilizes parts of the transformer architecture.\end{tabular}                
+				\end{tabular}
+			\end{table}
+
            
+           The model is trained on two tasks. Firstly, it is trained on word prediction. \ac{BERT} had to predict one missing word in a text unit. The objective of course is to get the right word. The loss in this task is measuring if and how wrong a prediction is. The second task is to predict the next sentence after a text section. The objective is to predict the correct words and their order. The model is trained by adjusting internal weights in such a way, that both losses are minimized. In turn this means, the model can predict missing words and next sentences with minimized error.
+           
+           In the following, each component of the model is explained.
             
-            \paragraph{BERT} The \ac{BERT} model can represent unlabeled text by learning on large textual corpora with a \ac{MLM}. Each component of the model is explained and evaluated with relevance to the task.
-            
-            \subparagraph{\acl{MLM}} In contrast to word2vec's skipgram (\ref{fig:skipgram-architecture}), \ac{BERT} uses a \ac{MLM} for training. This method is able to transform an unsupervised task into a supervised one. It does so by blacking out a part of the input text. The model then is tasked with predicting the missing parts. Its success is calculated with a loss function (the correct solution for the missing part is known), which then allows for adapting the model using gradient changes \cite{MLM}. 
-         
-             The \ac{CBOW} architecture (\ref{fig:cbow-architecture}), is a more rudimentary form of the \ac{MLM}, as it has a sliding window and not a probabilistic approach to masking.
-            
-             \subparagraph{Encoder} An encoder aims to map an input sequence (e.g. text) onto a continuous vector representation.
+            \subparagraph{\ac{MLM}} \ac{BERT} uses a \acl{MLM} for training. The model has the basic task of predicting a missing word in a sequence of words. This method is able to transform an unsupervised task into a supervised one. It does so by blacking out a part of the input text. The model then is tasked with predicting the missing parts. If the model did not predict the missing part correctly, the model will be adapted using gradient changes \cite{MLM}. 
              
-             An encoder is a crucial part of the Transformer-architecture.
-            
-            \subparagraph{Transformer}
-            \cite{transformersAttention}
-            
-            
-            
-            
-           
+             \begin{figure}[h!]
+             	\label{fig:transformer}
+             	\centering
+             	\includegraphics[height=10cm]{Bilder/preprocessing/BERT/transformer_architecture.png}
+             	\caption{The Transformer Architecture  \cite{transformersAttention}}
+             \end{figure}
+         
+                      
+               \subparagraph{Transformer}
+               Fundamentally, BERT is powered by a transformer (\ref{fig:transformer}). A transformer describes a fundamental architecture for learning word representations \cite{transformersAttention}.
+               BERT is trained with millions of wikipedia articles, meaning the inputs is a large text database. Each text segment is fed into the transformer. The text segment is split into tokens, which are then encoded as a vector of length 768 \cite{BERTEmbeddingLayer}. Next follows the positional encoding. When applying the transformer to a sequence of words, the output should be dependent of the sequence of the input words. E.g. the sentences "Bob is taller than Alice" and "Alice is taller than Bob" should be encoded as two different vectors. This can be realized with encoding the position of each token. 
+               
+               The token embedding and its positional encoding are now added, and fed into the encoder \cite{illustratedTransformer}. The encoder makes up the left half on an transformer. A transformer can consist of several sequential encoders, but requires at least one. Inside the encoder, four elements process the input sequentially:
+               
+               \begin{enumerate}
+               	\item The self-attention mechanism allows for the model to incorporate the context of a token into its encoding. The mechanism does so by calculating the importance of inputs with themselves ("self") and returns which tokens are important to each other's meaning ("attention").
+               	\item To reduce the computational requirements for training a deep neural network, the layers of neurons in the networks are normalized with respect to their activation. This reduced the training time while not impacting the result, which is only dependent on the learning algorithm \cite{baLayerNormalization2016}.
+               	\item The \ac{FFNN} takes the results of the layer normalization and the residual connection as input. When the whole transformer is trained on a specific task, the parameters (weights) of this model are also trained. Therefore, the \ac{FFNN} is one gear in the whole process of reaching the transformer's task.
+               	\item Finally, the results are normalized again.
+               \end{enumerate}
+       			
+       			
+       			The decoder is the right part of the transformer architecture. It has several components in common with the encoder.
             
             \subparagraph{Bidirectional}
             
             considering both left context (previous words) and the right context (following words) during learning the representation
+            
+            The advantage of bert over count-based
+            
+            
+            The advantage of bert over word2vec
+            
+            
+            \cite{evaluationTopicModelling}
+            
             \subsection{Theoretical Implementation}
             \subsubsection{Tf-Idf}
             The \ac{TF-IDF} measure is very popular in \ac{NLP}, and many implementations already exist. This transformation will be performed using the \ac{sklearn} Python library \cite{sklearn}. The library's class \lstinline|sklearn.feature_extraction.text.TfidfVectorizer| takes a sequence of strings and among other outputs returns a matrix with all documents and their vectors.
             
-            \subsubsection{Word Embedding Averaged}
-            \subsubsection{Word Embedding Tf-Idf}
+           	After explaining and evaluating the alternatives, the most favorable one, the word embeddings using \ac{BERT} will be put into practice. In theory, a BERT model would have to be trained using a large text dataset. This took the developers of BERT at Google 4 whole days, and required 4 \ac{TPU}s \cite{BERTTraining}. Fortunately, the researchers published this trained model, making it free to use for the public \cite{BERT}.
+            	
+            From the available pre-trained modles, the \lstinline|distiluse-base-multilingual-cased| is 
+            	
+            	
+            	
             \subsection{Practical Implementation}
-            \subsubsection{Tf-Idf}
-            The \ac{sklearn} \lstinline|TfidfVectorizer| \cite{sklearn} outputs a matrix of size (79741, 68286). It contains each document as a row, and each column represents one word in the vocabulary (see \ref{appendix:tfidf}). The output is a sparse matrix, meaning most values are zero. This is explained by the large vocabulary - many words occur in only a handful of documents, and their weight for all other documents will be zero.
-            The matrix was in fact so sparse, that an overview shows only zeroes (\ref{fig:tfidf}). Values could only be found with a column-wise sum (\ref{fig:tfidf_sparse}).
-            
-            
-            
-            
-            \subsubsection{Word Embedding Averaged}
-            \subsubsection{Word Embedding Tf-Idf}
-            
+			
             
             
             

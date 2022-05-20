@@ -141,7 +141,7 @@ The clustering algorithm has the parameters \lstinline|eps| and \lstinline|metri
 
 The (distance) \lstinline|metric| is of course cosine. The \lstinline|eps| stands for the maximal distance between two points to be considered a neighbor \cite{SklearnClusterDBSCAN}. As established before, the outliers are those points which are more than 0.4 units separated from the next data point. Therefore, \lstinline|eps| is set to 0.4. 
 
-The \ac{DBSCAN} model identified the outlier data (\ref{fig:dbscan-outliers}), amounting to about 3\% of the data points.
+The \ac{DBSCAN} model identified the outlier data (\ref{fig:dbscan-outliers}), amounting to about 3\% of the data points. These data points are not included into clustering by k-Means.
 
 \subsection{Determine the number of clusters with the Elbow Method}
 The KMeans algorithm is parameterized with the number of clusters (\lstinline|n_clusters|). Since the algorithm itself is not able to determine the cluster count, this number has to be approximated.
@@ -183,7 +183,8 @@ Therefore, the task of the elbow method using the silhouette coefficient is to m
 The above mentioned estimates (\ref{table:heuristic-k}) are a starting point for choosing values for k during the calculation of silhouette coefficients.
 
 
-\subsection{Train a KMeans Model with cosine distance}
+\subsection{Train a KMeans Model}
+
 \subsection{Visualize cluster formation}
 \subsection{Generate Topics per cluster with \ac{LDA}}
 

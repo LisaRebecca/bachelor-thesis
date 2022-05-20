@@ -15,6 +15,63 @@
   urldate = {2022-04-27}
 }
 
+@unpublished{baLayerNormalization2016,
+  title = {Layer {{Normalization}}},
+  author = {Ba, Jimmy Lei and Kiros, Jamie Ryan and Hinton, Geoffrey E.},
+  date = {2016-07-21},
+  number = {arXiv:1607.06450},
+  eprint = {1607.06450},
+  eprinttype = {arxiv},
+  primaryclass = {cs, stat},
+  publisher = {{arXiv}},
+  url = {http://arxiv.org/abs/1607.06450},
+  urldate = {2022-05-19},
+  abstract = {Training state-of-the-art, deep neural networks is computationally expensive. One way to reduce the training time is to normalize the activities of the neurons. A recently introduced technique called batch normalization uses the distribution of the summed input to a neuron over a mini-batch of training cases to compute a mean and variance which are then used to normalize the summed input to that neuron on each training case. This significantly reduces the training time in feed-forward neural networks. However, the effect of batch normalization is dependent on the mini-batch size and it is not obvious how to apply it to recurrent neural networks. In this paper, we transpose batch normalization into layer normalization by computing the mean and variance used for normalization from all of the summed inputs to the neurons in a layer on a single training case. Like batch normalization, we also give each neuron its own adaptive bias and gain which are applied after the normalization but before the non-linearity. Unlike batch normalization, layer normalization performs exactly the same computation at training and test times. It is also straightforward to apply to recurrent neural networks by computing the normalization statistics separately at each time step. Layer normalization is very effective at stabilizing the hidden state dynamics in recurrent networks. Empirically, we show that layer normalization can substantially reduce the training time compared with previously published techniques.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  file = {/Users/I518232/Zotero/storage/6FFP36QV/Ba et al. - 2016 - Layer Normalization.pdf;/Users/I518232/Zotero/storage/CRVQ9JYQ/1607.html}
+}
+
+@unpublished{BERT,
+  title = {{{BERT}}: {{Pre-training}} of {{Deep Bidirectional Transformers}} for {{Language Understanding}}},
+  shorttitle = {{{BERT}}},
+  author = {Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+  date = {2019-05-24},
+  number = {arXiv:1810.04805},
+  eprint = {1810.04805},
+  eprinttype = {arxiv},
+  primaryclass = {cs},
+  publisher = {{arXiv}},
+  url = {http://arxiv.org/abs/1810.04805},
+  urldate = {2022-05-20},
+  abstract = {We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5\% (7.7\% point absolute improvement), MultiNLI accuracy to 86.7\% (4.6\% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Computation and Language},
+  file = {/Users/I518232/Zotero/storage/KX9HQT5F/Devlin et al. - 2019 - BERT Pre-training of Deep Bidirectional Transform.pdf;/Users/I518232/Zotero/storage/9KT9MGZN/1810.html}
+}
+
+@online{___WhyBERTHas2021,
+  title = {Why {{BERT}} Has 3 {{Embedding Layers}} and {{Their Implementation Details}}},
+  author = {\_\_\_},
+  date = {2021-01-03T14:36:54},
+  url = {https://medium.com/@_init_/why-bert-has-3-embedding-layers-and-their-implementation-details-9c261108e28a},
+  urldate = {2022-05-20},
+  abstract = {Why does BERT have 3 embedding layers instead of 1 like most deep learning-based NLP models?},
+  langid = {english},
+  organization = {{Medium}},
+  file = {/Users/I518232/Zotero/storage/DBIG2SXZ/why-bert-has-3-embedding-layers-and-their-implementation-details-9c261108e28a.html}
+}
+
+@online{BERTTraining,
+  title = {{{BERT}} 101 - {{State Of The Art NLP Model Explained}}},
+  author = {Muller, Britney},
+  date = {2022-03-02},
+  url = {https://huggingface.co/blog/bert-101},
+  urldate = {2022-05-20},
+  abstract = {We’re on a journey to advance and democratize artificial intelligence through open source and open science.},
+  file = {/Users/I518232/Zotero/storage/F67ESUMJ/bert-101.html}
+}
+
 @inproceedings{beyerNearestNeighbor,
   title = {When {{Is}} “{{Nearest Neighbor}}” {{Meaningful}}?},
   booktitle = {{{LNCS}}},
@@ -169,6 +226,15 @@
   keywords = {Artificial intelligence,Methodology,Philosophy}
 }
 
+@article{evaluationTopicModelling,
+  title = {An Evaluation of Document Clustering and Topic Modelling in Two Online Social Networks: {{Twitter}} and {{Reddit}}},
+  author = {Curiskis, Stephan and Drake, Barry and Osborn, Thomas and Kennedy, Paul},
+  date = {2019-04},
+  journaltitle = {Information Processing \& Management},
+  volume = {57},
+  doi = {10.1016/j.ipm.2019.04.002}
+}
+
 @online{externalData,
   title = {Harnessing the Power of External Data | {{McKinsey}}},
   url = {https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/harnessing-the-power-of-external-data},
@@ -181,6 +247,15 @@
   author = {{SAP SE}},
   url = {https://www.sap.com/germany/about/company/history/1972-1980.html},
   urldate = {2022-03-15}
+}
+
+@online{illustratedTransformer,
+  title = {The {{Illustrated Transformer}}},
+  author = {Alammar, Jay},
+  url = {https://jalammar.github.io/illustrated-transformer/},
+  urldate = {2022-05-19},
+  abstract = {Discussions: Hacker News (65 points, 4 comments), Reddit r/MachineLearning (29 points, 3 comments) Translations: Chinese (Simplified), French 1, French 2, Japanese, Korean, Russian, Spanish, Vietnamese Watch: MIT’s Deep Learning State of the Art lecture referencing this post In the previous post, we looked at Attention – a ubiquitous method in modern deep learning models. Attention is a concept that helped improve the performance of neural machine translation applications. In this post, we will look at The Transformer – a model that uses attention to boost the speed with which these models can be trained. The Transformer outperforms the Google Neural Machine Translation model in specific tasks. The biggest benefit, however, comes from how The Transformer lends itself to parallelization. It is in fact Google Cloud’s recommendation to use The Transformer as a reference model to use their Cloud TPU offering. So let’s try to break the model apart and look at how it functions. The Transformer was proposed in the paper Attention is All You Need. A TensorFlow implementation of it is available as a part of the Tensor2Tensor package. Harvard’s NLP group created a guide annotating the paper with PyTorch implementation. In this post, we will attempt to oversimplify things a bit and introduce the concepts one by one to hopefully make it easier to understand to people without in-depth knowledge of the subject matter. 2020 Update: I’ve created a “Narrated Transformer” video which is a gentler approach to the topic: A High-Level Look Let’s begin by looking at the model as a single black box. In a machine translation application, it would take a sentence in one language, and output its translation in another.},
+  file = {/Users/I518232/Zotero/storage/9K7DQQ9I/illustrated-transformer.html}
 }
 
 @online{internalExternalData,
