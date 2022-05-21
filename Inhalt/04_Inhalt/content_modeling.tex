@@ -101,18 +101,80 @@ while (iterations < max_iterations):
 
 		
 \subsection{Topic Model}
+After documents are clustered, each cluster needs a meaningful label to provide actual value. This task is called topic modeling. Several methods exist for generating or extracting labels from clustered data. 
+
+Firstly, the word frequency in one cluster can determine the topic. Each word is evaluated with respect to its frequency over the whole cluster. Either the most frequent one or top n words can be the topic.
+This method is quite prone to skewing by one document containing a word many times.
+
+The second method uses the document frequency. This measure is also part of the \ac{TF-IDF} measure (\ref{section:tfidf}).
+The \ac{TF-IDF} vectorization method had to basic assumptions:
+\begin{enumerate}
+	\item Words with a high frequency in a document describe it well.
+	\item Words with a high frequency in a corpus do not describe one specific document well.
+\end{enumerate}
+
+But the second assumption does not hold true any more when applied to a cluster. Clusters should already be very similar, and contain similar words. Therefore, words occurring often over many different documents describe the cluster very well. The metric for this is the document frequency:
+
+\[ DF(t_{i}) =\dfrac{\#(d_{t_{i}}) }{|C|} = \dfrac{ number \; of \; documents \; containing \; word \; t_{i}}{number \;  of\;  documents \;  in \; cluster \; C} \]
+
+The document frequency of a word is the relative share of documents in the cluster it occurs in.
 
 \subsection{Dimensionality Reduction}
 
+The embeddings generated in the data preparation section are 512-dimensional. While the clustering algorithms work well with processing this data, 512 dimensions are not imaginable with the human mind. To visualize clusters, these dimensions have to be projected onto a two-dimensional plane. This task is called \ac{DR}, and is unsupervised. 
+
+Selecting a \ac{DR} method, there are important aspects to consider:
+\begin{itemize}
+	\item How well can the algorithm preserve the distances in the clusters (local structure)?
+	\item How well can the algorithm preserve the distances between the clusters (global structure)?
+\end{itemize}
+
+Data scientists have many methods for \ac{DR} at hand, some of the most popular ones being \ac{t-SNE} and \ac{PCA}.
+
+The \ac{PCA} identifies principal components in the dataset with an unsupervised \ac{ML} algorithm.\cite{40algorithms} A principal component is an axis in the multidimensional space along which the variance is maximized \cite{pcaVStsne}. The number of learned principal components depends on the number of target dimensions, in the case of visualizations either two or three dimensions and principal components. The principal components are orthogonal to each other and span the hyperplane on which the values are projected \cite{pcaVStsne}.
+It is important to note that \ac{PCA} approximates the values, trading in accuracy for performance \cite{40algorithms}.
+
+\ac{t-SNE} is focused on retaining as much structure, both globally and locally. It does so by computing pairwise similarities in the dataset. The algorithm uses these similarities to accurately represent the same distances in a lower number of dimensions. This design of \ac{t-SNE} helps to represent existing clusters very well.
+
+The two methods are contrasted on the task of representing three-dimensional clusters (Figure \ref{original}) in two dimensions. This task is quite similar to the later application of the \ac{DR} algorithm. In figure \ref{fig:pca} the \ac{PCA} algorithm proves that it is able to represent the global structure in some way, but not quite satisfactory. It is heavily outperformed by \ac{t-SNE}, in both preserving the global distances and the local structures. Apart from two clusters merging, the algorithm forms very distinct and clean clusters.
+
+Overall, design and the practical application of the \ac{t-SNE} algorithm make the case for it.
+
+\begin{figure} 
+	\begin{minipage}{0.3\textwidth}
+		\label{fig:origina}
+		\includegraphics[height=5cm]{Bilder/models/original.pdf}
+		\caption{Three-dimensional Clusters}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.3\textwidth}
+		\label{fig:pca}
+		\includegraphics[height=4cm]{Bilder/models/pca.pdf}
+		\caption{\ac{PCA}}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.3\textwidth}
+		\label{fig:tsne}
+		\includegraphics[height=3.5cm]{Bilder/models/tsne.pdf}
+		\caption{\ac{t-SNE}}
+	\end{minipage}
+\end{figure} 
+
 \section{Theoretical Implementation}
-\begin{enumerate}
-	\item Determining composition of dataset with KNeighbors Algorithm.
-	\item Preselect documents with \ac{DBSCAN} and cosine distance.
-	\item Determine the number of clusters with the Elbow Method.
-	\item Train a KMeans Model with cosine distance.
-	\item Visualize cluster formation.
-	\item Generate Topics per cluster with \ac{LDA}.
-\end{enumerate}
+
+\begin{table}[]
+	\label{table:modeling}
+	\begin{tabular}{lll}
+		\textbf{Task}            & \textbf{Alternatives}                                                                      & \textbf{Planned Implementation}                                                               \\
+		Distance Measure         & \begin{tabular}[c]{@{}l@{}}Dot Product\\ Euclidean Distance\\ Cosine Distance\end{tabular} & Cosine Distance                                                                               \\
+		Clustering               & \begin{tabular}[c]{@{}l@{}}k-Means\\ DBSCAN\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}DBSCAN for outlier detection\\ k-Means for clustering\end{tabular} \\
+		Topic Modeling           & \begin{tabular}[c]{@{}l@{}}Word Frequency\\ Document Frequency\end{tabular}                & Document Frequency                                                                            \\
+		Dimensionality Reduction & \begin{tabular}[c]{@{}l@{}}PCA\\ t-SNE\end{tabular}                                        & t-SNE                                                                                        
+	\end{tabular}
+\end{table}
+
+
+The table \ref{table:modeling} sums up all available alternatives from the prior section and the chosen alternative. The implementation of the modeling part starts with an analysis of the cosine distances in the dataset. For this, the KNeighbors algorithm will show the distance of each datapoint to its next neighbor. Next the outliers are sorted out with the DBSCAN clustering method. Before training the k-Means model, the ideal number of clusters has to be found with the elbow method. The k-Means model identifies the clusters. Topics per cluster are generated and the clusters are visualized with t-SNE.
 
 
 
