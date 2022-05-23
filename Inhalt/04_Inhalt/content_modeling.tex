@@ -47,13 +47,52 @@ A distance measure is a quantification of how near objects in space are. Distanc
 		\end{figure} 
 	
 		\subparagraph{Cosine Similarity}
-		The name of this measure already suggests that not distance but similarity of objects is measured. Instead, it quantifies how close two vectors are. The euclidean distance does not perform well in high-dimensional space, but cosine similarity is highly accurate even for high-dimensional data  \cite{40algorithms}. Mathematically, the cosine distance is the cosine of the angle between two vectors. A wide angle means a high distance between two vectors, or in this case two words. Narrow angles stand for a low distance and words being closely related. In example \ref{fig:cosine}, the word vectors for woman and king have a higher angle than those of woman and queen. This means the words woman and queen are more similar thank woman and king.
+		The name of this measure already suggests that not distance but similarity of objects is measured. Instead, it quantifies how close two vectors are.  Mathematically, the cosine distance is the cosine of the angle between two vectors. A wide angle means a high distance between two vectors, or in this case two words. Narrow angles stand for a low distance and words being closely related. In example \ref{fig:cosine}, the word vectors for woman and king have a higher angle than those of woman and queen. This means the words woman and queen are more similar thank woman and king.
 		
 		\[ 
 		\text{cosine similarity} := \cos(\theta) = {\mathbf{A} \cdot \mathbf{B} \over \|\mathbf{A}\| \|\mathbf{B}\|} = \frac{ \sum\limits_{i=1}^{n}{A_i  B_i} }{ \sqrt{\sum\limits_{i=1}^{n}{A_i^2}}  \sqrt{\sum\limits_{i=1}^{n}{B_i^2}} }
 		  \]
 		
+		The difference between cosine distance and euclidean distance is clear: cosine measures the angle, and euclidean the vector length. But which one performs better in high dimensions? Cosine distance is perceived as more suitable for high dimensional data \cite[c.2.1.2.1]{40algorithms}, and often suggested for \ac{NLP} tasks. 
 		
+		But there is one fact left out in this suggestion: On normalized data (all vectors are unit vectors), cosine distance and euclidean distance are linearly connected.
+		
+		\begin{align*}
+			\cos(\theta_{AB}) &= {\mathbf{A} \cdot \mathbf{B} \over \|\mathbf{A}\| \|\mathbf{B}\|}  \\
+			\\
+			\text{for normalized vectors with } \|\mathbf{A}\| &=1 \text{ and } \|\mathbf{B}\| =1: \\
+			\cos(\theta_{AB}) &=  {\mathbf{A} \cdot \mathbf{B} \over 1 * 1 } = \mathbf{A} \cdot \mathbf{B}
+		\end{align*}
+		
+		\begin{align*}
+			d(A, B) &:=  \sum\limits_{i=1}^{n}{(A_i -  B_i)^{2}} \\
+			&= \sum\limits_{i=1}^{n}{A_i^{2} - 2A_iB_i + B_i^2}  \\ 
+			&= \sum\limits_{i=1}^{n}{A_i^{2}} + \sum\limits_{i=1}^{n}{- 2A_iB_i} + \sum\limits_{i=1}^{n}{B_i^2} \\
+			&= 	\|\mathbf{A}\| + \sum\limits_{i=1}^{n}{- 2A_iB_i} + \|\mathbf{B}\| \\
+			&= \|\mathbf{A}\| -2 \sum\limits_{i=1}^{n}{A_iB_i} + \|\mathbf{B}\| \\
+			&= \|\mathbf{A}\| -2 (\mathbf{A} \cdot \mathbf{B}) + \|\mathbf{B}\| \\
+			\\
+			\text{for normalized vectors with }\|\mathbf{A}\| &=1 \text{ and } \|\mathbf{B}\| =1  \text{ and } \mathbf{A} \cdot \mathbf{B}  = \cos(\theta_{AB}):\\
+			d(A, B) &= 1 - 2 \cos(\theta_{AB}) + 1 = 2 - 2(\cos(\theta_{AB})) \\
+			&= 2 - 2(\cos(\theta_{AB})) \sim \cos(\theta_{AB})
+		\end{align*}
+	
+		Now, with the newly gained insight into the distance relationships of normalized vectors of $\cos(\theta_{AB}) = \mathbf{A} \cdot \mathbf{B}$ and $d(A, B) = 2 - 2(\cos(\theta_{AB})) \\$ , it can be stated that the cosine distance and euclidean distance of two normalized vectors are linearly related.
+				
+		Cosine and euclidean distance being connected linearly for normalized data has not made the decision easier. But there is an additional factor: 
+		
+		One additional constraint
+		Cosine distance returns impractical results 
+		Cosine distance only looks at dimensions where both values are non-zero. All other dimensions turn 0 in the dot product.
+		  Cosine is better for sparse data, euclidean is better for dense data, since The distance approaches a uniform value for euclidean 
+		but actually
+		But for cosine its almost the same
+		this is because they are proportional
+		(insert proof)
+		Additionally, k-Means cannot use cosine
+		because it violates triangle equality and needs averages
+
+		Explain how we should not use t-SNE before clustering
 \subsection{Clustering Algorithms}
 		
 		\subparagraph{K-Means}
@@ -97,7 +136,7 @@ while (iterations < max_iterations):
 	
 		Figure \ref{fig:dbscan-viz} illustrates how \ac{DBSCAN} does not fall prey to outliers, as k-Means does. A broad distribution of data points in the left example is very intuitively grouped into clusters and outliers. Especially the center picture showcases the ability of DBSCAN to recognize clusters by their density. The even spread of data in the third example is also correctly identfied as one large cluster, even though a small part of the data was not within \lstinline|eps| range.
 		
-		
+		But areas of high density do not say anything about being topically related.
 
 		
 \subsection{Topic Model}
@@ -248,8 +287,9 @@ The above mentioned estimates (\ref{table:heuristic-k}) are a starting point for
 \subsection{Train a KMeans Model}
 
 \subsection{Visualize cluster formation}
-\subsection{Generate Topics per cluster with \ac{LDA}}
+\subsection{Generate Topics per Cluster}
 
+one hot encoding/binary
 
 
 		

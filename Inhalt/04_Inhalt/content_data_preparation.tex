@@ -304,27 +304,53 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
        			\end{figure}
 			
             
-            Evaluating all different models for word vectorization, BERT clearly outperforms the distribustional representations.
+            Evaluating all different models for word vectorization, BERT clearly outperforms the distribustional representations:
             \begin{itemize}
             	\item Word embeddings produce dense and lower-dimensional vectors than distributional representations.
             	\item With word embeddings, the resulting vectors perform a lot better on common \ac{NLP} tasks, meaning the resulting vectors are of higher quality than with distributional representations.
             	\item BERT can process out-of-vocabulary words, this is a big advantage to previous embeddings.
             \end{itemize}
 
+			The advantage of BERT over the other presented options is obvious. But, now there are two unconsidered restrictions:
+			First, BERT only encodes words.
+			Second, BERT is only in one language.
+			
+			Luckily, researchers around BERT encountered similar tasks and developed a new BERT model to solve this. 
+			First, the Sentence-BERT embeddings are generated in a way that requires only minimal additions to the BERT architecture \cite{sentenceBERT}. Sentence-BERT is trained with a dataset of sentences, labeled with their relationship (contradiction, entailment, neutral) \cite{sentenceBERT}. Two sentences each pass through a BERT model. A pooling layer for each of the two calculates a weighted sum of all words in the sentence to create the embedding for the whole sentences. With the labels and the comparison of two sentence embeddings, the pooling layer is trained. The weights in both pooling layers are adjusted over time, creating a so-called Siamese Network.
+			
+			Secondly, the embeddings need to be able to understand different languages. A multilingual implementation of BERT can solve this. A multilingual embedding should align vectors in different languages in such a way, that translated sentences are very close in the vector space. A multilingual Sentence-BERT model trains on a dataset with sentences and their translation \cite{mBERT}. The weights in the BERT model are adjusted by completing the task of assigning the same sentence in different languages a similar vector \cite{mBERT}.
+			
+			Both the multilingual and sentence embeddings require very little additional complexity compared to the underlying BERT model. But, these additions help to accurately represent the content in the dataset.
+			
             \subsection{Theoretical Implementation}
             
            	After explaining and evaluating the alternatives, the most favorable one, the word embeddings using \ac{BERT} will be put into practice. In theory, a BERT model would have to be trained using a large text dataset. This took the developers of BERT at Google 4 whole days, and required 4 \ac{TPU}s \cite{BERTTraining}. Fortunately, the researchers published this trained model, making it free to use for the public \cite{BERT}.
             	
-            From the available pre-trained modles, the \lstinline|distiluse-base-multilingual-cased| is 
-            	
-            	
+            From the available pre-trained models, the \lstinline|distiluse-base-multilingual-cased| model fulfills all the requirements (sentence embeddings, multilingual vector alignment). The prefix 'distiluse' stands for distilled universal sentence encoder, meaning the sentence encoder is compressed in a model with a more portable size. The suffix 'cased' means that words are handled case-sensitive.
+            
+            Since the description data has already been transformed into a usable format and cleaned, these descriptions can now easily be fed into the \lstinline|distiluse-base-multilingual-cased| model.
             	
             \subsection{Practical Implementation}
-            
-            include the unit test
-			
-            
-            
-            
-            
-            
+             
+             The model can be laded using the library \lstinline|sentence_transformers|. The library can create a model from the name of the transformer. Embeddings can be generated very easily, and are returned as a 2D-array. This inference takes about 30ms. For all 79.741 documents, this means an total time of about 40 minutes.
+             
+\begin{lstlisting}[language=python,
+	label=code:process-pool,
+	caption=Generating an Embedding with BERT,
+	style=EigenerPythonStyle]   
+
+from sentence_transformers import SentenceTransformer
+model = SentenceTransformer(
+	'sentence-transformers/distiluse-base-multilingual-cased-v2'
+	)
+sentence = ["Service Charge for Flight FRA-LAX"]
+embedding = model.encode(sentence)
+print(embedding)
+>>> 	[[-0.02105838 -0.01305696 -0.0403975  ...  0.08315323  0.06774105  0.03354893]
+\end{lstlisting}
+
+		Since data cleaning and data wrangling could be sped up significantly with multiprocessing, it stands to reason that this might also work for the inference on BERT. Batching and parallel processing only provides a speed-up if the model can utilize a strong \ac{GPU} \cite{schopfParallelInferenceHuggingFace2022}. This is not the case, so we settle with a one-time processing taking 40 minutes.
+		
+		During processing, the hardware was overheating and shutting down. To prevent losing progress, batches of 1000 documents were processed at a time, serialized and written on the hard disk. Upon completion, the files are loaded into memory again and unified into one collection of 20MB in vectors.
+
+		These vectors are now ready for clustering.            
