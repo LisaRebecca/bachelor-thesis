@@ -55,7 +55,7 @@ A distance measure is a quantification of how near objects in space are. Distanc
 		
 		The difference between cosine distance and euclidean distance is clear: cosine measures the angle, and euclidean the vector length. But which one performs better in high dimensions? Cosine distance is perceived as more suitable for high dimensional data \cite[c.2.1.2.1]{40algorithms}, and often suggested for \ac{NLP} tasks. 
 		
-		But there is one fact left out in this suggestion: On normalized data (all vectors are unit vectors), cosine distance and euclidean distance are linearly connected.
+		But there is one fact left out in this suggestion: On normalized data (all vectors are unit vectors), cosine distance and euclidean distance are linearly connected \cite{khanRelationshipCosineSimilarity2020}.
 		
 		\begin{align*}
 			\cos(\theta_{AB}) &= {\mathbf{A} \cdot \mathbf{B} \over \|\mathbf{A}\| \|\mathbf{B}\|}  \\
@@ -80,19 +80,17 @@ A distance measure is a quantification of how near objects in space are. Distanc
 		Now, with the newly gained insight into the distance relationships of normalized vectors of $\cos(\theta_{AB}) = \mathbf{A} \cdot \mathbf{B}$ and $d(A, B) = 2 - 2(\cos(\theta_{AB})) \\$ , it can be stated that the cosine distance and euclidean distance of two normalized vectors are linearly related.
 				
 		Cosine and euclidean distance being connected linearly for normalized data has not made the decision easier. But there is an additional factor: 
+		Algorithms often require distance metrics to obey the four requirements of a metric space \cite{schubertTriangleInequalityCosine2021}.
+		These requirements are \cite{rajaramanNeighborSearchHigh}:
+		\begin{enumerate}
+			\item The distance between to points is 0 if and only if they are identical.
+			\item The distance between two points is never negative.
+			\item The distance is equal irrespective of the starting point.
+			\item The shortest distance between two points is a straight line.
+		\end{enumerate} 
 		
-		One additional constraint
-		Cosine distance returns impractical results 
-		Cosine distance only looks at dimensions where both values are non-zero. All other dimensions turn 0 in the dot product.
-		  Cosine is better for sparse data, euclidean is better for dense data, since The distance approaches a uniform value for euclidean 
-		but actually
-		But for cosine its almost the same
-		this is because they are proportional
-		(insert proof)
-		Additionally, k-Means cannot use cosine
-		because it violates triangle equality and needs averages
-
-		Explain how we should not use t-SNE before clustering
+		All aforementioned arguments make a strong case for the euclidean distance.
+		
 \subsection{Clustering Algorithms}
 		
 		\subparagraph{K-Means}
