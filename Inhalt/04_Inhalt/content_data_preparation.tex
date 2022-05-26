@@ -71,7 +71,7 @@
 	\end{figure}	
 
 	Now, looking at the technical side of the file composition.	The data for an invoice and its line items is stored in an array of objects. The array "annotations" contains objects, each one representing information such as the invoice date or the unit price. A schematic description of how the invoice data should be represented after extraction is shown in figure \ref{fig:invoice_df_schema}: One invoice is modeled as one row in the table. Different attributes are represented as columns.
-	Information about line items have labels containing the prefix "lineItem". One invoice containing several items is represented by duplicate values of one label (in the example \ref{code:JSONInvoice} the label "lineItem.description.value"). Each new label "lineItem.description.value" denotes a new line item. Here, the order of the labels has to be retained during data wrangling to ensure not mixing up information about different invoice items. Each new line item should be a new row in the table of line items.
+	Information about line items have labels containing the prefix "lineItem". One invoice containing several items is represented by duplicate values of one label (in the example \ref{fig:invoice_df_schema} the label "lineItem.description.value"). Each new label "lineItem.description.value" denotes a new line item. Here, the order of the labels has to be retained during data wrangling to ensure not mixing up information about different invoice items. Each new line item should be a new row in the table of line items.
 	
 	The goal of the data wrangling process is to create two \lstinline|DataFrame|s, one for the invoices and one for the line items.
 	Additionally, another data structure will be created to optimize recurring and complex operations.
@@ -115,18 +115,18 @@
 	
 	This processing step allowed for storing the initial 5.12GB of data in a more usable format and takes up only a total of 393MB.
 
-	The process of reading files from the disk is not inherently an expensive one, but in the realms of many thousand documents, processing times soon reach several days. Observing the execution of the python code showed a peculiarity: While the utilization of the used processor was consequently at the maximum (in figure \ref{fig:cpu} at 97.1\%), only one process is executed, leaving the total CPU usage at only 20\%. 
+	The process of reading files from the disk is not inherently an expensive one, but in the realms of many thousand documents, processing times soon reach several days. Observing the execution of the python code showed a peculiarity: While the utilization of the used processor was consequently at the maximum (in figure \ref{fig:cpu} at 97.1\%), only one process is executed, leaving the total \ac{CPU} usage at only 20\%. 
 	
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[height=5cm]{Bilder/practical/python_processes.png}
-		\caption{CPU Usage during single-process Python Execution}
+		\caption{\ac{CPU} Usage during single-process Python Execution}
 		\label{fig:cpu}
 	\end{figure}
 	
 	
 	One question that may now arise is: Why doesn't python split up the workload and employ the full capacity of the machine?
-	This can be explained with the design of the Python interpreter. The \ac{GIL} controls access to the Python Virtual Machine executing the code. This lock only allows exactly one thread to run at a time \cite{corePython}. This of course is not favorable, as valuable CPU capacity is idle. Fortunately, the \ac{GIL} behaves in a special way regarding C routines: the lock is released before executing C code \cite{corePython}. I/O operations in Python, such as opening files, utilize C code. This allows to bypass the, in this case, inconvenient locking mechanism. 
+	This can be explained with the design of the Python interpreter. The Global Interpreter Lock controls access to the Python Virtual Machine executing the code. This lock only allows exactly one thread to run at a time \cite{corePython}. This of course is not favorable, as valuable CPU capacity is idle. Fortunately, the lock behaves in a special way regarding C routines: the lock is released before executing C code \cite{corePython}. I/O operations in Python, such as opening files, utilize C code. This allows to bypass the, in this case, inconvenient locking mechanism. 
 	
 	Different python libraries exploit this specialty and allow to spawn a pool of different processes, which then execute calls asynchronously. One example is the \lstinline|ProcessPoolExecutor|. A notable restriction is that only picklable objects can be submitted for multiprocessing. This concerns both function and its parameters. While this is not a problem in this task, this restriction will become important later on in the section about feature extraction.
 	
@@ -138,7 +138,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
 	results = process_map(r.read_invoice, filenames, chunksize=2000)
 \end{lstlisting}
 
-	The \lstinline|ProcessPoolExecutor| (s. listing \ref{code:process-pool}) can distribute a list of input values for functions (\lstinline|filenames| ) onto a function (\lstinline|r.read_invoice|). Additionally, the \lstinline|chunksize| as parameter specifies how large the bundles of input values for each process are. Distributing the workload onto all \acs{CPU} cores, the processing time was reduced from 27 hours to under 4 minutes. 
+	The \lstinline|ProcessPoolExecutor| (s. listing \ref{code:process-pool}) can distribute a list of input values for functions (\lstinline|filenames| ) onto a function (\lstinline|r.read_invoice|). Additionally, the \lstinline|chunksize| as parameter specifies how large the bundles of input values for each process are. Distributing the workload onto all \ac{CPU} cores, the processing time was reduced from 27 hours to under 4 minutes. 
 	
 	\section{Data cleaning}
 	Data cleaning concerns removing all impurities from the data. This includes deleting duplicates, using an uniform data type, and removing unnecessary information.
@@ -168,13 +168,14 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
 
         
         \section{Feature Extraction and Feature Engineering}
+        \label{section:feature-extraction}
         The majority of popular \ac{ML} algorithms require the input of scalar, vector or matrix data. Several methods for representing text as mathematical object will be discussed in the following.
     
             \subsection{Alternatives}
             Firstly, the distributional representations will be explained and evaluated.
             
             \subsubsection{Term-Document Incidence Matrix}
-
+			\label{section:tdim}
             \begin{figure}[h]
             	\centering
             	 \includegraphics[height=3.5cm]{Bilder/corpus_bow.png}
@@ -199,7 +200,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
             \[ d_{3} = [0,0,0,1,0,0,0,1]\]
     		The drawback of this method is that no consideration is paid to words being repeated in one document. Additionally, no semantic relationship between words or documents can be inferred. 
     		Further, it can be stated, that the \ac{BoW} representation fails to capture the meaning of synonyms. This becomes obvious with an example: document $ d_{1} $ and $ d_{3}$ would be considered to belong into the topic of transportation or automotive. The \ac{BoW} representation suggests topical proximity between document $ d_{2} $ and $ d_{3}$ , through the shared word "ticket". "Ticket" here is used in both the meaning of an entrance pass ($d_{2}$) and in the meaning of a note for a traffic offense  ($d_{3}$). 
-    		Further, this feature extraction method strongly suffers from high dimensionality \cite[c.~ I.3.]{practicalNLP}, since the matrix dimensions depend on the size of the vocabulary. 
+    		Further, this feature extraction method strongly suffers from high dimensionality \cite{practicalNLP}, since the matrix dimensions depend on the size of the vocabulary. 
     
             \subsubsection{Bag of Words Model}
  			With the \ac{BoW} model, the only difference to a term-document incidence matrix is that the occurrences of a word are counted, instead of a binary encoding.
@@ -276,9 +277,10 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
            
           
              \begin{figure}[h!]
-             	\label{fig:mlm}
+             	
              	\centering
              	\includegraphics[height=10cm]{ Bilder/preprocessing/BERT/BERT-language-modeling-masked-lm.png}
+             	\label{fig:mlm}
              	\caption{Training BERT with the MLM task \cite{alammarIllustratedBERTELMo}}
              \end{figure}
             

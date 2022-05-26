@@ -1,20 +1,73 @@
 \chapter{Evaluation of the result}
-\subsection{Machine Learning}
-Already Alan Turing understood that for laymen a learning machine can be perceived as a paradox.  How can a machine learn, if a human has to define its behavior beforehand? There are three major subfields in the discipline of artificial intelligence that fundamentally explain how a computer can learn how to behave despite predefined behavior.
+Bewertung der Lösung anhand der Aufgabenstellung und der Kriterien
 
-\subsection{Supervised Learning}
-A supervised learning algorithm learns its decision with the help of a data set (input) that also contains the correct decision (output) as information. It is trained with only a part of the entire data set, so that the model can be tested in a later step with the help of unknown data. This way, a statement can be made about the accuracy of the model.
+Different chapters in this thesis mention their respective objectives and criteria. This chapter evaluated the result on the basis of these standards.
 
-\subsection{Unupervised Learning}
-Unsupervised learning is complementary to supervised learning. All algorithms that fall into the category of unsupervised learning are trained with data that does not contain the correct output (label) as information. Here, the categorization is not constrained by the given data, but decided on by the algorithm.
+\paragraph{Detailed Task Description}
+The goal of this thesis is adding value to real business documents by transforming unstructured data into a structured format. The structured information can then be used as a base for further analyses.
+The task is to perform a full data analysis on the supplied dataset. The dataset is to be prepared for processing with established methods. An evaluation for different means of feature extraction, machine learning, model evaluation and visualization should be performed. With the evaluation a complete flow for the data processing should be presented. The result is an added value to the dataset by creating structured data and providing insights into this data.
 
-\subsection{Reinforcement Learning}
-The third way in which an algorithm can make better decisions as it gains experience is called reinforcement learning. Reinforcement learning is about letting algorithms solve very complex tasks. The special feature is that there is no defined solution path, but the algorithm is rewarded for goal-oriented behavior and punished for wrong decisions. The definition of goal-oriented behavior has to be put into place by the engineers setting up the training of the model. Real-world tasks are extremely complex, so not all possible solution paths can be calculated and compared to find the optimal path. Parking a car is a routine task for a human after a few hours of driving, but a computer sees only an infinite set of possibilities for turning angles. This problem can be solved by reinforcement learning. The algorithm is rewarded for each parking attempt where the car ends up seeing in the parking space. For the remaining attempts, the algorithm is penalized. Over many thousands of attempts, the reinforcement learning model is trained in this way.
 
-The three major ways of learning even with previously defined behavior can now be implemented by specific models. For example, there are several ways to create and train a model using Unsupervised Learning.
-\subsubsection{Tf-Idf}
-\subsubsection{Word2Vec}
-\subsubsection{BERT}
+\paragraph{Thesis Criteria}
+Section \ref{section:criteria} mentions criteria for completing the task in the corporate environment. Firstly, only available resources should be used. All calculations were completed on the already available hardware. Also, all libraries used were open-source, needing no license. Tableau is free of charge for students. Finally, no internal services were required. This criterion is fulfilled.
 
-\section{Visualization}
-\section{Measures}
+Secondly, the dataset required special attention with respect to data protection. The data and the extraction results were only stored on SAP-authorized hardware. Additionally, the thesis contains a restriction notice to emphasize the special caution required.
+
+Thirdly, the solution should be designed according to industry standards. The data mining follows industry standards by using state-of-the art models such as \ac{BERT}. Also, the Tableau dashboard presents the results in a way very common to this field. The research model used is the most popular and widely-used in the industry.
+
+Fourth, the code needs proper documentation. The Jupyter Notebook format allows for combining python code with markdown annotations. The resulting files are a great device for telling the story of the data analysis. The code is structured using headings to signify different logical units.
+
+Fifth, the code should be optimized in its performance. A very careful choice of data structures based on benchmarks ensures the efficiency of the source code. Storage formats like the python \lstinline|pickle| persist the information in a memory-saving way. Also, the used parallel processing speeds up processing times.
+
+\paragraph{Business Objectives}
+The business obectives (\ref{section:business-objectives}) firstly specify the goal of insight into spending across different related spending. The topics generated in section \ref{section:topics} summarize detailed cost into cross-cutting topics such as beverages. 
+
+
+%The primary goal is the development of a solution for automatic aggregation of documents, based on topics addressed in those documents. The focus is on shorter text segments, such as product descriptions. The business objective is an information gain, on how spending is distributed among cross-cutting topics in a company.
+%The created solution can be evaluated with the business success criterion: "Does the solution identify and give useful insights in the money pits?". The judgment of goal achievement is a subjective matter. Evaluating the success should therefore be distributed among several stakeholders, including but not limited to the author, the supervisor and the supplier of the data.
+
+Section \ref{section:business-objectives} also states the clear business success criterion: "Does the solution identify and give useful insights in the money pits?". This criterion is definitely fulfilled. The dashboard clearly shows which categories take up the most funds.
+
+
+\paragraph{Data Mining Goals}
+The data mining goals (\ref{section:data-mining-goals}) are four very distinct points:
+\begin{enumerate}
+	\item Identifying and applying appropriate methods for feature extracting tailored to this type of dataset.
+	\item Identifying and applying appropriate methods for clustering documents in this type of dataset.
+	\item Identifying and applying appropriate methods for topic modeling with this type of dataset.
+	\item Aggregating expenses by their clusters and visualizing the output.
+\end{enumerate}
+
+
+%1. Identifying and applying appropriate methods for feature extracting tailored to this type of dataset.
+Firstly, the feature extraction. The part about feature extraction (\ref{section:feature-extraction}) presents and carefully evaluates different methods with respect to their relevance to the specific dataset. The chosen mechanism \ac{BERT} is able to fulfill all requirements, while also reflecting the current state of the art. The resulting features provide best conditions for clustering documents.
+
+%2. Identifying and applying appropriate methods for clustering documents in this type of dataset.
+Secondly, the document clustering.
+%How were the methods identified?
+The clustering methods are evaluated on the basis of their ability to produce meaningful clusters. 
+%Which methods were this?
+Both k-Means and \ac{DBSCAN} are contrasted. 
+%Which method was chosen?
+The k-Means algorithm is able to generate higher-quality clusters in this special domain. While \ac{DBSCAN} technically produces more clear clusters, the proximity of documents such as used in k-Means is more meaningful than being connected to each other in a high-density area.
+%How good were the results?
+The clusters are created with the goal of a major generalization. Therefore, in the trade off between sharp clusters (high \lstinline|k|) and strong ability to generalize (lower \lstinline|k|), the lowest viable number of clusters is chosen. The high quality of the results is most obvious in the very intuitive arrangement of topics in a plane (\ref{fig:topics}).
+
+%3. Identifying and applying appropriate methods for topic modeling with this type of dataset.
+Thirdly, the topic modeling.
+% Which method for topic modeling was chosen?
+The topic model generates a topic which aims to describe all documents in one cluster. The model does so by choosing three word which are highly relevant to all contained documents. 
+
+%4. Aggregating expenses by their clusters and visualizing the output.
+Fourth, the visualization.
+% how are the clusters visualized
+A bubble chart (\ref{fig:dashboard}) shows each cluster. The size of a bubble represents the magnitude of spending in this category.
+% what does the visualization tell you?
+The visualization gives an easily comprehensible representation of spending. 
+
+\paragraph{Research Questions}
+%How can information from invoice-like documents be extracted? 
+The thesis answers both research questions. Firstly, it presents options to extract information from invoice-like documents. With means of annotation services, careful data wrangling and data cleaning, the data is transformed into a fitting format. A language model encodes the data for further processing.Then, the data is processed with means of unsupervised machine learning. A new information is gained: there are now groups of documents which are similar to each other.
+
+%How can extracted information provide insights?
+Secondly, the extraction results provide meaningful insights by uniting the information about a group of documents with the associated cost. One can now easily see how much is spent on each group.

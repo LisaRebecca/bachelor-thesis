@@ -39,9 +39,9 @@ A distance measure is a quantification of how near objects in space are. Distanc
 			\end{minipage}
 			\hfill
 			\begin{minipage}{0.49\textwidth}
-				\label{fig:cosine}
 				\includegraphics[height=5cm]{Bilder/models/cosine}
 				\caption{Cosine Similarity as Measure}
+				\label{fig:cosine}
 			\end{minipage}
 			\hfill
 		\end{figure} 
@@ -173,41 +173,63 @@ It is important to note that \ac{PCA} approximates the values, trading in accura
 
 \ac{t-SNE} is focused on retaining as much structure, both globally and locally. It does so by computing pairwise similarities in the dataset. The algorithm uses these similarities to accurately represent the same distances in a lower number of dimensions. This design of \ac{t-SNE} helps to represent existing clusters very well.
 
-The two methods are contrasted on the task of representing three-dimensional clusters (Figure \ref{original}) in two dimensions. This task is quite similar to the later application of the \ac{DR} algorithm. In figure \ref{fig:pca} the \ac{PCA} algorithm proves that it is able to represent the global structure in some way, but not quite satisfactory. It is heavily outperformed by \ac{t-SNE}, in both preserving the global distances and the local structures. Apart from two clusters merging, the algorithm forms very distinct and clean clusters.
+The two methods are contrasted on the task of representing three-dimensional clusters (Figure \ref{fig:original}) in two dimensions. This task is quite similar to the later application of the \ac{DR} algorithm. In figure \ref{fig:pca} the \ac{PCA} algorithm proves that it is able to represent the global structure in some way, but not quite satisfactory. It is heavily outperformed by \ac{t-SNE}, in both preserving the global distances and the local structures. Apart from two clusters merging, the algorithm forms very distinct and clean clusters.
 
 Overall, design and the practical application of the \ac{t-SNE} algorithm make the case for it.
 
+
+
+
 \begin{figure} 
 	\begin{minipage}{0.3\textwidth}
-		\label{fig:origina}
-		\includegraphics[height=5cm]{Bilder/models/original.pdf}
-		\caption{Three-dimensional Clusters}
+		
+		\includegraphics[width=\textwidth]{Bilder/models/original.pdf}
+		\captionsetup{labelformat=empty}
+		\centering
+		Original 3D Clusters
+		\label{fig:original}
+	%	\caption{Original 3D Clusters}
+	%	\addtocounter{figure}{-1}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{0.3\textwidth}
+		
+		\includegraphics[width=\textwidth]{Bilder/models/pca.pdf}
 		\label{fig:pca}
-		\includegraphics[height=4cm]{Bilder/models/pca.pdf}
-		\caption{\ac{PCA}}
+		\captionsetup{labelformat=empty}
+		\centering
+		\ac{PCA}
+	%	\caption{\ac{PCA}}
+	%	\addtocounter{figure}{-1}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{0.3\textwidth}
+		
+		\includegraphics[width=\textwidth]{Bilder/models/tsne.pdf}
 		\label{fig:tsne}
-		\includegraphics[height=3.5cm]{Bilder/models/tsne.pdf}
-		\caption{\ac{t-SNE}}
+		\captionsetup{labelformat=empty}
+		\centering
+		\ac{t-SNE}
+	%	\caption{\ac{t-SNE}}
+	%	\addtocounter{figure}{-1}
 	\end{minipage}
+\caption{Dimensionality Reduction on three-dimensional Clusters}
 \end{figure} 
 
 \section{Theoretical Implementation}
 
-\begin{table}[]
-	\label{table:modeling}
+\begin{table}[!h]
+
 	\begin{tabular}{lll}
 		\textbf{Task}            & \textbf{Alternatives}                                                                      & \textbf{Planned Implementation}                                                               \\
-		Distance Measure         & \begin{tabular}[c]{@{}l@{}}Dot Product\\ Euclidean Distance\\ Cosine Distance\end{tabular} & Cosine Distance                                                                               \\
+		Distance Measure         & \begin{tabular}[c]{@{}l@{}}Dot Product\\ Euclidean Distance\\ Cosine Distance\end{tabular} & Euclidean Distance                                                                               \\
 		Clustering               & \begin{tabular}[c]{@{}l@{}}k-Means\\ DBSCAN\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}DBSCAN for outlier detection\\ k-Means for clustering\end{tabular} \\
 		Topic Modeling           & \begin{tabular}[c]{@{}l@{}}Word Frequency\\ Document Frequency\end{tabular}                & Document Frequency                                                                            \\
 		Dimensionality Reduction & \begin{tabular}[c]{@{}l@{}}PCA\\ t-SNE\end{tabular}                                        & t-SNE                                                                                        
+	
 	\end{tabular}
+	\caption{Tasks during the Modeling Phase}
+	 \label{table:modeling}
 \end{table}
 
 
@@ -229,12 +251,12 @@ Both density-based and distance-based clustering algorithms work with distances 
 	\label{fig:dbscan-plot}
 \end{figure}
 
-This can be done with the algorithm \lstinline|sklearn.neighbors.NearestNeighbors|, which takes the input of a dataset with arbitrary dimensions. Using a specified distance metric, the algorithm outputs the distance of each data point to its nearest neighbor in the data set. The distance metric used is the cosine distance.
-The distance search shows that almost all points are within a maximum distance of 0.4 to the next neighbor. All other points are outliers and will be filtered out with \ac{DBSCAN}.
+This can be done with the algorithm \lstinline|sklearn.neighbors.NearestNeighbors|, which takes the input of a dataset with arbitrary dimensions. Using a specified distance metric, the algorithm outputs the distance of each data point to its nearest neighbor in the data set. The distance metric used is the euclidean distance.
+The distance search shows that almost all points are within a maximum distance of 0.8 to the next neighbor. All other points are outliers and will be filtered out with \ac{DBSCAN}.
 
 
 
-\subsection{Preselect documents with \ac{DBSCAN} and cosine distance}
+\subsection{Preselect documents with \ac{DBSCAN}}
 The \ac{DBSCAN} algorithm outputs, apart from clusters, outlier data points which do not belong into any cluster. With this algorithm, outliers in the data are detected to prevent the main clustering algorithm (KMeans) from overfitting. 
 The clustering algorithm has the parameters \lstinline|eps| and \lstinline|metric| which tune the model.
 
@@ -242,7 +264,7 @@ The (distance) \lstinline|metric| is of course cosine. The \lstinline|eps| stand
 
 The \ac{DBSCAN} model identified the outlier data (\ref{fig:dbscan-outliers}), amounting to about 3\% of the data points. These data points are not included into clustering by k-Means.
 
-\subsection{Determine the number of clusters with the Elbow Method}
+\subsection{Determine the number of Clusters}
 The KMeans algorithm is parameterized with the number of clusters (\lstinline|n_clusters|). Since the algorithm itself is not able to determine the cluster count, this number has to be approximated.
 \cite{kodinariyaReviewDeterminingCluster2013} suggest several applicable methods, among them are rule of thumb, and the elbow method with a silhouette score.
 A good point for starting with choosing \lstinline|k| is the rule of thumb $k \approx \sqrt{\frac{n}{2}}$ with n being the number of instances in the dataset. Other literature also names the approximation of $k \approx log(n)$, but \cite{maierOptimalConstructionKnearest2009} showcase how $k$ should be chosen in the order of $n$. 
@@ -279,15 +301,65 @@ For $S = 1$, the relationship of $a(i)$ and $b(i)$ has to be $a(i) \gg b(i)$ so 
 
 Therefore, the task of the elbow method using the silhouette coefficient is to maximize $S$ while preventing overfitting.
 
-The above mentioned estimates (\ref{table:heuristic-k}) are a starting point for choosing values for k during the calculation of silhouette coefficients.
+The above mentioned estimates (\ref{table:heuristic-k}) are a starting point for choosing values for k during the calculation of silhouette coefficients. The following simulation shows how the k-Means algorithm for these values of k performed.
 
+ \begin{figure}[!h]
+	\centering
+	\includegraphics[height=8.5cm]{Bilder/models/elbow.pdf}
+	\caption{Each Instance's Distance to the nearest neighboring Point}
+	\label{fig:silhouette}
+\end{figure}
+
+The chart \ref{fig:silhouette} shows how the silhouette coefficient behaves with respect to k-Means models with different numbers of clusters. The x-axis shows the number of clusters, which the algorithm was configured with. The diagram was created by executing several runs of \lstinline|MiniBatchKMeans|. In the used dataset, the DBSCAN algorithm already filtered out the outliers.
+
+The chart shows how the silhouette coefficient falls under the 0 threshhold. A negative silhouette coefficient means that points in one cluster were misclassified as they are more close to other clusters. This is an indicator of underfitting. 
+
+But not only the left hand side of the spectrum for k can cause problems. When increasing k, the silhouette coefficient rises. In fact, one could obtain a perfect silhouette coefficient of 1 by assigning each point its own cluster \cite{yildirimTwoChallengesKMeans2020}. But with rising number of clusters, the generalization becomes lower. Again, the goal is a useful generalization. And dividing a group of 79741 documents into 20.000 groups can not be considered a useful generalization.
+
+So, even though the silhouette method is very helpful as a technical analysis, the business goals have to be kept in mind. The silhouette coefficient at 0 means that on average, no points were misclassified due to underfitting. This minimal requirement is satisfied with $k$=3250.
 
 \subsection{Train a KMeans Model}
 
+The training with k=3250 takes about four minutes. Most clusters formed are in the size of 10 to 50 documents. The largest cluster contains 395 samples.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[height=6.5cm]{Bilder/models/clustersize.pdf}
+	\caption{Distribution of the Cluster Sizes}
+	\label{fig:clustersize}
+\end{figure}
+
 \subsection{Visualize cluster formation}
+For visualizing, the \ac{t-SNE} algorithm is used. This projection allows to visualize the 512 dimensions of the embeddings in a two-dimensional representation. In figure \ref{fig:kmeans}, the proximity of points stands for their close semantic relationship. Data points in the same color are contained in the same cluster. Since there are 3250 clusters, colors occur several times, even though they represent different clusters.
+
+This visualization gives an overview on the clusters, but doesn't show what is contained in the clusters. For this, each cluster needs a topic.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[height=15.5cm]{Bilder/models/minibatchkmeans.pdf}
+	\caption{All generated Clusters}
+	\label{fig:kmeans}
+\end{figure}
+
+
+\newpage
 \subsection{Generate Topics per Cluster}
+\label{section:topics}
+A topic consists of the three words with the highest document frequency in the cluster. A term-document-incidence matrix (see section \ref{section:tdim}) is a highly efficient method to find the top terms per cluster. This matrix is a binary matrix, representing whether a specific term is contained in a document. To find all terms in one cluster, first the documents (matrix rows) are selected. To find out the top terms, we simply calculate the column-wise sum. Since the data is binary, the sum denotes how many documents in the cluster contain this word. The maximum value is the number of documents in the cluster. The three words with the highest value are the topics of the cluster.
 
-one hot encoding/binary
+Each cluster has its own topic, but for reasons of comprehensibility this section presents only selected clusters and their topics.
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[height=15.5cm]{Bilder/models/topics.pdf}
+	\caption{Each Instance's Distance to the nearest neighboring Point}
+	\label{fig:topics}
+\end{figure}
 
-		
+The chart \ref{fig:topics} seems to contain many outliers which are far away from their cluster. But, the outliers only appear to be so many, since the clusters are very dense. The chart contains more than 9000 data points, and most of them are so close to each other in one cluster, that they are indistinguishable from another.
+
+What is striking about the clusters is the formation of areas where not only documents in one cluster are similar, but clusters are similar to each other. For example, clusters 5, 14, 1, and 12 form one area about drinking. Also, the four clusters are very close to 9 and 13. What too can be inferred is, that meals are connected with conferences through travel expenses. Additionally, these clusters are very far away from 8 and 11, which contain invoices on hardware. 
+
+One proof, that the model captures the semantics of each word, is that the documents containing 'apple' (cluster 8, 11) are far away from the fruit basket cluster (9). The model understands, how in specific contexts 'Apple' stands for the brand and not the fruit.
+
+Also in the north-western region of the chart, a cluster of clusters about services has formed. Although, a shorter distance between car renting (cluster 7, 16) and business travel (0, 18, 19) would be more understandable.

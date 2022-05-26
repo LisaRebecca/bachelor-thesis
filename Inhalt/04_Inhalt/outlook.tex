@@ -1,6 +1,25 @@
 \chapter{Conclusion and Outlook}
 \section{Conclusion}
+
+% Zusammenfassung der Aufgabe
+The task for this thesis is to identify means on how information from invoice documents can be extracted. Also, the question is how this information can provide business insights.
+
+%Zusammenfassung der Lösung
+The solution consists of a full data mining project. Firstly, a suitable dataset is identified. The second step is forming an understanding on the business dimension of the problem. This is followed by an exploration of the data, and an evaluation of the dataset. After this, the data is prepared. The data is transformed into a structured tabular format, then cleaned. Further, a feature extraction mechanism maps textual content onto vectors. Each vector represents a line item from an invoice. These line item descriptions are grouped into clusters with the k-Means algorithm. The result is a 512-dimensional vector space of 79 741 data points, which are contained in 3250 clusters. Each cluster contains invoice items which concern similar topics. The topics of each cluster are described through the three words in the cluster which describe its content the best. Finally, all clusters are visualized in a dashboard. The deployment of this solution showcases the clusters with their associated cost. 
+
+% Zusammenfassung der Bewertung der Lösung
+The analysis in adds value to real business documents because it automates a process which would otherwise be highly time-consuming. By aggregating expense categories with respect to their associated spending, a broad overview on the largest expenses is created. The spending of a company or parts of it can now be analyzed on a high-level perspective, without the need of analyzing individual invoices.
+
 \section{Outlook}
-Other process model could have been used.
+
+% Was konnte nicht bearbeitet werden, wäre aber sinnvoll?
 One document could belong into many clusters (sparse clusters)
+
 Not universal sentence encoder but word encoder weighted
+
+More speaking cluster labels
+
+% Welche nächsten Fragestellungen/Schritte haben sich durch die Arbeit ergeben?
+
+
+
