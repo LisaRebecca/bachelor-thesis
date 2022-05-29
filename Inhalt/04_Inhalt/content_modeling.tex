@@ -19,7 +19,7 @@ A distance measure is a quantification of how near objects in space are. Distanc
 		This fact makes the dot product impractical for accurately representing the relationships of words.
 	
 					\[ 
-				\text{dot product} :=  \mathbf{A} \cdot \mathbf{B}= \sum\limits_{i=1}^{n}{A_i  B_i} 
+				\text{dot product} :=  \mathbf{A} \cdot \mathbf{B}= \sum\limits_{i=1}^{n}{A_i  \mathbf{B}_i} 
 				\]
 
 	
@@ -27,7 +27,7 @@ A distance measure is a quantification of how near objects in space are. Distanc
 		For low-dimensional applications, this distance works well and shows great results. Euclidean distance can be calculated in a highly efficient manner, even for n dimensions. This suggests, that euclidean distance is particularly suitable for high-dimensional data. Unfortunately, euclidean distance falls victim to the curse of dimensionality. In \cite[p.~1]{beyerNearestNeighbor} it is proven that with increasing dimensions, the distance between data points approaches an uniform value for all data points. This effect could be demonstrated for spaces with as little as ten dimensions. Therefore, it can be said that euclidean distance is not suitable for high-dimensional data. With vectors in \ac{NLP} ranging from 100 to 800 dimensions with embeddings and hundreds of thousands with \ac{TF-IDF}, this distance measure is not suitable.
 		
 				\[ 
-		\text{euclidean distance} :=  \sum\limits_{i=1}^{n}{(A_i -  B_i)^{2}} 
+		\text{euclidean distance} :=  \sum\limits_{i=1}^{n}{(A_i -  \mathbf{B}_i)^{2}} 
 		\]
 		
 		\begin{figure} 
@@ -50,7 +50,7 @@ A distance measure is a quantification of how near objects in space are. Distanc
 		The name of this measure already suggests that not distance but similarity of objects is measured. Instead, it quantifies how close two vectors are.  Mathematically, the cosine distance is the cosine of the angle between two vectors. A wide angle means a high distance between two vectors, or in this case two words. Narrow angles stand for a low distance and words being closely related. In example \ref{fig:cosine}, the word vectors for woman and king have a higher angle than those of woman and queen. This means the words woman and queen are more similar thank woman and king.
 		
 		\[ 
-		\text{cosine similarity} := \cos(\theta) = {\mathbf{A} \cdot \mathbf{B} \over \|\mathbf{A}\| \|\mathbf{B}\|} = \frac{ \sum\limits_{i=1}^{n}{A_i  B_i} }{ \sqrt{\sum\limits_{i=1}^{n}{A_i^2}}  \sqrt{\sum\limits_{i=1}^{n}{B_i^2}} }
+		\text{cosine similarity} := \cos(\theta) = {\mathbf{A} \cdot \mathbf{B} \over \|\mathbf{A}\| \|\mathbf{B}\|} = \frac{ \sum\limits_{i=1}^{n}{\mathbf{A}_i  \mathbf{B}_i} }{ \sqrt{\sum\limits_{i=1}^{n}{\mathbf{A}_i^2}}  \sqrt{\sum\limits_{i=1}^{n}{\mathbf{B}_i^2}} }
 		  \]
 		
 		The difference between cosine distance and euclidean distance is clear: cosine measures the angle, and euclidean the vector length. But which one performs better in high dimensions? Cosine distance is perceived as more suitable for high dimensional data \cite[c.2.1.2.1]{40algorithms}, and often suggested for \ac{NLP} tasks. 
@@ -65,19 +65,21 @@ A distance measure is a quantification of how near objects in space are. Distanc
 		\end{align*}
 		
 		\begin{align*}
-			d(A, B) &:=  \sum\limits_{i=1}^{n}{(A_i -  B_i)^{2}} \\
-			&= \sum\limits_{i=1}^{n}{A_i^{2} - 2A_iB_i + B_i^2}  \\ 
-			&= \sum\limits_{i=1}^{n}{A_i^{2}} + \sum\limits_{i=1}^{n}{- 2A_iB_i} + \sum\limits_{i=1}^{n}{B_i^2} \\
-			&= 	\|\mathbf{A}\| + \sum\limits_{i=1}^{n}{- 2A_iB_i} + \|\mathbf{B}\| \\
-			&= \|\mathbf{A}\| -2 \sum\limits_{i=1}^{n}{A_iB_i} + \|\mathbf{B}\| \\
+			d(\mathbf{A}, \mathbf{B}) &:=  \sum\limits_{i=1}^{n}{(\mathbf{A}_i -  \mathbf{B}_i)^{2}} \\
+			&= \sum\limits_{i=1}^{n}{\mathbf{A}_i^{2} - 2\mathbf{A}_i\mathbf{B}_i + \mathbf{B}_i^2}  \\ 
+			&= \sum\limits_{i=1}^{n}{\mathbf{A}_i^{2}} + \sum\limits_{i=1}^{n}{- 2\mathbf{A}_i\mathbf{B}_i} + \sum\limits_{i=1}^{n}{\mathbf{B}_i^2} \\
+			&= 	\|\mathbf{A}\| + \sum\limits_{i=1}^{n}{- 2\mathbf{A}_i\mathbf{B}_i} + \|\mathbf{B}\| \\
+			&= \|\mathbf{A}\| -2 \sum\limits_{i=1}^{n}{\mathbf{A}_i\mathbf{B}_i} + \|\mathbf{B}\| \\
 			&= \|\mathbf{A}\| -2 (\mathbf{A} \cdot \mathbf{B}) + \|\mathbf{B}\| \\
 			\\
 			\text{for normalized vectors with }\|\mathbf{A}\| &=1 \text{ and } \|\mathbf{B}\| =1  \text{ and } \mathbf{A} \cdot \mathbf{B}  = \cos(\theta_{AB}):\\
-			d(A, B) &= 1 - 2 \cos(\theta_{AB}) + 1 = 2 - 2(\cos(\theta_{AB})) \\
-			&= 2 - 2(\cos(\theta_{AB})) \sim \cos(\theta_{AB})
+			d(\mathbf{A}, \mathbf{B}) &= 1 - 2 \cos(\theta_{AB}) + 1 = 2 - 2(\cos(\theta_{AB})) \\
+			\\
+			\text{Both solutions are linear to ea}& \text{ch other:} \\
+			2 - 2(\cos(\theta_{AB})) &\sim \cos(\theta_{AB})
 		\end{align*}
 	
-		Now, with the newly gained insight into the distance relationships of normalized vectors of $\cos(\theta_{AB}) = \mathbf{A} \cdot \mathbf{B}$ and $d(A, B) = 2 - 2(\cos(\theta_{AB})) \\$ , it can be stated that the cosine distance and euclidean distance of two normalized vectors are linearly related.
+		Now, with the newly gained insight into the distance relationships of normalized vectors of $\cos(\theta_{AB}) = \mathbf{A} \cdot \mathbf{B}$ and $d(\mathbf{A}, \mathbf{B}) = 2 - 2(\cos(\theta_{AB}))$ , it can be stated that the cosine distance and euclidean distance of two normalized vectors are linearly related.
 				
 		Cosine and euclidean distance being connected linearly for normalized data has not made the decision easier. But there is an additional factor: 
 		Algorithms often require distance metrics to obey the four requirements of a metric space \cite{schubertTriangleInequalityCosine2021}.
@@ -94,7 +96,7 @@ A distance measure is a quantification of how near objects in space are. Distanc
 \subsection{Clustering Algorithms}
 		
 		\subparagraph{K-Means}
-		The k-Means algorithm generates $k$ groups of data by iteratively adapting clusters and their centers. The algorithm is mainly focused on performance, hence the design is kept lean by omitting logic for determining the number of clusters \cite[c.~6.2]{40algorithms}. Following pseudo code illustrates the workings of the algorithm.
+		The k-Means algorithm generates $k$ groups of data by iteratively adapting clusters and their centers. The algorithm is mainly focused on performance, hence the design is kept lean by omitting logic for determining the number of clusters \cite[c.6.2]{40algorithms}. Following pseudo code illustrates the workings of the algorithm.
 		
 		\begin{lstlisting}
 randomly choose k_centers
@@ -336,7 +338,7 @@ This visualization gives an overview on the clusters, but doesn't show what is c
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[height=15.5cm]{Bilder/models/minibatchkmeans.pdf}
+	\includegraphics[width=\linewidth]{Bilder/models/minibatchkmeans.pdf}
 	\caption{All generated Clusters}
 	\label{fig:kmeans}
 \end{figure}
@@ -351,8 +353,8 @@ Each cluster has its own topic, but for reasons of comprehensibility this sectio
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[height=15.5cm]{Bilder/models/topics.pdf}
-	\caption{Each Instance's Distance to the nearest neighboring Point}
+	\includegraphics[width=\textwidth]{Bilder/models/topics.pdf}
+	\caption{Selected Clusters and their Topics}
 	\label{fig:topics}
 \end{figure}
 

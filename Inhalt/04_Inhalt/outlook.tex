@@ -13,13 +13,20 @@ The analysis in adds value to real business documents because it automates a pro
 \section{Outlook}
 
 % Was konnte nicht bearbeitet werden, wäre aber sinnvoll?
-One document could belong into many clusters (sparse clusters)
+This thesis presents a full data mining workflow. Still, there are limitations to the presented solution.
 
-Not universal sentence encoder but word encoder weighted
+The dataset is a static collection of documents. An improvement would be to use a data platform from which the data can be streamed. This can be from inside an \ac{ERP} system, or a connected Data Platform such as SAP Data Intelligence. A solution with larger data sets also requires more computing power. One offering to use is the SAP AI Foundation. With hyperscaler-agnostic deployment and operating options, AI Core is a viable option to make this solution enterprise-ready.
 
-More speaking cluster labels
+There are also some further options to be tried out with the analysis. For example, the cluster identity is binary. For natural language, this quite limits the interpretability. Sentences can have different meanings depending on the context, but sentences can also be grouped into logical units according to many different measures. By forming sparse clusters, in which the cluster identity is distributed, topics can be represented more realistically. 
+
+Exploring how the \ac{BERT} model can be fine-tuned is also an interesting topic for further research. While \ac{BERT} can account for out-of vocabulary words, it lacks understanding of those. Especially, very specific business-related terms are often misinterpreted. With fine-tuning \ac{BERT} on a corpus with relevant terms to the field of business, the classification can likely be improved.
+
+This thesis explores two clustering mechanisms in detail. Other algorithms such as MeanShift, Affinity Propagation or Spectral Clustering are also interesting to evaluate with respect to this problem.
+
+While the generated cluster labels were quite speaking, they require interpretation effort from the reader. It would be desirable to generate more generalized labels, for example summarizing "tonic", "gin" and "teinacher" into the label "beverages".
 
 % Welche nächsten Fragestellungen/Schritte haben sich durch die Arbeit ergeben?
+
 
 
 

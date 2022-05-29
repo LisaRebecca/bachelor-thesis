@@ -79,11 +79,11 @@
 	Data exploration shows, there are only 79.741 unique descriptions for the listed items. By saving only the unique values, the required space is reduced to less than one fourth compared to before. Additionally, this step is required by most machine learning models, as duplicate input values can skew the outcome. The model is chosen later, so this processing step leaves the model selection more open to different kinds of learning algorithms.
 	
 	After the deletion of duplicate descriptions, the relationship between one line item and its description is not one-to-one, but rather one description belonging to several different line items. Model outputs will be a classification of one description, so to restore the relationship between the classification result and one line item, a mapping is constructed.
-	This dictionary maps one description to all line items (ID) which have this description value.
+	This dictionary maps one description to all line items (more specifically, their ID) with this description.
 	\begin{figure}[ht]
 		\centering
-		\includegraphics[height=6cm]{Bilder/description_map.png}
-		\caption{Schematic depiction of the Mapping of Description to their Line Item IDs}
+		\includegraphics[width=\linewidth]{Bilder/description_map.png}
+		\caption{Mapping Descriptions to their Line Item IDs}
 		\label{fig:mapping}
 	\end{figure}
 
@@ -239,13 +239,19 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
              \[ TFIDF(t_{i}, d_{j}) \;=\; TF(t_{i}, d_{j}) * TF(t_{i}, d_{j})\]
             
             For the corpus displayed in the previous section the document vectors calculated with the \ac{TF-IDF} measure are:
-                \[d_1 = \begin{bmatrix} 0\;	0.707107\;	0\;	0\;	0\;	0.707107\;	0\;	0 \end{bmatrix}	 \\
-                d_2 =  \;\begin{bmatrix} 0.39798\;	0\;	0.39798\;	0\;	0.39798	0\;	0.39798	0.605349 \end{bmatrix} \\
-                d_3 = \;\begin{bmatrix} 0\;	0\;	0\;	0.795961	0\;	0\;	0\;	0.605349 \end{bmatrix} \]
+
+           \begin{table}[!h]
+           	\centering
+           	\begin{tabular}{llllllllll}
+           		$d_1 = [$ & 0.     & 0.7071 & 0.     & 0.     & 0.     & 0.7071 & 0.     & 0.     & $]$ \\
+           		$d_1 = [$ & 0.3979 & 0.     & 0.3979 & 0.     & 0.3979 & 0.     & 0.3979 & 0.6053 & $]$ \\
+           		$d_1 = [$ & 0.     & 0.     & 0.     & 0.7959 & 0.     & 0.     & 0.     & 0.6053 & $]$
+           	\end{tabular}
+           \end{table}
                 
             The \ac{TF-IDF} measure corrects some of the pitfalls of the \ac{BoW} model. It certainly is less vulnerable to skewing by stop words,  as words are ranked by importance to each document and the all over corpus. 
             
-            
+        
             The above mentioned methods are distributional representations \cite{practicalNLP}. They all suffer from similar problems. The vectors contain one element for each word in the vocabulary, resulting in vectors which are high-dimensional and very sparse. Also, \ac{TF-IDF} fails to represent the topical relationship between $ d_{1} $ and $ d_{3}$. Finally, these methods can not handle an inference for words which are not in their vocabulary \cite{practicalNLP}.
             
             Following methods are distributed representations. They are designed to alleviate the drawbacks of distributional word representations.
