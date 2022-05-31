@@ -110,7 +110,7 @@ while (iterations < max_iterations):
 			 \begin{figure}[!h]
 		\centering
 		\includegraphics[height=15cm, angle=90]{Bilder/models/minibkmeans.pdf}
-		\caption{How MiniBatchKmeans recognizes Clusters \cite{sklearn}}
+		\caption[How MiniBatchKmeans recognizes Clusters]{How MiniBatchKmeans recognizes Clusters \cite{sklearn}}
 		\label{fig:kmeans-viz}
 		\end{figure}
 	
@@ -130,7 +130,7 @@ while (iterations < max_iterations):
 		 \begin{figure}[!h]
 			\centering
 			\includegraphics[height=15cm, angle=90]{Bilder/models/dbscan.pdf}
-			\caption{How DBSCAN recognized Clusters and Outliers \cite{sklearn}}
+			\caption[How DBSCAN recognized Clusters and Outliers]{How DBSCAN recognized Clusters and Outliers \cite{sklearn}}
 			\label{fig:dbscan-viz}
 		\end{figure}
 	
@@ -170,12 +170,12 @@ Selecting a \ac{DR} method, there are important aspects to consider:
 
 Data scientists have many methods for \ac{DR} at hand, some of the most popular ones being \ac{t-SNE} and \ac{PCA}.
 
-The \ac{PCA} identifies principal components in the dataset with an unsupervised \ac{ML} algorithm.\cite{40algorithms} A principal component is an axis in the multidimensional space along which the variance is maximized \cite{pcaVStsne}. The number of learned principal components depends on the number of target dimensions, in the case of visualizations either two or three dimensions and principal components. The principal components are orthogonal to each other and span the hyperplane on which the values are projected \cite{pcaVStsne}.
+The \ac{PCA} identifies principal components in the dataset with an unsupervised \ac{ML} algorithm \cite{40algorithms}. A principal component is an axis in the multidimensional space along which the variance is maximized \cite{pcaVStsne}. The number of learned principal components depends on the number of target dimensions, in the case of visualizations either two or three dimensions and principal components. The principal components are orthogonal to each other and span the hyperplane on which the values are projected \cite{pcaVStsne}.
 It is important to note that \ac{PCA} approximates the values, trading in accuracy for performance \cite{40algorithms}.
 
 \ac{t-SNE} is focused on retaining as much structure, both globally and locally. It does so by computing pairwise similarities in the dataset. The algorithm uses these similarities to accurately represent the same distances in a lower number of dimensions. This design of \ac{t-SNE} helps to represent existing clusters very well.
 
-The two methods are contrasted on the task of representing three-dimensional clusters (Figure \ref{fig:original}) in two dimensions. This task is quite similar to the later application of the \ac{DR} algorithm. In figure \ref{fig:pca} the \ac{PCA} algorithm proves that it is able to represent the global structure in some way, but not quite satisfactory. It is heavily outperformed by \ac{t-SNE}, in both preserving the global distances and the local structures. Apart from two clusters merging, the algorithm forms very distinct and clean clusters.
+The two methods are contrasted on the task of representing three-dimensional clusters in two dimensions (Figure \ref{fig:DR}). This task is quite similar to the later application of the \ac{DR} algorithm. In Figure \ref{fig:DR}, the \ac{PCA} algorithm proves that it is able to represent the global structure in some way, but not quite satisfactory. It is heavily outperformed by \ac{t-SNE}, in both preserving the global distances and the local structures. Apart from two clusters merging, the algorithm forms very distinct and clean clusters.
 
 Overall, design and the practical application of the \ac{t-SNE} algorithm make the case for it.
 
@@ -186,10 +186,11 @@ Overall, design and the practical application of the \ac{t-SNE} algorithm make t
 	\begin{minipage}{0.3\textwidth}
 		
 		\includegraphics[width=\textwidth]{Bilder/models/original.pdf}
+			\label{fig:original}
 		\captionsetup{labelformat=empty}
 		\centering
 		Original 3D Clusters
-		\label{fig:original}
+	
 	%	\caption{Original 3D Clusters}
 	%	\addtocounter{figure}{-1}
 	\end{minipage}
@@ -215,22 +216,30 @@ Overall, design and the practical application of the \ac{t-SNE} algorithm make t
 	%	\caption{\ac{t-SNE}}
 	%	\addtocounter{figure}{-1}
 	\end{minipage}
+	
 \caption{Dimensionality Reduction on three-dimensional Clusters}
+\label{fig:DR}
 \end{figure} 
 
 \section{Theoretical Implementation}
 
 \begin{table}[!h]
-
+	\caption{Tasks during the Modeling Phase}
 	\begin{tabular}{lll}
+		\toprule
 		\textbf{Task}            & \textbf{Alternatives}                                                                      & \textbf{Planned Implementation}                                                               \\
+		\midrule
 		Distance Measure         & \begin{tabular}[c]{@{}l@{}}Dot Product\\ Euclidean Distance\\ Cosine Distance\end{tabular} & Euclidean Distance                                                                               \\
+		\midrule
 		Clustering               & \begin{tabular}[c]{@{}l@{}}k-Means\\ DBSCAN\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}DBSCAN for outlier detection\\ k-Means for clustering\end{tabular} \\
+		\midrule
 		Topic Modeling           & \begin{tabular}[c]{@{}l@{}}Word Frequency\\ Document Frequency\end{tabular}                & Document Frequency                                                                            \\
-		Dimensionality Reduction & \begin{tabular}[c]{@{}l@{}}PCA\\ t-SNE\end{tabular}                                        & t-SNE                                                                                        
+		\midrule
+		Dimensionality Reduction & \begin{tabular}[c]{@{}l@{}}PCA\\ t-SNE\end{tabular}                                        & t-SNE   \\
+		\bottomrule                                                                                     
 	
 	\end{tabular}
-	\caption{Tasks during the Modeling Phase}
+	
 	 \label{table:modeling}
 \end{table}
 
@@ -273,16 +282,20 @@ A good point for starting with choosing \lstinline|k| is the rule of thumb $k \a
 
 \begin{table}[!h]
 	\centering
-	
-	\begin{tabular}{l|ll}
+	\caption{Three possible estimates for the optimal $k$}
+	\begin{tabular}{lll}
 		\toprule
-		heuristic for best k                         & k &  \\
+		\textbf{heuristic for best }$\mathbf{k}$                         & $\mathbf{k}$ &  \\
 		\midrule
 		$k \approx \sqrt{\frac{n}{2}}$ &  199 &  \\
+		\midrule
 		$k \approx log(n)$             & 12   &  \\
-		$k \approx n$                  &  e.g. 10 000, 20 000& 
+		\midrule
+		$k \approx n$                  &  e.g. 10 000, 20 000& \\
+		\bottomrule
+		
 	\end{tabular}
-\caption{Three possible estimates for the optimal $k$}
+
 \label{table:heuristic-k}
 \end{table}
 

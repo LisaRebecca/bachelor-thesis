@@ -60,7 +60,7 @@
 \newcounter{savepage}
 \pagenumbering{Roman}                    % Römische Seitenzahlen
 \onehalfspacing
-
+\renewcommand{\autodot}{}% Remove all end-of-counter dots
 % ------ Erklärung, Sperrvermerk, Abstact
 \include{Inhalt/01_Standard/erklaerung}
 \include{Inhalt/01_Standard/sperrvermerk}
@@ -119,13 +119,7 @@
 
 \include{Inhalt/04_Inhalt/Evaluation}
 \include{Inhalt/04_Inhalt/Outlook}
-% ---- Literaturverzeichnis
-\cleardoublepage
-\renewcommand*{\chapterpagestyle}{plain}
-\pagestyle{plain}
-\pagenumbering{Roman}                   % Römische Seitenzahlen
-\setcounter{page}{\numexpr\value{savepage}+1}
-\printbibliography[title=References]
+
 
 % ---- Anhang
 \appendix
@@ -133,4 +127,13 @@
 %\pagenumbering{Roman}  % römische Seitenzahlen für Anhang
 \include{Inhalt/04_Inhalt/appendix}
 \newpage
+
+% ---- Literaturverzeichnis
+\cleardoublepage
+\renewcommand*{\chapterpagestyle}{plain}
+\pagestyle{plain}
+%\pagenumbering{Roman}                   % Römische Seitenzahlen
+%\setcounter{page}{\numexpr\value{savepage}+1}
+\printbibliography[title=References]
+
 \end{document}

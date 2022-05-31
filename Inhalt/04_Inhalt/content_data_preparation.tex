@@ -17,20 +17,21 @@
         \begin{table}[ht]
             \centering
             \caption{Comparison of available Storage Options}
-            \begin{tabular}{c|lll}
+            \begin{tabular}{clll}
                 \toprule
                 &\textbf{Local} & \textbf{Cloud Filesharing} & \textbf{Specialized Storage Services} \\
                 \midrule
-                \vspace{0.5cm}
+                
                 Example     & \begin{tabular}[c]{@{}l@{}}2.6GHz \\ 512GB SSD\end{tabular} & Microsoft OneDrive                                                        & AWS S3                                                                                                 \\
-                \vspace{0.5cm}
+                \midrule
                 Ease of use & high                                                        & high                                                                      & higher learning overhead                                                                               \\
-                \vspace{0.5cm}
+                \midrule
                 Cost        & free of charge                                              & free of charge                                                            & \begin{tabular}[c]{@{}l@{}}billing according to \\ used storage space\end{tabular}                     \\
-                \vspace{0.5cm}
+                \midrule
                 Scalability & limited                                                     & unlimited                                                                 & unlimited                                                                                              \\
-                \vspace{0.5cm}
-                Data access & local                                                       & \begin{tabular}[c]{@{}l@{}}limited remote \\ access capacity\end{tabular} & \begin{tabular}[c]{@{}l@{}}local, remote, high \\ connectivity to \\ ML service offerings\end{tabular}
+                \midrule
+                Data access & local                                                       & \begin{tabular}[c]{@{}l@{}}limited remote \\ access capacity\end{tabular} & \begin{tabular}[c]{@{}l@{}}local, remote, high \\ connectivity to \\ ML service offerings\end{tabular}\\
+				\bottomrule
                 
             \end{tabular}
             \label{tabelle:storage}
@@ -120,7 +121,7 @@
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[height=5cm]{Bilder/practical/python_processes.png}
-		\caption{\ac{CPU} Usage during single-process Python Execution}
+		\caption{\acs{CPU} Usage during single-process Python Execution}
 		\label{fig:cpu}
 	\end{figure}
 	
@@ -287,7 +288,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
              	\centering
              	\includegraphics[height=10cm]{ Bilder/preprocessing/BERT/BERT-language-modeling-masked-lm.png}
              	\label{fig:mlm}
-             	\caption{Training BERT with the MLM task \cite{alammarIllustratedBERTELMo}}
+             	\caption[Training BERT with the MLM task]{Training BERT with the MLM task \cite{alammarIllustratedBERTELMo}}
              \end{figure}
             
          
@@ -308,7 +309,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
        				\label{fig:encoder}
        				\centering
        				\includegraphics[height=7cm]{Bilder/preprocessing/BERT/encoder.png}
-       				\caption{The Transformer Encoder Architecture  \cite{illustratedTransformer}}
+       				\caption[The Transformer Encoder Architecture]{The Transformer Encoder Architecture  \cite{illustratedTransformer}}
        			\end{figure}
 			
             

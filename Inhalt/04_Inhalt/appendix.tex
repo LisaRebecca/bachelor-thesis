@@ -4,29 +4,37 @@
 The inventory of resources is a list of all available utilities.
 \begin{table}[!ht]
     \caption{Inventory of Resources}
-    \begin{tabular}{l|ll}
+    \begin{tabular}{lll}
     \toprule	
-    \textbf{Type of resources} & \textbf{Kind of resources} & \textbf{Quantification}                                                    \\
+    \textbf{Type of resources} & \textbf{Kind of Resources} & \textbf{Quantification}                                                    \\
     \midrule
     Personnel                  & business experts           & 1 person                                                                   \\
+								\cmidrule{2-3}
                                & data experts               & 1 person                                                                   \\
-                               & technical support          & 1 person                                                                   \\
-                               & data mining experts        & 1 person                                                                   \\
+							   \cmidrule{2-3}
+							   & technical support          & 1 person                                                                   \\
+							   \cmidrule{2-3}	
+							   & data mining experts        & 1 person                                                                   \\
     \midrule
     Data                       & fixed extracts             & -                                                                \\
+								\cmidrule{2-3}
                                & live data                  & -                                                                          \\
+							   \cmidrule{2-3}
                                & warehoused data            & -                                                                          \\
+							   \cmidrule{2-3}
                                & operational data           & 1 dataset                                                                         \\
     \midrule
-    Computing resources        & hardware platforms         & \begin{tabular}[c]{@{}l@{}}1 machine \\ access to SAP AI Core\end{tabular} \\
+    Computing resources        & hardware platforms         & \begin{tabular}[c]{@{}l@{}}1 machine, access to \\  SAP AI Core\end{tabular} \\
     \midrule
     Software                   & data mining tools          & anaconda, jupyter                                                          \\
-                               & other relevant software    & Excel, Visual Studio Code, Git                                                                     
+								\cmidrule{2-3}
+                               & other relevant software    & Excel, Visual Studio Code, Git                                               \\
+    \bottomrule                      
     \end{tabular}
     \label{tabelle:inventory}
     
     
-    *) An asterisk indicates theoretical availability of more resources, if needed.
+  
     \end{table}
 
 
@@ -289,7 +297,7 @@ lastline=23                 % Letzte Zeile welche ins LaTeX Dokument übernommen
 
 \newpage
 
-\section{Feature Extraction with \ac{TF-IDF}}
+\section{Feature Extraction with \acs{TF-IDF}}
 \label{appendix:tfidf}
 
 The following \lstinline|DataFrame| shows the \ac{TF-IDF} representation of the dataset. There being only zeroes visible does not mean, it is empty. This just again shows how sparse the \ac{TF-IDF} matrix is.
@@ -318,7 +326,7 @@ When selecting ten random documents, and summing their weights, the values for e
 	\label{fig:transformer}
 	\centering
 	\includegraphics[height=18cm]{Bilder/preprocessing/BERT/transformer_architecture.png}
-	\caption{The Transfomer Architecture \cite{transformersAttention}}
+	\caption[The Transfomer Architecture]{The Transfomer Architecture \cite{transformersAttention}}
 \end{figure}
 
 
