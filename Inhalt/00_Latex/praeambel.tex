@@ -67,10 +67,38 @@
 	%backref = true,                % Referenz, auf den Text an die zitierte Stelle
 	bibencoding = auto,
 	giveninits = true,              % Vornamen werden abgekürzt
-	doi=false,                      % DOI nicht anzeigen
+	%doi=false,                      % DOI nicht anzeigen
 	isbn=false,                     % ISBN nicht anzeigen
-    alldates=iso                  % Datum immer als DD.MM.YYYY anzeigen
+    alldates=iso,                  % Datum immer als DD.MM.YYYY anzeigen
+	%url=false
 ]{biblatex}
+\DeclareFieldFormat[article]{volume}{Vol. #1}
+\DeclareFieldFormat[article]{number}{, No. #1}
+\renewbibmacro*{journal+issuetitle}{%
+	\usebibmacro{journal}%
+	\setunit*{\addcomma\space}%
+	\iffieldundef{series}
+	{}
+	{\newunit
+	\printfield{series}%
+	\setunit{\addspace}}%
+	\usebibmacro{volume+number+eid}%
+	\setunit{\addspace}%
+	\usebibmacro{issue+date}%
+	\setunit{\addcolon\space}%
+	\usebibmacro{issue}%
+	\newunit}
+\renewbibmacro*{doi+eprint+url}{%
+    \printfield{doi}%
+    \newunit\newblock%
+    \iftoggle{bbx:eprint}{%
+        \usebibmacro{eprint}%
+    }{}%
+    \newunit\newblock%
+    \iffieldundef{doi}{%
+        \usebibmacro{url+urldate}}%
+    {}%
+}
 \addbibresource{Inhalt/literatur.bib}
 \setcounter{biburlnumpenalty}{3000}     % Umbruchgrenze für Zahlen
 \setcounter{biburlucpenalty}{6000}      % Umbruchgrenze für Großbuchstaben
@@ -82,7 +110,6 @@
   urlseen = {Last visited },                      % Ändern des Titels von "besucht am"
 }
 \usepackage[babel,german=quotes]{csquotes}         % Deutsche Anführungszeichen + Zitate
-
 
 % ---- Für Mathevorlage
 \usepackage{amsmath}    % Erweiterung vom Mathe-Satz
@@ -125,3 +152,5 @@
 \usepackage{enumitem}
 \setenumerate{nolistsep}
 \setitemize{nolistsep}
+\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat{multipostnote}{#1}

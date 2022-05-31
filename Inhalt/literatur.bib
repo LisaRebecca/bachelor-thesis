@@ -3,58 +3,55 @@
   title = {40 {{Algorithms Every Programmer Should Know}}: {{Hone}} Your Problem-Solving Skills by Learning Different Algorithms and Their Implementation in {{Python}}},
   author = {Ahmad, I.},
   date = {2020},
+  edition = {1},
   publisher = {{Packt Publishing}},
-  url = {https://books.google.de/books?id=4IzrDwAAQBAJ},
   isbn = {978-1-78980-986-2}
 }
 
 @online{AIOverviewResearch,
   title = {{{AI Research}}},
-  author = {{SAP SE}},
   url = {https://www.sap.com/products/artificial-intelligence/research.html},
   urldate = {2022-04-27}
 }
 
-@online{alammarIllustratedBERTELMo,
+@online{alammarIllustratedBERTELMo2018,
   title = {The {{Illustrated BERT}}, {{ELMo}}, and Co. ({{How NLP Cracked Transfer Learning}})},
   author = {Alammar, Jay},
+  date = {2018-12-03},
   url = {https://jalammar.github.io/illustrated-bert/},
   urldate = {2022-05-20},
   abstract = {Discussions: Hacker News (98 points, 19 comments), Reddit r/MachineLearning (164 points, 20 comments) Translations: Chinese (Simplified), French 1, French 2, Japanese, Korean, Persian, Russian 2021 Update: I created this brief and highly accessible video intro to BERT The year 2018 has been an inflection point for machine learning models handling text (or more accurately, Natural Language Processing or NLP for short). Our conceptual understanding of how best to represent words and sentences in a way that best captures underlying meanings and relationships is rapidly evolving. Moreover, the NLP community has been putting forward incredibly powerful components that you can freely download and use in your own models and pipelines (It’s been referred to as NLP’s ImageNet moment, referencing how years ago similar developments accelerated the development of machine learning in Computer Vision tasks).},
   file = {/Users/I518232/Zotero/storage/G5BTG9YP/illustrated-bert.html}
 }
 
-@unpublished{baLayerNormalization2016,
+@online{ArchitectureJupyterDocumentationa,
+  title = {Architecture — {{Jupyter Documentation}}},
+  url = {https://docs.jupyter.org/en/latest/projects/architecture/content-architecture.html},
+  urldate = {2022-04-30}
+}
+
+@misc{baLayerNormalization2016,
   title = {Layer {{Normalization}}},
   author = {Ba, Jimmy Lei and Kiros, Jamie Ryan and Hinton, Geoffrey E.},
   date = {2016-07-21},
-  number = {arXiv:1607.06450},
-  eprint = {1607.06450},
-  eprinttype = {arxiv},
-  primaryclass = {cs, stat},
-  publisher = {{arXiv}},
+  doi = {10.48550/ARXIV.1607.06450},
   url = {http://arxiv.org/abs/1607.06450},
   urldate = {2022-05-19},
   abstract = {Training state-of-the-art, deep neural networks is computationally expensive. One way to reduce the training time is to normalize the activities of the neurons. A recently introduced technique called batch normalization uses the distribution of the summed input to a neuron over a mini-batch of training cases to compute a mean and variance which are then used to normalize the summed input to that neuron on each training case. This significantly reduces the training time in feed-forward neural networks. However, the effect of batch normalization is dependent on the mini-batch size and it is not obvious how to apply it to recurrent neural networks. In this paper, we transpose batch normalization into layer normalization by computing the mean and variance used for normalization from all of the summed inputs to the neurons in a layer on a single training case. Like batch normalization, we also give each neuron its own adaptive bias and gain which are applied after the normalization but before the non-linearity. Unlike batch normalization, layer normalization performs exactly the same computation at training and test times. It is also straightforward to apply to recurrent neural networks by computing the normalization statistics separately at each time step. Layer normalization is very effective at stabilizing the hidden state dynamics in recurrent networks. Empirically, we show that layer normalization can substantially reduce the training time compared with previously published techniques.},
-  archiveprefix = {arXiv},
   keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
   file = {/Users/I518232/Zotero/storage/6FFP36QV/Ba et al. - 2016 - Layer Normalization.pdf;/Users/I518232/Zotero/storage/CRVQ9JYQ/1607.html}
 }
 
-@unpublished{BERT,
+@misc{BERT,
   title = {{{BERT}}: {{Pre-training}} of {{Deep Bidirectional Transformers}} for {{Language Understanding}}},
   shorttitle = {{{BERT}}},
   author = {Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
   date = {2019-05-24},
-  number = {arXiv:1810.04805},
-  eprint = {1810.04805},
-  eprinttype = {arxiv},
-  primaryclass = {cs},
   publisher = {{arXiv}},
+  doi = {10.48550/arXiv.1810.04805},
   url = {http://arxiv.org/abs/1810.04805},
   urldate = {2022-05-20},
   abstract = {We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5\% (7.7\% point absolute improvement), MultiNLI accuracy to 86.7\% (4.6\% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).},
-  archiveprefix = {arXiv},
   keywords = {Computer Science - Computation and Language},
   file = {/Users/I518232/Zotero/storage/KX9HQT5F/Devlin et al. - 2019 - BERT Pre-training of Deep Bidirectional Transform.pdf;/Users/I518232/Zotero/storage/9KT9MGZN/1810.html}
 }
@@ -81,15 +78,15 @@
   file = {/Users/I518232/Zotero/storage/F67ESUMJ/bert-101.html}
 }
 
-@inproceedings{beyerNearestNeighbor,
+@article{beyerNearestNeighbor,
   title = {When {{Is}} “{{Nearest Neighbor}}” {{Meaningful}}?},
-  booktitle = {{{LNCS}}},
   author = {Beyer, Kevin and Goldstein, Jonathan and Ramakrishnan, Raghu and Shaft, Uri},
   date = {1998},
+  journaltitle = {ICDT},
   volume = {1540},
-  publisher = {{Springer-Verlag Berlin Heidelberg}},
+  pages = {217--235},
+  url = {https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.7.236&rep=rep1&type=pdf},
   abstract = {We explore the effect of dimensionality on the “nearest neighbor” problem. We show that under a broad set of conditions (much broader than independent and identically distributed dimensions), as dimensionality increases, the distance to the nearest data point approaches the distance to the farthest data point. To provide a practical perspective, we present empirical results on both real and synthetic data sets that demonstrate that this effect can occur for as few as 10-15 dimensions.},
-  eventtitle = {International {{Conference}} on {{Database Theory}}},
   langid = {english},
   file = {/Users/I518232/Zotero/storage/JNTP4SFM/Beyer et al. - When Is “Nearest Neighbor” Meaningful.pdf}
 }
@@ -111,11 +108,12 @@
 
 @article{chowdhury2003,
   title = {Natural Language Processing},
-  author = {Chowdhury, Gobinda G.},
+  author = {Chowdhury, Gobinda},
   date = {2003-01-31},
   journaltitle = {Annual Review of Information Science and Technology},
   volume = {37},
   number = {1},
+  pages = {51--89},
   publisher = {{Springer}},
   issn = {0066-4200},
   doi = {10.1002/aris.1440370103},
@@ -167,7 +165,6 @@
   urldate = {2022-03-29},
   abstract = {Based on a recent poll conducted on our site, CRISP-DM remains as the most popular framework for data science projects.},
   langid = {american},
-  organization = {{Data Science Process Alliance}},
   file = {/Users/I518232/Zotero/storage/VCIPKW2Y/crisp-dm-still-most-popular.html}
 }
 
@@ -180,7 +177,7 @@
   shortjournal = {Scientometrics},
   volume = {115},
   number = {3},
-  pages = {1279},
+  pages = {1271--1290},
   issn = {0138-9130, 1588-2861},
   doi = {10.1007/s11192-018-2735-5},
   url = {http://link.springer.com/10.1007/s11192-018-2735-5},
@@ -199,6 +196,7 @@
   shortjournal = {IEEE Trans. Knowl. Data Eng.},
   volume = {33},
   number = {8},
+  pages = {3048--3061},
   issn = {1041-4347, 1558-2191, 2326-3865},
   doi = {10.1109/TKDE.2019.2962680},
   abstract = {CRISP-DM(CRoss-Industry Standard Process for Data Mining) has its origins in the second half of the nineties and is thus about two decades old. According to many surveys and user polls it is still the de facto standard for developing data mining and knowledge discovery projects. However, undoubtedly the field has moved on considerably in twenty years, with data science now the leading term being favoured over data mining. In this paper we investigate whether, and in what contexts, CRISP-DM is still fit for purpose for data science projects. We argue that if the project is goal-directed and process-driven the process model view still largely holds. On the other hand, when data science projects become more exploratory the paths that the project can take become more varied, and a more flexible model is called for. We suggest what the outlines of such a trajectory-based model might look like and how it can be used to categorise data science projects (goal-directed, exploratory or data management). We examine seven real-life exemplars where exploratory activities play an important role and compare them against 51 use cases extracted from the NIST Big Data Public Working Group. We anticipate this categorisation can help project planning in terms of time and cost characteristics.},
@@ -209,7 +207,11 @@
 @article{DBSCAN,
   title = {A {{Density-Based Algorithm}} for {{Discovering Clusters}} in {{Large Spatial Databases}} with {{Noise}}},
   author = {Ester, Martin and Kriegel, Hans-Peter and Xu, Xiaowei},
-  pages = {6},
+  date = {1996},
+  journaltitle = {KDD},
+  volume = {96},
+  number = {34},
+  pages = {226--231},
   abstract = {Clusteringalgorithmasreattractivefor the taskof classidentification in spatial databases.Howevetrh, e applicationto large spatial databasesrises the followingrequirementfsor clustering algorithms: minimalrequirementsof domain knowledgteo determinethe input parameters,discoveryof clusters witharbitraryshapeandgoodefficiencyonlarge databases. Thewell-knowcnlusteringalgorithmsoffer nosolution to the combinatioonf theserequirementsI.n this paper, wepresent the newclustering algorithmDBSCAreNlying on a density-basednotionof clusters whichis designedto discoverclusters of arbitrary shape.DBSCrAeNquiresonly one input parameterandsupportsthe user in determiningan appropriatevaluefor it. Weperformeadn experimentaelvaluation of the effectiveness and efficiency of DBSCAusNing synthetic data and real data of the SEQUO2IA000benchmark.Theresults of our experimentsdemonstratethat (1) DBSCiAsNsignificantlymoreeffective in discoveringclusters of arbitrary shapethan the well-knowanlgorithmCLARANS,and that (2) DBSCAoNutperforms CLARANbyS factorof morethan100in termsof efficiency.},
   langid = {english},
   file = {/Users/I518232/Zotero/storage/GQU8AMLM/Ester et al. - A Density-Based Algorithm for Discovering Clusters.pdf}
@@ -266,13 +268,13 @@
   urldate = {2022-05-26},
   abstract = {It can be confusing when you get started in applied machine learning. There are so many terms to use and many of the terms may not be used consistently. This is especially true if you have come from another field of study that may use some of the same terms as machine learning, but they […]},
   langid = {american},
-  organization = {{Machine Learning Mastery}},
   file = {/Users/I518232/Zotero/storage/KLAUEDL7/difference-between-a-parameter-and-a-hyperparameter.html}
 }
 
 @online{illustratedTransformer,
   title = {The {{Illustrated Transformer}}},
   author = {Alammar, Jay},
+  date = {2018-07-27},
   url = {https://jalammar.github.io/illustrated-transformer/},
   urldate = {2022-05-19},
   abstract = {Discussions: Hacker News (65 points, 4 comments), Reddit r/MachineLearning (29 points, 3 comments) Translations: Chinese (Simplified), French 1, French 2, Japanese, Korean, Russian, Spanish, Vietnamese Watch: MIT’s Deep Learning State of the Art lecture referencing this post In the previous post, we looked at Attention – a ubiquitous method in modern deep learning models. Attention is a concept that helped improve the performance of neural machine translation applications. In this post, we will look at The Transformer – a model that uses attention to boost the speed with which these models can be trained. The Transformer outperforms the Google Neural Machine Translation model in specific tasks. The biggest benefit, however, comes from how The Transformer lends itself to parallelization. It is in fact Google Cloud’s recommendation to use The Transformer as a reference model to use their Cloud TPU offering. So let’s try to break the model apart and look at how it functions. The Transformer was proposed in the paper Attention is All You Need. A TensorFlow implementation of it is available as a part of the Tensor2Tensor package. Harvard’s NLP group created a guide annotating the paper with PyTorch implementation. In this post, we will attempt to oversimplify things a bit and introduce the concepts one by one to hopefully make it easier to understand to people without in-depth knowledge of the subject matter. 2020 Update: I’ve created a “Narrated Transformer” video which is a gentler approach to the topic: A High-Level Look Let’s begin by looking at the model as a single black box. In a machine translation application, it would take a sentence in one language, and output its translation in another.},
@@ -295,7 +297,6 @@
   urldate = {2022-03-28},
   abstract = {An invoice records itemized transactions and is used for expense management and bookkeeping.},
   langid = {english},
-  organization = {{Investopedia}},
   file = {/Users/I518232/Zotero/storage/6IKKUTWY/invoice.html}
 }
 
@@ -313,17 +314,9 @@
 @online{JuergenMuellerBiography,
   type = {Company Website},
   title = {Juergen {{Mueller}} Biography},
-  author = {{SAP SE}},
   url = {https://www.sap.com/about/company/leadership/juergen-mueller.html},
   urldate = {2022-03-15},
   langid = {english}
-}
-
-@online{jupyterteamArchitecture,
-  title = {Architecture},
-  author = {{Jupyter Team}},
-  url = {https://docs.jupyter.org/en/latest/projects/architecture/content-architecture.html},
-  urldate = {2022-04-30}
 }
 
 @incollection{KanbanAnderson,
@@ -356,14 +349,15 @@
   urldate = {2022-05-23},
   abstract = {Many of us are unaware of a relationship between Cosine Similarity and Euclidean Distance. Knowing this relationship is extremely helpful…},
   langid = {english},
-  organization = {{AI For Real}},
   file = {/Users/I518232/Zotero/storage/A68LN3WH/relationship-between-cosine-similarity-and-euclidean-distance-7e283a277dff.html}
 }
 
-@report{kochEInvoicingJourney,
+@article{kochEInvoicingJourney,
   title = {The {{E-Invoicing Journey}} 2019-2025},
   author = {Koch, Bruno},
-  institution = {{Billentis}},
+  date = {2019-09},
+  journaltitle = {Billentis E-Invoicing Journey},
+  volume = {4},
   url = {https://www.billentis.com/The_einvoicing_journey_2019-2025.pdf},
   langid = {english},
   file = {/Users/I518232/Zotero/storage/PL4PH5EP/Koch - The E-Invoicing Journey 2019-2025.pdf}
@@ -384,8 +378,7 @@
   author = {Brownlee, Jason},
   date = {2020-12-10},
   url = {https://machinelearningmastery.com/large-data-files-machine-learning/},
-  urldate = {2022-04-28},
-  organization = {{Machine Learning Mastery}}
+  urldate = {2022-04-28}
 }
 
 @online{largeDataSetMedium,
@@ -404,16 +397,10 @@
   shortjournal = {Theoretical Computer Science},
   volume = {410},
   number = {19},
-  eprint = {0912.3408},
-  eprinttype = {arxiv},
-  primaryclass = {math, stat},
   pages = {1749--1764},
   issn = {03043975},
   doi = {10.1016/j.tcs.2009.01.009},
-  url = {http://arxiv.org/abs/0912.3408},
-  urldate = {2022-05-18},
   abstract = {We study clustering algorithms based on neighborhood graphs on a random sample of data points. The question we ask is how such a graph should be constructed in order to obtain optimal clustering results. Which type of neighborhood graph should one choose, mutual k-nearest neighbor or symmetric k-nearest neighbor? What is the optimal parameter k? In our setting, clusters are defined as connected components of the t-level set of the underlying probability distribution. Clusters are said to be identified in the neighborhood graph if connected components in the graph correspond to the true underlying clusters. Using techniques from random geometric graph theory, we prove bounds on the probability that clusters are identified successfully, both in a noise-free and in a noisy setting. Those bounds lead to several conclusions. First, k has to be chosen surprisingly high (rather of the order n than of the order log n) to maximize the probability of cluster identification. Secondly, the major difference between the mutual and the symmetric k-nearest neighbor graph occurs when one attempts to detect the most significant cluster only.},
-  archiveprefix = {arXiv},
   keywords = {Mathematics - Statistics Theory,Statistics - Machine Learning},
   file = {/Users/I518232/Zotero/storage/9KFUTJGF/Maier et al. - 2009 - Optimal construction of k-nearest neighbor graphs .pdf;/Users/I518232/Zotero/storage/U5JQJPVV/0912.html}
 }
@@ -426,8 +413,7 @@
   url = {https://towardsdatascience.com/machine-learning-clustering-dbscan-determine-the-optimal-value-for-epsilon-eps-python-example-3100091cfbc},
   urldate = {2022-05-17},
   abstract = {Density-Based Spatial Clustering of Applications with Noise, or DBSCAN for short, is an unsupervised machine learning algorithm…},
-  langid = {english},
-  organization = {{Medium}}
+  langid = {english}
 }
 
 @online{maklinDBSCANPythonExample2022a,
@@ -439,7 +425,6 @@
   urldate = {2022-05-18},
   abstract = {Density-Based Spatial Clustering of Applications with Noise, or DBSCAN for short, is an unsupervised machine learning algorithm…},
   langid = {english},
-  organization = {{Medium}},
   file = {/Users/I518232/Zotero/storage/V9W98M9Y/machine-learning-clustering-dbscan-determine-the-optimal-value-for-epsilon-eps-python-example-3.html}
 }
 
@@ -452,23 +437,15 @@
   urldate = {2022-03-28},
   abstract = {By Daniel Ball, director, Wax Digital The paper-based invoice – the thorn in the side of every finance team but a necessary part of doing business. In},
   langid = {british},
-  organization = {{SME Magazine}},
   file = {/Users/I518232/Zotero/storage/HET2JSWY/costing-much-truth-manual-invoice-processing.html}
 }
 
-@unpublished{mBERT,
+@misc{mBERT,
   title = {Making {{Monolingual Sentence Embeddings Multilingual}} Using {{Knowledge Distillation}}},
   author = {Reimers, Nils and Gurevych, Iryna},
   date = {2020-10-05},
-  number = {arXiv:2004.09813},
-  eprint = {2004.09813},
-  eprinttype = {arxiv},
-  primaryclass = {cs},
-  publisher = {{arXiv}},
-  url = {http://arxiv.org/abs/2004.09813},
-  urldate = {2022-05-22},
+  doi = {10.48550/arXiv.2004.09813},
   abstract = {We present an easy and efficient method to extend existing sentence embedding models to new languages. This allows to create multilingual versions from previously monolingual models. The training is based on the idea that a translated sentence should be mapped to the same location in the vector space as the original sentence. We use the original (monolingual) model to generate sentence embeddings for the source language and then train a new system on translated sentences to mimic the original model. Compared to other methods for training multilingual sentence embeddings, this approach has several advantages: It is easy to extend existing models with relatively few samples to new languages, it is easier to ensure desired properties for the vector space, and the hardware requirements for training is lower. We demonstrate the effectiveness of our approach for 50+ languages from various language families. Code to extend sentence embeddings models to more than 400 languages is publicly available.},
-  archiveprefix = {arXiv},
   keywords = {Computer Science - Computation and Language},
   file = {/Users/I518232/Zotero/storage/QYIB2S72/Reimers and Gurevych - 2020 - Making Monolingual Sentence Embeddings Multilingua.pdf;/Users/I518232/Zotero/storage/AXSD3X3H/2004.html}
 }
@@ -485,13 +462,28 @@
   file = {/Users/I518232/Zotero/storage/LKTG7ZQV/Mikolov et al. - 2013 - Distributed Representations of Words and Phrases a.pdf}
 }
 
+@unpublished{mikolovEfficientEstimationWord2013,
+  title = {Efficient {{Estimation}} of {{Word Representations}} in {{Vector Space}}},
+  author = {Mikolov, Tomas and Chen, Kai and Corrado, Greg and Dean, Jeffrey},
+  date = {2013-09-06},
+  eprint = {1301.3781},
+  eprinttype = {arxiv},
+  primaryclass = {cs},
+  doi = {10.48550/arxiv.1301.3781},
+  url = {http://arxiv.org/abs/1301.3781},
+  urldate = {2022-03-24},
+  abstract = {We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set. Furthermore, we show that these vectors provide state-of-the-art performance on our test set for measuring syntactic and semantic word similarities.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Computation and Language},
+  file = {/Users/I518232/Zotero/storage/7VB2EWHD/Mikolov et al. - 2013 - Efficient Estimation of Word Representations in Ve.pdf;/Users/I518232/Zotero/storage/8XHX2DDH/1301.3781.pdf;/Users/I518232/Zotero/storage/NLS24PG4/1301.html}
+}
+
 @online{MLGlossary,
   title = {Machine {{Learning Glossary}}},
   url = {https://developers.google.com/machine-learning/glossary},
   urldate = {2022-05-26},
   abstract = {Compilation of key machine-learning and TensorFlow terms, with beginner-friendly definitions.},
   langid = {english},
-  organization = {{Google Developers}},
   file = {/Users/I518232/Zotero/storage/XAV7IEQT/glossary.html}
 }
 
@@ -527,7 +519,6 @@
   urldate = {2022-05-21},
   abstract = {Visualising a high-dimensional dataset using: PCA, TSNE, LDA and UMAP},
   langid = {english},
-  organization = {{Medium}},
   file = {/Users/I518232/Zotero/storage/4SC9XTD9/dimensionality-reduction-for-data-visualization-pca-vs-tsne-vs-umap-be4aa7b1cb29.html}
 }
 
@@ -549,20 +540,23 @@
 
 @online{pythonVsR,
   title = {Python vs. {{R}}: {{What}}’s the {{Difference}}?},
-  url = {https://www.ibm.com/cloud/blog/python-vs-r}
+  url = {https://www.ibm.com/cloud/blog/python-vs-r},
+  urldate = {2022-04-20}
 }
 
-@article{rajaramanNeighborSearchHigh,
-  title = {Near {{Neighbor Search}} in {{High Dimensional Data}} (1)},
+@online{rajaramanNeighborSearchHigh,
+  title = {Near {{Neighbor Search}} in {{High Dimensional Data}}},
   author = {Rajaraman, Anand},
-  pages = {66},
+  url = {https://web.stanford.edu/class/cs345a/slides/04-highdim.pdf},
+  urldate = {2022-05-23},
   langid = {english},
   file = {/Users/I518232/Zotero/storage/H7IRCFLL/Rajaraman - Near Neighbor Search in High Dimensional Data (1).pdf}
 }
 
 @online{rDocker,
   title = {R-Base - {{Official Image}}},
-  url = {https://hub.docker.com/_/r-base}
+  url = {https://hub.docker.com/_/r-base},
+  urldate = {2022-04-20}
 }
 
 @article{robertsonTFIDF,
@@ -582,8 +576,7 @@
   author = {Rutschmann, Daniel},
   date = {2021-10-11},
   url = {https://blogs.sap.com/2021/10/11/the-journey-from-sap-leonardo-machine-learning-foundation-to-sap-ai-core-and-sap-ai-launchpad/},
-  urldate = {2022-03-16},
-  organization = {{SAP Community}}
+  urldate = {2022-03-16}
 }
 
 @online{RVsPythonJohnson,
@@ -602,9 +595,8 @@
   url = {https://scale.com/document-ai}
 }
 
-@online{scaleaiScaleDocumentAI,
+@online{ScaleDocumentAI,
   title = {Scale {{Document AI}}: {{Template-Free}}, {{High-Quality Extraction}}},
-  author = {{Scale AI}},
   url = {https://scale.com/document-ai},
   urldate = {2022-05-09},
   organization = {{Scale Document AI: Template-Free, High-Quality Extraction}}
@@ -627,24 +619,19 @@
   urldate = {2022-05-22},
   abstract = {An introduction to multiprocessing predictions of large machine learning and deep learning models},
   langid = {english},
-  organization = {{Medium}},
   file = {/Users/I518232/Zotero/storage/Z2MYKL2E/parallel-inference-of-huggingface-transformers-on-cpus-4487c28abe23.html}
 }
 
 @incollection{schubertTriangleInequalityCosine2021,
   title = {A {{Triangle Inequality}} for {{Cosine Similarity}}},
+  booktitle = {Similarity {{Search}} and {{Applications}}},
   author = {Schubert, Erich},
   date = {2021},
-  volume = {13058},
-  eprint = {2107.04071},
-  eprinttype = {arxiv},
-  primaryclass = {cs},
+  volume = {2021},
   pages = {32--44},
-  doi = {10.1007/978-3-030-89657-7_3},
   url = {http://arxiv.org/abs/2107.04071},
   urldate = {2022-05-23},
   abstract = {Similarity search is a fundamental problem for many data analysis techniques. Many efficient search techniques rely on the triangle inequality of metrics, which allows pruning parts of the search space based on transitive bounds on distances. Recently, Cosine similarity has become a popular alternative choice to the standard Euclidean metric, in particular in the context of textual data and neural network embeddings. Unfortunately, Cosine similarity is not metric and does not satisfy the standard triangle inequality. Instead, many search techniques for Cosine rely on approximation techniques such as locality sensitive hashing. In this paper, we derive a triangle inequality for Cosine similarity that is suitable for efficient similarity search with many standard search structures (such as the VP-tree, Cover-tree, and M-tree); show that this bound is tight and discuss fast approximations for it. We hope that this spurs new research on accelerating exact similarity search for cosine similarity, and possible other similarity measures beyond the existing work for distance metrics.},
-  archiveprefix = {arXiv},
   keywords = {Computer Science - Databases,Computer Science - Machine Learning},
   file = {/Users/I518232/Zotero/storage/8XDXMB7P/Schubert - 2021 - A Triangle Inequality for Cosine Similarity.pdf;/Users/I518232/Zotero/storage/JLNPQ95R/2107.html}
 }
@@ -657,41 +644,30 @@
   urldate = {2022-03-29},
   abstract = {Can a solo developer follow a Scrum process? Google it, you’ll get a few different answers. Here’s mine.},
   langid = {english},
-  organization = {{Medium.com}},
   file = {/Users/I518232/Zotero/storage/X4YGSRA7/scrum-and-the-solo-dev-fb8e810ed42b.html}
 }
 
-@inproceedings{sculleyWebscaleKmeansClustering2010,
+@article{sculleyWebscaleKmeansClustering2010,
   title = {Web-Scale k-Means Clustering},
-  booktitle = {Proceedings of the 19th International Conference on {{World}} Wide Web - {{WWW}} '10},
   author = {Sculley, D.},
   date = {2010},
+  journaltitle = {International conference on World wide web},
+  volume = {19},
   pages = {1177},
-  publisher = {{ACM Press}},
-  location = {{Raleigh, North Carolina, USA}},
   doi = {10.1145/1772690.1772862},
   url = {http://portal.acm.org/citation.cfm?doid=1772690.1772862},
   urldate = {2022-05-18},
-  eventtitle = {The 19th International Conference},
-  isbn = {978-1-60558-799-8},
   langid = {english},
   file = {/Users/I518232/Zotero/storage/TD6DTQVJ/Sculley - 2010 - Web-scale k-means clustering.pdf}
 }
 
-@unpublished{sentenceBERT,
+@misc{sentenceBERT,
   title = {Sentence-{{BERT}}: {{Sentence Embeddings}} Using {{Siamese BERT-Networks}}},
   shorttitle = {Sentence-{{BERT}}},
   author = {Reimers, Nils and Gurevych, Iryna},
   date = {2019-08-27},
-  number = {arXiv:1908.10084},
-  eprint = {1908.10084},
-  eprinttype = {arxiv},
-  primaryclass = {cs},
-  publisher = {{arXiv}},
-  url = {http://arxiv.org/abs/1908.10084},
-  urldate = {2022-05-22},
+  doi = {10.48550/arxiv.1908.10084},
   abstract = {BERT (Devlin et al., 2018) and RoBERTa (Liu et al., 2019) has set a new state-of-the-art performance on sentence-pair regression tasks like semantic textual similarity (STS). However, it requires that both sentences are fed into the network, which causes a massive computational overhead: Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations (\textasciitilde 65 hours) with BERT. The construction of BERT makes it unsuitable for semantic similarity search as well as for unsupervised tasks like clustering. In this publication, we present Sentence-BERT (SBERT), a modification of the pretrained BERT network that use siamese and triplet network structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity. This reduces the effort for finding the most similar pair from 65 hours with BERT / RoBERTa to about 5 seconds with SBERT, while maintaining the accuracy from BERT. We evaluate SBERT and SRoBERTa on common STS tasks and transfer learning tasks, where it outperforms other state-of-the-art sentence embeddings methods.},
-  archiveprefix = {arXiv},
   keywords = {Computer Science - Computation and Language},
   file = {/Users/I518232/Zotero/storage/33FV7TFL/Reimers and Gurevych - 2019 - Sentence-BERT Sentence Embeddings using Siamese B.pdf;/Users/I518232/Zotero/storage/C59JTX9C/1908.html}
 }
@@ -736,7 +712,6 @@
   urldate = {2022-04-06},
   abstract = {Sometimes it might confusing to some people to distinguish between Data Science and Data Mining, so after reading this article it will…},
   langid = {english},
-  organization = {{The Startup}},
   file = {/Users/I518232/Zotero/storage/N2CZY6SV/difference-between-data-science-and-data-mining-37104b1c6a61.html}
 }
 
@@ -749,23 +724,18 @@
   urldate = {2022-03-28},
   abstract = {Structured Data is organized \& often formatted, and Unstructured Data is raw data of various types. Learn key differences \& how each is used.},
   langid = {american},
-  organization = {{Datamation}},
   file = {/Users/I518232/Zotero/storage/8I9BQTGZ/structured-vs-unstructured-data.html}
 }
 
-@unpublished{transformersAttention,
+@misc{transformersAttention,
   title = {Attention {{Is All You Need}}},
   author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, Lukasz and Polosukhin, Illia},
   date = {2017-12-05},
-  number = {arXiv:1706.03762},
-  eprint = {1706.03762},
-  eprinttype = {arxiv},
-  primaryclass = {cs},
   publisher = {{arXiv}},
+  doi = {10.48550/arXiv.1706.03762},
   url = {http://arxiv.org/abs/1706.03762},
   urldate = {2022-05-17},
   abstract = {The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.},
-  archiveprefix = {arXiv},
   keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning},
   file = {/Users/I518232/Zotero/storage/9I2FHG3P/Vaswani et al. - 2017 - Attention Is All You Need.pdf;/Users/I518232/Zotero/storage/VJKYV9JW/1706.html}
 }
@@ -791,7 +761,6 @@
   urldate = {2022-04-06},
   abstract = {Third-party data is out there to find and use. To make external data work for your firm, vet it carefully and make it part of a centralized data strategy.},
   langid = {english},
-  organization = {{MIT Sloan}},
   file = {/Users/I518232/Zotero/storage/2EIVF7K3/why-external-data-should-be-part-your-data-strategy.html}
 }
 
@@ -806,21 +775,6 @@
   file = {/Users/I518232/Zotero/storage/GNBBS264/Wirth and Hipp - CRISP-DM Towards a Standard Process Model for Dat.pdf}
 }
 
-@unpublished{word2vec2013,
-  title = {Efficient {{Estimation}} of {{Word Representations}} in {{Vector Space}}},
-  author = {Mikolov, Tomas and Chen, Kai and Corrado, Greg and Dean, Jeffrey},
-  date = {2013-09-06},
-  eprint = {1301.3781},
-  eprinttype = {arxiv},
-  primaryclass = {cs},
-  url = {http://arxiv.org/abs/1301.3781},
-  urldate = {2022-03-24},
-  abstract = {We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set. Furthermore, we show that these vectors provide state-of-the-art performance on our test set for measuring syntactic and semantic word similarities.},
-  archiveprefix = {arXiv},
-  keywords = {Computer Science - Computation and Language},
-  file = {/Users/I518232/Zotero/storage/7VB2EWHD/Mikolov et al. - 2013 - Efficient Estimation of Word Representations in Ve.pdf;/Users/I518232/Zotero/storage/8XHX2DDH/1301.3781.pdf;/Users/I518232/Zotero/storage/NLS24PG4/1301.html}
-}
-
 @online{yildirimTwoChallengesKMeans2020,
   title = {Two {{Challenges}} of {{K-Means Clustering}}},
   author = {Yıldırım, Soner},
@@ -829,7 +783,6 @@
   urldate = {2022-05-24},
   abstract = {How to “wisely” pick k and initial centroids},
   langid = {english},
-  organization = {{Medium}},
   file = {/Users/I518232/Zotero/storage/NMHKTQAU/two-challenges-of-k-means-clustering-72e90bdeb0da.html}
 }
 

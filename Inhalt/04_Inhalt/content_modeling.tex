@@ -53,7 +53,7 @@ A distance measure is a quantification of how near objects in space are. Distanc
 		\text{cosine similarity} := \cos(\theta) = {\mathbf{A} \cdot \mathbf{B} \over \|\mathbf{A}\| \|\mathbf{B}\|} = \frac{ \sum\limits_{i=1}^{n}{\mathbf{A}_i  \mathbf{B}_i} }{ \sqrt{\sum\limits_{i=1}^{n}{\mathbf{A}_i^2}}  \sqrt{\sum\limits_{i=1}^{n}{\mathbf{B}_i^2}} }
 		  \]
 		
-		The difference between cosine distance and euclidean distance is clear: cosine measures the angle, and euclidean the vector length. But which one performs better in high dimensions? Cosine distance is perceived as more suitable for high dimensional data \cite[c.2.1.2.1]{40algorithms}, and often suggested for \ac{NLP} tasks. 
+		The difference between cosine distance and euclidean distance is clear: cosine measures the angle, and euclidean the vector length. But which one performs better in high dimensions? Cosine distance is perceived as more suitable for high dimensional data \cite[ch.~6.2]{40algorithms}, and often suggested for \ac{NLP} tasks. 
 		
 		But there is one fact left out in this suggestion: On normalized data (all vectors are unit vectors), cosine distance and euclidean distance are linearly connected \cite{khanRelationshipCosineSimilarity2020}.
 		<
@@ -82,8 +82,8 @@ A distance measure is a quantification of how near objects in space are. Distanc
 		Now, with the newly gained insight into the distance relationships of normalized vectors of $\cos(\theta_{AB}) = \mathbf{A} \cdot \mathbf{B}$ and $d(\mathbf{A}, \mathbf{B}) = 2 - 2(\cos(\theta_{AB}))$ , it can be stated that the cosine distance and euclidean distance of two normalized vectors are linearly related.
 				
 		Cosine and euclidean distance being connected linearly for normalized data has not made the decision easier. But there is an additional factor: 
-		Algorithms often require distance metrics to obey the four requirements of a metric space \cite{schubertTriangleInequalityCosine2021}.
-		These requirements are \cite{rajaramanNeighborSearchHigh}:
+		Algorithms often require distance metrics to obey the four requirements of a metric space \cite[p.~32]{schubertTriangleInequalityCosine2021}.
+		These requirements are \cite[p.~22]{rajaramanNeighborSearchHigh}:
 		\begin{enumerate}
 			\item The distance between to points is 0 if and only if they are identical.
 			\item The distance between two points is never negative.
@@ -96,7 +96,7 @@ A distance measure is a quantification of how near objects in space are. Distanc
 \subsection{Clustering Algorithms}
 		
 		\subparagraph{K-Means}
-		The k-Means algorithm generates $k$ groups of data by iteratively adapting clusters and their centers. The algorithm is mainly focused on performance, hence the design is kept lean by omitting logic for determining the number of clusters \cite[c.6.2]{40algorithms}. Following pseudo code illustrates the workings of the algorithm.
+		The k-Means algorithm generates $k$ groups of data by iteratively adapting clusters and their centers. The algorithm is mainly focused on performance, hence the design is kept lean by omitting logic for determining the number of clusters \cite[ch.~6.2]{40algorithms}. Following pseudo code illustrates the workings of the algorithm.
 		
 		\begin{lstlisting}
 randomly choose k_centers
@@ -118,12 +118,12 @@ while (iterations < max_iterations):
 		
 		Implementations such as \ac{sklearn}'s \lstinline|MiniBatchKMeans| \cite{sklearn} speed up the computation time by processing subsets of the data in a parallel way. While only achieving almost perfect results \cite{sculleyWebscaleKmeansClustering2010}, the batched k-Means algorithm is of special appeal when handling large data sets.
 		
-		This algorithm has the advantage of high performance, and performs well on large data sets. Unfortunately, the quality of the results depend highly on choosing the correct parameters. Also, k-Means is not robust against outliers, and results are not reproducible since the first cluster centers are chosen randomly \cite[c.6.2]{40algorithms}.
+		This algorithm has the advantage of high performance, and performs well on large data sets. Unfortunately, the quality of the results depend highly on choosing the correct parameters. Also, k-Means is not robust against outliers, and results are not reproducible since the first cluster centers are chosen randomly \cite[ch.~6.2]{40algorithms}.
 		
 		\subparagraph{\acl{DBSCAN}}
-		The \ac{DBSCAN} clustering algorithm was developed to solve the problem of needing domain knowledge while tuning cluster models \cite{DBSCAN}. The algorithm uses an intuitive approach for identifying which points belong into a cluster, and which are outliers.
+		The \ac{DBSCAN} clustering algorithm was developed to solve the problem of needing domain knowledge while tuning cluster models \cite[p.~226]{DBSCAN}. The algorithm uses an intuitive approach for identifying which points belong into a cluster, and which are outliers.
 
-		For two points to be considered neighboring (density-reachable, \cite{DBSCAN}), they have to be within a certain distance to each other: \lstinline|eps|. Neighboring points are categorized into one cluster, expanding the reach of this cluster over all values within the distance \lstinline|eps|.
+		For two points to be considered neighboring (density-reachable, \cite[p.~228]{DBSCAN}), they have to be within a certain distance to each other: \lstinline|eps|. Neighboring points are categorized into one cluster, expanding the reach of this cluster over all values within the distance \lstinline|eps|.
 		But, there is a limitation to the points being able to expand a cluster. If the cluster were to expand without limitations apart from a maximum distance, the clusters would be able to "spread" from one cluster to another if connected by one data point.
 		To prevent this, only center points can expand the cluster. A center point has a minimum number of neighboring points (\lstinline|min_samples|). This helps to create dense clusters and prevents the undesirable spreading.
 		
@@ -170,8 +170,8 @@ Selecting a \ac{DR} method, there are important aspects to consider:
 
 Data scientists have many methods for \ac{DR} at hand, some of the most popular ones being \ac{t-SNE} and \ac{PCA}.
 
-The \ac{PCA} identifies principal components in the dataset with an unsupervised \ac{ML} algorithm \cite{40algorithms}. A principal component is an axis in the multidimensional space along which the variance is maximized \cite{pcaVStsne}. The number of learned principal components depends on the number of target dimensions, in the case of visualizations either two or three dimensions and principal components. The principal components are orthogonal to each other and span the hyperplane on which the values are projected \cite{pcaVStsne}.
-It is important to note that \ac{PCA} approximates the values, trading in accuracy for performance \cite{40algorithms}.
+The \ac{PCA} identifies principal components in the dataset with an unsupervised \ac{ML} algorithm \cite[ch.~6.3]{40algorithms}. A principal component is an axis in the multidimensional space along which the variance is maximized \cite{pcaVStsne}. The number of learned principal components depends on the number of target dimensions, in the case of visualizations either two or three dimensions and principal components. The principal components are orthogonal to each other and span the hyperplane on which the values are projected \cite{pcaVStsne}.
+It is important to note that \ac{PCA} approximates the values, trading in accuracy for performance \cite[ch.~6.3]{40algorithms}.
 
 \ac{t-SNE} is focused on retaining as much structure, both globally and locally. It does so by computing pairwise similarities in the dataset. The algorithm uses these similarities to accurately represent the same distances in a lower number of dimensions. This design of \ac{t-SNE} helps to represent existing clusters very well.
 
@@ -278,7 +278,7 @@ The \ac{DBSCAN} model identified the outlier data (\ref{fig:dbscan-outliers}), a
 \subsection{Determine the number of Clusters}
 The KMeans algorithm is parameterized with the number of clusters (\lstinline|n_clusters|). Since the algorithm itself is not able to determine the cluster count, this number has to be approximated.
 \cite{kodinariyaReviewDeterminingCluster2013} suggest several applicable methods, among them are rule of thumb, and the elbow method with a silhouette score.
-A good point for starting with choosing $k$ is the rule of thumb $k \approx \sqrt{\frac{n}{2}}$ with n being the number of instances in the dataset. Other literature also names the approximation of $k \approx log(n)$, but \cite{maierOptimalConstructionKnearest2009} showcase how $k$ should be chosen in the order of $n$. 
+A good point for starting with choosing $k$ is the rule of thumb $k \approx \sqrt{\frac{n}{2}}$ with n being the number of instances in the dataset. Other literature also names the approximation of $k \approx log(n)$, but \cite[p.~1749]{maierOptimalConstructionKnearest2009} showcase how $k$ should be chosen in the order of $n$. 
 
 \begin{table}[!h]
 	\centering
@@ -303,7 +303,7 @@ With the elbow method, the silhouette score of clustering results for different 
 
 The silhouette score is a measure of how similar intra-cluster points are and at the same time how dissimilar inter-cluster points are. A silhouette score of 1, being the highest value, is the most desirable.
 
-The silhouette score $s$ of each data point $i$ can be calculated with the following formula \cite{kodinariyaReviewDeterminingCluster2013}:
+The silhouette score $s$ of each data point $i$ can be calculated with the following formula \cite[p.~94]{kodinariyaReviewDeterminingCluster2013}:
 \[ s(i) = \frac{b(i) - a(i)}{\max\{a(i),b(i)\}} \]
 
 The measure $a$ denotes the mean distance to other points in the same cluster as $i$. This is interpreted as the inter-cluster dissimilarity, the higher $a(i)$, the more $i$ doesn't belong into the cluster.
@@ -320,7 +320,7 @@ The above mentioned estimates (\ref{table:heuristic-k}) are a starting point for
 
  \begin{figure}[!h]
 	\centering
-	\includegraphics[height=8.5cm]{Bilder/models/elbow.pdf}
+	\includegraphics[width=0.95\textwidth]{Bilder/models/elbow.pdf}
 	\caption{Each Instance's Distance to the nearest neighboring Point}
 	\label{fig:silhouette}
 \end{figure}
