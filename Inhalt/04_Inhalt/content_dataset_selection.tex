@@ -39,7 +39,7 @@
 	In this section, a classification for data-science projects is introduced as a guide for dataset selection.
 	
 	\subsection{Project Types}
-\begin{table}[ht]
+\begin{table}[!ht]
 	\caption{Fundamental Data Science Project Types}
 	\begin{tabular}{lll}
 		\toprule
@@ -65,10 +65,13 @@
 	Usually, the project type is not decided on, but implicitly arises out of environmental parameters. The goal of the analysis is clearly stated in before chapters. Still, the research questions (\ref{section:research-q}) aim at finding out which insights the analysis can give. Therefore, this project can be classified as a data-first project.
 	
 	\subsection{Resulting Requirements for Selecting a Dataset}
-	In a data-first project, there is no assumption of patterns. This for once means that a large dataset is required to cover enough ground for accurate derivation of insights. Second, a data-first project does not require structured data \cite{srivastavaDataMining}. Instead, unstructured and semi-structured data is also applicable for data-first projects.
+	In a data-first project, there is no assumption of patterns. This for once means that a large dataset is required to cover enough ground for accurate derivation of insights. Second, a data-first project does not require structured data \cite{srivastavaDataMining}. Instead, unstructured and semi-structured data is also applicable for data-first projects. The resulting requirement therefore is that the dataset needs to be large enough.
 	
 	
 	\section{Selected Dataset}
-	With the requirements explained, a dataset fulfilling all criteria was found. The selected document dataset consists of 150.000 invoices. The data contains information about the vendors, billing amounts and a descriptions of the goods. 
+	With the requirements explained, a dataset fulfilling all criteria was found. Inside of SAP, departments have their own data resources, but also shared dataset repositories. One of this inter-departmental registries contains invoices. Usually, this data is used for training machine learning services related to information extraction. The dataset consists of 150.000 invoices, each one as a document, and additionally, a \ac{JSON} representation of the contents.	The information extraction service is trained with the documents as input, and the \ac{JSON} representation as ground-truth for machine learning. The extraction service is able to recognize the information and transforms it into structured data.	
+	
+	For this research task, only the \ac{JSON} files are relevant. The invoice set contains information about the vendors, billing amounts and a descriptions of the goods. They mainly contain day-to-day transactions such as office supply orders, but also business travel expenses. The invoices were collected over several years.
+
 	
 	
