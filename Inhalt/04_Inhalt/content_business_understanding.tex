@@ -59,7 +59,7 @@ To summarize both relevant data mining and business terminology, a glossary was 
 	\paragraph{Hyperscaler} A hyperscaler is a company offering architecture to adapt to changing workloads in cloud computing, networking and internet services.
 	\paragraph{\acf{NLP}} \ac{NLP} is a discipline comprised of linguistics, computer science, artificial intelligence an mathematics \cite{chowdhury2003}.
 	\paragraph{Overfitting} Overfitting is a problem occurring in machine learning, in which the model adapts too closely to the data and is not able to make meaningful inferences on new data.
-	\paragraph{Pickle} The process of pickling is a form of serialization in python.
+	\paragraph{Pickle} The process of pickling is a form of serialization in Python.
 	\paragraph{Script} A script is  a small piece of code contained in a single file, most commonly written in a dynamic high-level programming language.
 	\paragraph{SAP AI Foundation} The SAP AI Foundation is a term describing SAP's offerings of the AI Launchpad and AI Core.
 	\paragraph{SAP AI Launchpad} The SAP AI Launchpad is a tool for the operation of AI content inside an SAP system.
@@ -82,8 +82,7 @@ The following data mining goals were identified during the phase of business und
 The successful outcome is defined by reaching all named criteria. The achievement will be evaluated by the author and the supervisor, also people referenced in the inventory of resources will be considered to evaluate the outcome.
 
 
-\section{Project Plan}
-\subsection{Initial assessment of tools and techniques}
+\section{Initial assessment of tools and techniques}
 
 \paragraph{Programming Language}
 A multitude of programming languages for statistical analyses and machine learning applications exist. The most popular and best supported are Python and R. Both languages are open source and targeted at data science tasks.
@@ -96,19 +95,19 @@ Following criteria will be used to evaluate the best fit for this project:
 
 Python is a general purpose programming language with a straightforward syntax. Python is regularly taught at schools and suited for beginners. R is a language built by statisticians. Therefore, R is suited primarily for data-science tasks. While a data analysis can be created easily, more complex functionality requires experience and is considered challenging \cite{pythonVsR}. For understanding, Python is rated as the more favorable choice.
 
-For the availability of resources, R clearly scores. In general, Python has a large number of libraries available. Since python is not exclusively for data science, only a fraction of them are suited for statistical analyses. For R on the other hand, over 13.000 packages are available in the R archives \cite{pythonVsR}.
+For the availability of resources, R clearly scores. In general, Python has a large number of libraries available. Since Python is not exclusively for data science, only a fraction of them are suited for statistical analyses. For R on the other hand, over 13.000 packages are available in the R archives \cite{pythonVsR}.
 
-Deploying a python solution is easily possible via APIs, web apps and containerization technologies. R is also displayable on the web using specific packages. Both R and Python can be deployed in docker containers \cite{rDocker} \cite{pythonDocker} paving the way to be deployed on all major hyperscalers.
-It can be stated that python has superior ability to be scaled and deployed as it is a general purpose programming language. 
+Deploying a Python solution is easily possible via APIs, web apps and containerization technologies. R is also displayable on the web using specific packages. Both R and Python can be deployed in docker containers \cite{rDocker} \cite{pythonDocker} paving the way to be deployed on all major hyperscalers.
+It can be stated that Python has superior ability to be scaled and deployed as it is a general purpose programming language. 
 
 \paragraph{Programming Paradigm}
 With the programming language decided, the basic programming paradigm has to be chosen. Python is an high-level object-oriented language, containing also functional aspects \cite[chapter~1.3.2]{corePython}. Python allows for programming using only scripts, but also supports and encourages the use of modules to separate files.
 For data scientist, the decision between modular code and code contained in a notebook presents itself in the beginning of every project. Python code in modules can be organized into several files calling each other when needed. This option requires careful documentation, as there is no graphical interface showing dependencies between the modules.
 
 Python notebooks are structured to represent code, descriptions and the output. The most popular notebook format are Jupyter Notebooks, representing code and additional information as \ac{JSON} data \cite{jupyterteamArchitecture}.
-While notebooks allow to tell a story using visualizations and descriptions, they lack in ability to be easily deployed using common methods. Of course, the deployment of a Jupyter Notebook is not impossible, but disproportionately more difficult than deploying python modules.
+While notebooks allow to tell a story using visualizations and descriptions, they lack in ability to be easily deployed using common methods. Of course, the deployment of a Jupyter Notebook is not impossible, but disproportionately more difficult than deploying Python modules.
 
-Since not every part of a data-science project has to be deployed, a hybrid approach to Juypter Notebooks and modular coding makes sense. The data understanding part of the project will be completed using notebooks. The data preparation and the modeling will be completed in python modules to ensure being able to be deployed, if desired.
+Since not every part of a data-science project has to be deployed, a hybrid approach to Juypter Notebooks and modular coding makes sense. The data understanding part of the project will be completed using notebooks. The data preparation and the modeling will be completed in Python modules to ensure being able to be deployed, if desired.
 
 
 

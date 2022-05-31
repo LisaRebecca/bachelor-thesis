@@ -257,19 +257,17 @@ The inventory of resources is a list of all available utilities.
 	\end{itemize}
 \end{multicols}
 \newpage
-\section{Benchmarking DataFrames and Dictionaries}
+\section{Benchmarking Python Data Structures}
 \label{benchmarkDF}
 
-The following benchmark of different indexing method shows the performance disparity between \lstinline|dictionaries| (maps) and \lstinline|DataFrame|s. A \lstinline|DataFrame| is a tabular data structure in python. While the \lstinline|DataFrame| takes a few microseconds, accessing the same data in a \lstinline|dictionary| is up to 300 times faster.
+The following benchmark of different indexing method shows the performance disparity between \lstinline|dictionaries| (maps) and \lstinline|DataFrame|s. A \lstinline|DataFrame| is a tabular data structure in Python. While the \lstinline|DataFrame| takes a few microseconds, accessing the same data in a \lstinline|dictionary| is up to 300 times faster.
+
 \begin{figure}[h!]
 	%\left
 	\includegraphics[height=15cm]{Bilder/appendix/dfvsdict.png}
-	\label{fig:dbscan-plot}
+	\label{benchmarkDF}
 \end{figure}
- [caption={Benchmark of Indexing with Python Data Structures}]
-\begin{lstlisting}
-
-	   
+\begin{lstlisting}[caption={Benchmark of Indexing with Python Data Structures}]
 \end{lstlisting}
 The \lstinline|.loc| indexing is  130.24 times slower than dictionary access.\\
 The \lstinline|.at|  indexing is  62.06 times slower than dictionary access.\\
@@ -277,7 +275,7 @@ The \lstinline|.iloc|  indexing is  310.28 times slower than dictionary access.\
 The \lstinline|.iat|  indexing is  213.44 times slower than dictionary access.
 
 \newpage
-\section{File Processing Script}
+\section{Data Wrangling Script}
 The following script processes one \ac{JSON} invoice file. This particular script only extracts the header data from the invoice and returns it as a \lstinline|DataFrame|.
 
 \lstinputlisting[
@@ -291,7 +289,7 @@ lastline=23                 % Letzte Zeile welche ins LaTeX Dokument übernommen
 
 \newpage
 
-\section{\ac{TF-IDF}}
+\section{Feature Extraction with \ac{TF-IDF}}
 \label{appendix:tfidf}
 
 The following \lstinline|DataFrame| shows the \ac{TF-IDF} representation of the dataset. There being only zeroes visible does not mean, it is empty. This just again shows how sparse the \ac{TF-IDF} matrix is.

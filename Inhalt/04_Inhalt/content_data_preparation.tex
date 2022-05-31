@@ -111,11 +111,11 @@
 		\label{fig:df-invoice}
 	\end{figure}
 	
-	The resulting two \lstinline|DataFrame|s are serialized with the python standard library \lstinline|pickle|. The data can be efficiently loaded into memory and re-serialized again with this library.
+	The resulting two \lstinline|DataFrame|s are serialized with the Python standard library \lstinline|pickle|. The data can be efficiently loaded into memory and re-serialized again with this library.
 	
 	This processing step allowed for storing the initial 5.12GB of data in a more usable format and takes up only a total of 393MB.
 
-	The process of reading files from the disk is not inherently an expensive one, but in the realms of many thousand documents, processing times soon reach several days. Observing the execution of the python code showed a peculiarity: While the utilization of the used processor was consequently at the maximum (in figure \ref{fig:cpu} at 97.1\%), only one process is executed, leaving the total \ac{CPU} usage at only 20\%. 
+	The process of reading files from the disk is not inherently an expensive one, but in the realms of many thousand documents, processing times soon reach several days. Observing the execution of the Python code showed a peculiarity: While the utilization of the used processor was consequently at the maximum (in figure \ref{fig:cpu} at 97.1\%), only one process is executed, leaving the total \ac{CPU} usage at only 20\%. 
 	
 	\begin{figure}[ht]
 		\centering
@@ -125,10 +125,10 @@
 	\end{figure}
 	
 	
-	One question that may now arise is: Why doesn't python split up the workload and employ the full capacity of the machine?
+	One question that may now arise is: Why doesn't Python split up the workload and employ the full capacity of the machine?
 	This can be explained with the design of the Python interpreter. The Global Interpreter Lock controls access to the Python Virtual Machine executing the code. This lock only allows exactly one thread to run at a time \cite{corePython}. This of course is not favorable, as valuable CPU capacity is idle. Fortunately, the lock behaves in a special way regarding C routines: the lock is released before executing C code \cite{corePython}. I/O operations in Python, such as opening files, utilize C code. This allows to bypass the, in this case, inconvenient locking mechanism. 
 	
-	Different python libraries exploit this specialty and allow to spawn a pool of different processes, which then execute calls asynchronously. One example is the \lstinline|ProcessPoolExecutor|. A notable restriction is that only picklable objects can be submitted for multiprocessing. This concerns both function and its parameters. While this is not a problem in this task, this restriction will become important later on in the section about feature extraction.
+	Different Python libraries exploit this specialty and allow to spawn a pool of different processes, which then execute calls asynchronously. One example is the \lstinline|ProcessPoolExecutor|. A notable restriction is that only picklable objects can be submitted for multiprocessing. This concerns both function and its parameters. While this is not a problem in this task, this restriction will become important later on in the section about feature extraction.
 	
 \begin{lstlisting}[language=python, 
 label=code:process-pool,
