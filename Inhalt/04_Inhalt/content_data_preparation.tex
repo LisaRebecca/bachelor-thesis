@@ -71,7 +71,7 @@
 		\label{fig:invoice_df_schema}
 	\end{figure}	
 
-	Now, looking at the technical side of the file composition.	The data for an invoice and its line items is stored in an array of objects. The array "annotations" contains objects, each one representing information such as the invoice date or the unit price. A schematic description of how the invoice data should be represented after extraction is shown in figure \ref{fig:invoice_df_schema}: One invoice is modeled as one row in the table. Different attributes are represented as columns.
+	Now, looking at the technical side of the file composition.	The data for an invoice and its line items is stored in an array of objects. The array "annotations" contains objects, each one representing information such as the invoice date or the unit price. A schematic description of how the invoice data should be represented after extraction is shown in Figure \ref{fig:invoice_df_schema}: One invoice is modeled as one row in the table. Different attributes are represented as columns.
 	Information about line items have labels containing the prefix "lineItem". One invoice containing several items is represented by duplicate values of one label (in the example \ref{fig:invoice_df_schema} the label "lineItem.description.value"). Each new label "lineItem.description.value" denotes a new line item. Here, the order of the labels has to be retained during data wrangling to ensure not mixing up information about different invoice items. Each new line item should be a new row in the table of line items.
 	
 	The goal of the data wrangling process is to create two \lstinline|DataFrame|s, one for the invoices and one for the line items.
@@ -93,7 +93,7 @@
 	
     \subsection{Practical Implementation}
 	
-	The files were processed using a Python script (\ref{code:InvoiceReader}). The information on invoices is stored in a tabular data structure, a \lstinline|pandas DataFrame|. Worth mentioning is that some invoices contain more information than others. In this case, invoices are still appended into one table, but fields for non-existent values are left empty. In figure \ref{fig:df-invoices}, the first invoice does not have a total amount included, but since the second one does, this column is created.
+	The files were processed using a Python script (\ref{code:InvoiceReader}). The information on invoices is stored in a tabular data structure, a \lstinline|pandas DataFrame|. Worth mentioning is that some invoices contain more information than others. In this case, invoices are still appended into one table, but fields for non-existent values are left empty. In Figure \ref{fig:df-invoices}, the first invoice does not have a total amount included, but since the second one does, this column is created.
 	The filename of one invoice contains the unique identifier for one invoice.
 	
 	\begin{figure}[ht]
@@ -116,7 +116,7 @@
 	
 	This processing step allowed for storing the initial 5.12GB of data in a more usable format and takes up only a total of 393MB.
 
-	The process of reading files from the disk is not inherently an expensive one, but in the realms of many thousand documents, processing times soon reach several days. Observing the execution of the Python code showed a peculiarity: While the utilization of the used processor was consequently at the maximum (in figure \ref{fig:cpu} at 97.1\%), only one process is executed, leaving the total \ac{CPU} usage at only 20\%. 
+	The process of reading files from the disk is not inherently an expensive one, but in the realms of many thousand documents, processing times soon reach several days. Observing the execution of the Python code showed a peculiarity: While the utilization of the used processor was consequently at the maximum (in Figure \ref{fig:cpu} at 97.1\%), only one process is executed, leaving the total \ac{CPU} usage at only 20\%. 
 	
 	\begin{figure}[ht]
 		\centering
@@ -183,7 +183,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
             	\caption{Example Corpus}
             	\label{fig:corpus}
             \end{figure}
-            The three documents in figure \ref{fig:corpus} will be considered to explain the workings of the one-hot encoding. A corpus is transformed into a term-document incidence matrix representation in two steps. 
+            The three documents in Figure \ref{fig:corpus} will be considered to explain the workings of the one-hot encoding. A corpus is transformed into a term-document incidence matrix representation in two steps. 
             
             \begin{figure}[h!]
             	\centering

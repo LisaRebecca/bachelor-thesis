@@ -1,7 +1,7 @@
 \chapter{Evaluation of the result}
 Bewertung der Lösung anhand der Aufgabenstellung und der Kriterien
 
-Different chapters in this thesis mention their respective objectives and criteria. This chapter evaluated the result on the basis of these standards.
+Different Chapters in this thesis mention their respective objectives and criteria. This Chapter evaluated the result on the basis of these standards.
 
 \paragraph{Detailed Task Description}
 The goal of this thesis is adding value to real business documents by transforming unstructured data into a structured format. The structured information can then be used as a base for further analyses.
@@ -20,7 +20,7 @@ Fourth, the code needs proper documentation. The Jupyter Notebook format allows 
 Fifth, the code should be optimized in its performance. A very careful choice of data structures based on benchmarks ensures the efficiency of the source code. Storage formats like the Python \lstinline|pickle| persist the information in a memory-saving way. Also, the used parallel processing speeds up processing times.
 
 \paragraph{Business Objectives}
-The business obectives (\ref{section:business-objectives}) firstly specify the goal of insight into spending across different related spending. The topics generated in section \ref{section:topics} summarize detailed cost into cross-cutting topics such as beverages. 
+The business objectives (Section \ref{section:business-objectives}) firstly specify the goal of insight into spending across different related spending. The topics generated in Subsection \ref{section:topics} summarize detailed cost into cross-cutting topics such as beverages. 
 
 
 %The primary goal is the development of a solution for automatic aggregation of documents, based on topics addressed in those documents. The focus is on shorter text segments, such as product descriptions. The business objective is an information gain, on how spending is distributed among cross-cutting topics in a company.
@@ -30,7 +30,7 @@ Section \ref{section:business-objectives} also states the clear business success
 
 
 \paragraph{Data Mining Goals}
-The data mining goals (\ref{section:data-mining-goals}) are four very distinct points:
+The data mining goals (Section \ref{section:data-mining-goals}) are four very distinct points:
 \begin{enumerate}
 	\item Identifying and applying appropriate methods for feature extracting tailored to this type of dataset.
 	\item Identifying and applying appropriate methods for clustering documents in this type of dataset.
@@ -40,7 +40,7 @@ The data mining goals (\ref{section:data-mining-goals}) are four very distinct p
 
 
 %1. Identifying and applying appropriate methods for feature extracting tailored to this type of dataset.
-Firstly, the feature extraction. The part about feature extraction (\ref{section:feature-extraction}) presents and carefully evaluates different methods with respect to their relevance to the specific dataset. The chosen mechanism \ac{BERT} is able to fulfill all requirements, while also reflecting the current state of the art. The resulting features provide best conditions for clustering documents.
+Firstly, the feature extraction. The part about feature extraction (Section \ref{section:feature-extraction}) presents and carefully evaluates different methods with respect to their relevance to the specific dataset. The chosen mechanism \ac{BERT} is able to fulfill all requirements, while also reflecting the current state of the art. The resulting features provide best conditions for clustering documents.
 
 %2. Identifying and applying appropriate methods for clustering documents in this type of dataset.
 Secondly, the document clustering.
@@ -51,7 +51,7 @@ Both k-Means and \ac{DBSCAN} are contrasted.
 %Which method was chosen?
 The k-Means algorithm is able to generate higher-quality clusters in this special domain. While \ac{DBSCAN} technically produces more clear clusters, the proximity of documents such as used in k-Means is more meaningful than being connected to each other in a high-density area.
 %How good were the results?
-The clusters are created with the goal of a major generalization. Therefore, in the trade off between sharp clusters (high \lstinline|k|) and strong ability to generalize (lower \lstinline|k|), the lowest viable number of clusters is chosen. The high quality of the results is most obvious in the very intuitive arrangement of topics in a plane (\ref{fig:topics}).
+The clusters are created with the goal of a major generalization. Therefore, in the trade off between sharp clusters (high $k$) and strong ability to generalize (lower $k$), the lowest viable number of clusters is chosen. The high quality of the results is most obvious in the very intuitive arrangement of topics in a plane (Section \ref{fig:topics}).
 
 %3. Identifying and applying appropriate methods for topic modeling with this type of dataset.
 Thirdly, the topic modeling.
