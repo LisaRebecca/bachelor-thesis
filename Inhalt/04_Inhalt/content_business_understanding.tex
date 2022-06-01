@@ -1,5 +1,5 @@
 \chapter{Business Understanding}
-In the guide complementing the \ac{CRISP-DM} model, different tasks, and outputs for developing a business understanding are mentioned. The task and respective output will be discussed in the following sections.
+In the guide complementing the \ac{CRISP-DM} model, different tasks, and outputs for developing a business understanding are mentioned \cite{CRISPDM2000}. The task and respective output will be discussed in the following sections.
 
 \section{Business Objectives}
 \label{section:business-objectives}
@@ -7,14 +7,25 @@ Businesses without existing an \ac{ERP} solution in place can easily be overwhel
 
 The primary goal is the development of a solution for automatic aggregation of documents, based on topics addressed in those documents. The focus is on shorter text segments, such as product descriptions. The business objective is an information gain, on how spending is distributed among cross-cutting topics in a company.
 
-The created solution can be evaluated with the business success criterion: "Does the solution identify and give useful insights in the money pits?". The judgment of goal achievement is a subjective matter. Evaluating the success should therefore be distributed among several stakeholders, including but not limited to the author, the supervisor and the supplier of the data.
+The created solution can be evaluated with the business success criterion: "Does the solution identify and give useful insights in the money pits?".
 
-\section{Assessment of the Situation}
+\section{Data Mining Goals}
+\label{section:data-mining-goals}
+The following data mining goals were identified during the phase of business understanding:
 
-\subsection{Inventory of Resources}
+\begin{enumerate}
+	\item Identifying and applying appropriate methods for feature extracting tailored to this type of dataset.
+	\item Identifying and applying appropriate methods for clustering documents in this type of dataset.
+	\item Identifying and applying appropriate methods for topic modeling with this type of dataset.
+	\item Aggregating expenses by their clusters and visualizing the output.
+\end{enumerate}
+
+%\section{Assessment of the Situation}
+
+\section{Inventory of Resources}
 An inventory of resources (\ref{tabelle:inventory}) was created for assessing the situation. Most notably is the availability of experts through excellent inter-corporation cooperation. Also, a large collection of datasets is available. Hardware platforms include personal machines as well as hosted environments with GPU capabilities. Available software are data science tools included in the Anaconda Navigator, such as Jupyter Notebook. All open-source libraries are of course also included.
 
-\subsection{Requirements, Assumptions, and Constraints}
+\section{Requirements, Assumptions, and Constraints}
 The project is to be completed the latest on June 7$^{th}$ 2022. 
 
 Several assumptions underlay the process of data mining. First, it is assumed that the descriptions of the invoices is speaking enough to identify the product referenced.
@@ -22,7 +33,7 @@ Second, the analysis assumes that invoices can be logically grouped into cluster
 
 From a legal perspective, the project is constrained in the publication of data. While the use and processing of the supplied data is permitted within the context of the thesis, publication and further use is prohibited. The dataset is to be kept only on the local machine and SAP owned hyperscaler instances.
 
-\subsection{Risks and Contingencies}
+\section{Risks and Contingencies}
 \paragraph{Dataset too Large for Processing} One specific risk that may arise in this project, is a dataset too large to be processed. Only a limited size of data is able to be loaded into memory. If the dataset turns out to be too big, four solutions are proposed.
 
 \begin{enumerate}
@@ -50,7 +61,7 @@ The business objectives were determined in a prior section. But what is the proc
 A simple laissez-faire attitude towards the definition of "useful" is unsatisfactory, although creating the illusion of a positive outcome of the project.
 With not reaching the original goal of a research project, the work does not automatically become useless. Identifying problems and causes for the failure can facilitate other research.
 
-\subsection{Terminology}
+\section{Glossary of Terms}
 To summarize both relevant data mining and business terminology, a glossary was compiled.
 
 	\paragraph{Clustering Algorithm} A clustering algorithm is a sequence of instructions, which arranges a set of instances into groups, which contain items of high similarity to each other.
@@ -68,18 +79,6 @@ To summarize both relevant data mining and business terminology, a glossary was 
 	\paragraph{Underfitting} The counterpart to overfitting is underfitting. In this problem, the \ac{ML} model is not complex enough to fully capture the complexity of the data \cite{MLGlossary}.
 
 
-\section{Data Mining Goals}
-\label{section:data-mining-goals}
-The following data mining goals were identified during the phase of business understanding:
-
-\begin{enumerate}
-\item Identifying and applying appropriate methods for feature extracting tailored to this type of dataset.
-\item Identifying and applying appropriate methods for clustering documents in this type of dataset.
-\item Identifying and applying appropriate methods for topic modeling with this type of dataset.
-\item Aggregating expenses by their clusters and visualizing the output.
-\end{enumerate}
-
-The successful outcome is defined by reaching all named criteria. The achievement will be evaluated by the author and the supervisor, also people referenced in the inventory of resources will be considered to evaluate the outcome.
 
 
 \section{Initial assessment of tools and techniques}
@@ -97,7 +96,7 @@ Python is a general purpose programming language with a straightforward syntax. 
 
 For the availability of resources, R clearly scores. In general, Python has a large number of libraries available. Since Python is not exclusively for data science, only a fraction of them are suited for statistical analyses. For R on the other hand, over 13.000 packages are available in the R archives \cite{pythonVsR}.
 
-Deploying a Python solution is easily possible via APIs, web apps and containerization technologies. R is also displayable on the web using specific packages. Both R and Python can be deployed in docker containers \cite{rDocker} \cite{pythonDocker} paving the way to be deployed on all major hyperscalers.
+Deploying a Python solution is easily possible via APIs, web apps and containerization technologies. R is also displayable on the web using specific packages. Both R and Python can be deployed in docker containers paving the way to be deployed on all major hyperscalers \cite{rDocker}, \cite{pythonDocker}.
 It can be stated that Python has superior ability to be scaled and deployed as it is a general purpose programming language. 
 
 \paragraph{Programming Paradigm}
@@ -109,7 +108,7 @@ While notebooks allow to tell a story using visualizations and descriptions, the
 
 Since not every part of a data-science project has to be deployed, a hybrid approach to Juypter Notebooks and modular coding makes sense. The data understanding part of the project will be completed using notebooks. The data preparation and the modeling will be completed in Python modules to ensure being able to be deployed, if desired.
 
-
+The initial assessment concludes that the development of Python in a Jupyter ecosystem is the most favorable choice.
 
 
 

@@ -2,6 +2,8 @@
     Data preparation is the process of transforming the acquired dataset into a dataset which can be fed into learning algorithms and is cleaned of impurities in such a way, that the learning results are likely satisfactory. Impurities to some extent were already identified in the prior chapter, additionally, shifted columns, encoding errors or different data formats have to be accounted for.
 	Data preparation includes data wrangling, data cleaning, and feature extraction. What is left should be a uniform dataset, which is in a format that is understandable by the desired algorithms.
 	
+	The following sections detail this process. Both the data wrangling and feature extracting are divided into an assessment of alternatives, a theoretical implementation, and a practical implementation.	
+	
 	\section{Data processing and data wrangling}
 
         \subsection{Alternatives}
@@ -10,7 +12,7 @@
         \paragraph{Storage Location}
         Within the constraints of the thesis, three options are available for data storage. Firstly, data can be stored locally on the available machine. The data is available without internet access, and the local machine has high read/write speeds. This option requires no additional learning, and is free of charge for the department. A multitude of libraries exist for accessing files on a local file system. A downside is the limited scalability in terms of storage capacity and read/write operations. Additionally, local storage makes the data only available to this specific machine.
         
-        Storing data on a cloud file sharing system is easy to operate and free of usage-bound charges. The storage space is virtually unlimited. Accessing files on sharing platforms is feasible but tedious. The access can be shared within the company context, but everyone is subject to the limited accessibility. Using a files storage service could be of use for transferring data without a physical connection. Still, this is the only recommended use case in this context.
+        The second option, storing data on a cloud file sharing system, is easy to operate and free of usage-bound charges. The storage space is virtually unlimited. Accessing files on sharing platforms is feasible but tedious. The access can be shared within the company context, but everyone is subject to the limited accessibility. Using a files storage service could be of use for transferring data without a physical connection. Still, this is the only recommended use case in this context.
         
         The third option is storing the data using a specialized storage service, such as AWS S3. While the learning overhead is higher in the beginning, the scalability is a convincing argument. Billing is according to usage, but adequate because of the high connectivity with other cloud-based ML service offerings inside and outside of SAP.
         
@@ -36,6 +38,8 @@
             \end{tabular}
             \label{tabelle:storage}
         \end{table}
+    
+    	Since the transfer from one storage option to another is always possible, for now, the simplest option of local storage is the best one. A containment for possibly reaching capacity limits then is the transfer to another storage option.
         
         \paragraph{Data Format}
         The data is still available only in the from \ac{JSON} documents. Python allows for easy parsing of these objects, but this option is highly inefficient compared to native Python data structures.
@@ -55,14 +59,17 @@
     \subsection{Theoretical Implementation}
     For the data wrangling the invoices have to be read into memory and then processed into a reusable structure. All invoices will be combined into \lstinline|DataFrame|s, which then are persisted for later use.
 	
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[height=5cm]{Bilder/preprocessing/entity.png}
-        \caption{Entity Relationship Diagram for Invoice Documents}
-        \label{fig:er}
-    \end{figure}
-	The documents can be separated into two fundamental entities: the invoice and the line items. The entity relationship diagram (\ref{fig:er}) shows how invoices and line items are related. The invoice contains at least one line item, and the information in the invoice is relevant to all of its line items. This includes information about the vendor, and the invoice date. The line items of an invoice contain specific information on the products, such as the material number and the description.
-	An invoice and its line items can be matched through an unique identifier, which is also the filename.
+%    \begin{figure}[ht]
+%        \centering
+   %     \includegraphics[height=5cm]{Bilder/preprocessing/entity.png}
+      %  \caption{Entity Relationship Diagram for Invoice Documents}
+        %\label{fig:er}
+%    \end{figure}
+	The documents can be separated into two fundamental entities: the invoice and the line items. 
+	%The entity relationship diagram (Figure \ref{fig:er}) shows how invoices and line items are related. 
+	The invoice contains at least one line item, and the information in the invoice is relevant to all of its line items. This includes information about the vendor, and the invoice date. The line items of an invoice contain specific information on the products, such as the quantity and the description.
+	An invoice and its line items can be matched through an unique identifier, the invoice ID, which is also the filename.
+	\newpage
 
 	 \begin{figure}[ht]
 		\centering
@@ -93,7 +100,7 @@
 	
     \subsection{Practical Implementation}
 	
-	The files were processed using a Python script (\ref{code:InvoiceReader}). The information on invoices is stored in a tabular data structure, a \lstinline|pandas DataFrame|. Worth mentioning is that some invoices contain more information than others. In this case, invoices are still appended into one table, but fields for non-existent values are left empty. In Figure \ref{fig:df-invoices}, the first invoice does not have a total amount included, but since the second one does, this column is created.
+	The files were processed using a Python script exhibited in Appendix \ref{code:InvoiceReader}. The information on invoices is stored in a  \lstinline|DataFrame|. Worth mentioning is that some invoices contain more information than others. In this case, invoices are still appended into one table, but fields for non-existent values are left empty. In Figure \ref{fig:df-invoices}, the first invoice does not have a total amount included, but since the second one does, this column is created.
 	The filename of one invoice contains the unique identifier for one invoice.
 	
 	\begin{figure}[ht]
@@ -139,7 +146,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
 	results = process_map(r.read_invoice, filenames, chunksize=2000)
 \end{lstlisting}
 
-	The \lstinline|ProcessPoolExecutor| (s. listing \ref{code:process-pool}) can distribute a list of input values for functions (\lstinline|filenames| ) onto a function (\lstinline|r.read_invoice|). Additionally, the \lstinline|chunksize| as parameter specifies how large the bundles of input values for each process are. Distributing the workload onto all \ac{CPU} cores, the processing time was reduced from 27 hours to under 4 minutes. 
+	The \lstinline|ProcessPoolExecutor| (s. listing \ref{code:process-pool}) can distribute a list of input values for functions onto a function. Additionally, the \lstinline|chunksize| as parameter specifies how large the bundles of input values for each process are. Distributing the workload onto all \ac{CPU} cores, the processing time was reduced from 27 hours to under 4 minutes. 
 	
 	\section{Data cleaning}
 	Data cleaning concerns removing all impurities from the data. This includes deleting duplicates, using an uniform data type, and removing unnecessary information.
@@ -170,8 +177,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
         
         \section{Feature Extraction and Feature Engineering}
         \label{section:feature-extraction}
-        The majority of popular \ac{ML} algorithms require the input of scalar, vector or matrix data. Several methods for representing text as mathematical object will be discussed in the following.
-    
+        The majority of popular \ac{ML} algorithms require the input of scalar, vector or matrix data. The following sections discuss alternatives for feature extraction.
             \subsection{Alternatives}
             Firstly, the distributional representations will be explained and evaluated.
             

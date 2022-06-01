@@ -96,16 +96,18 @@ A distance measure is a quantification of how near objects in space are. Distanc
 \subsection{Clustering Algorithms}
 		
 		\subparagraph{K-Means}
-		The k-Means algorithm generates $k$ groups of data by iteratively adapting clusters and their centers. The algorithm is mainly focused on performance, hence the design is kept lean by omitting logic for determining the number of clusters \cite[ch.~6.2]{40algorithms}. Following pseudo code illustrates the workings of the algorithm.
+		The k-Means algorithm generates $k$ groups of data by iteratively adapting clusters and their centers. In the first iteration, the $k$ cluster centers are chosen randomly. Each point in the dataset is assigned to its nearest cluster center. The cluster centers for the next iteration are now the mean values of all points in one cluster. The process of reassigning and calculating the mean is repeated until the cluster centers don't change.
 		
-		\begin{lstlisting}
-randomly choose k_centers
-while (iterations < max_iterations):
-	assign each point to nearest center in k_centers
-	mean of each cluster's elements are k_centers_new
-	if k_centers == k_centers_new:
-		break
-		\end{lstlisting}
+		The algorithm is mainly focused on performance, hence the design is kept lean by omitting logic for determining the number of clusters \cite[ch.~6.2]{40algorithms}. Following pseudo code illustrates the workings of the algorithm.
+		
+%		\begin{lstlisting}
+%randomly choose k_centers
+%while (iterations < max_iterations):
+%	assign each point to nearest center in k_centers
+%	mean of each cluster's elements are k_centers_new
+%	if k_centers == k_centers_new:
+%		break
+%		\end{lstlisting}
 	
 			 \begin{figure}[!h]
 		\centering
@@ -316,7 +318,7 @@ For $S = 1$, the relationship of $a(i)$ and $b(i)$ has to be $a(i) \gg b(i)$ so 
 
 Therefore, the task of the elbow method using the silhouette coefficient is to maximize $S$ while preventing overfitting.
 
-The above mentioned estimates (\ref{table:heuristic-k}) are a starting point for choosing values for $k$ during the calculation of silhouette coefficients. The following simulation shows how the k-Means algorithm for these values of $k$ performed.
+The above mentioned estimates (Table \ref{table:heuristic-k}) are a starting point for choosing values for $k$ during the calculation of silhouette coefficients. The following simulation shows how the k-Means algorithm for these values of $k$ performed.
 
  \begin{figure}[!h]
 	\centering
@@ -345,7 +347,7 @@ The training with k=3250 takes about four minutes. Most clusters formed are in t
 \end{figure}
 
 \subsection{Visualize cluster formation}
-For visualizing, the \ac{t-SNE} algorithm is used. This projection allows to visualize the 512 dimensions of the embeddings in a two-dimensional representation. In Figure \ref{fig:kmeans}, the proximity of points stands for their close semantic relationship. Data points in the same color are contained in the same cluster. Since there are 3250 clusters, colors occur several times, even though they represent different clusters.
+For visualizing, the \ac{t-SNE} algorithm is used. This projection allows to visualize the hundreds of dimensions of the embeddings in a two-dimensional representation. In Figure \ref{fig:kmeans}, the proximity of points stands for their close semantic relationship. Data points in the same color are contained in the same cluster. Since there are 3250 clusters, colors occur several times, even though they represent different clusters.
 
 This visualization gives an overview on the clusters, but doesn't show what is contained in the clusters. For this, each cluster needs a topic.
 
@@ -375,6 +377,6 @@ The chart \ref{fig:topics} seems to contain many outliers which are far away fro
 
 What is striking about the clusters is the formation of areas where not only documents in one cluster are similar, but clusters are similar to each other. For example, clusters 5, 14, 1, and 12 form one area about drinking. Also, the four clusters are very close to 9 and 13. What too can be inferred is, that meals are connected with conferences through travel expenses. Additionally, these clusters are very far away from 8 and 11, which contain invoices on hardware. 
 
-One proof, that the model captures the semantics of each word, is that the documents containing 'apple' (cluster 8, 11) are far away from the fruit basket cluster (9). The model understands, how in specific contexts 'Apple' stands for the brand and not the fruit.
+One proof, that the model captures the semantics of each word, is that the documents containing 'apple' (clusters 8, 11) are far away from the fruit basket cluster (cluster 9). The model understands, how in specific contexts 'Apple' stands for the brand and not the fruit.
 
-Also in the north-western region of the chart, a cluster of clusters about services has formed. Although, a shorter distance between car renting (cluster 7, 16) and business travel (0, 18, 19) would be more understandable.
+Also in the north-western region of the chart, a cluster of clusters about services has formed. Although, a shorter distance between car renting (clusters 7, 16) and business travel (clusters 0, 18, 19) would be more understandable.

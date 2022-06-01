@@ -15,10 +15,10 @@ Other concerns are missing attributes. The dataset has already undergone a surfa
 \section{Data Description}
 The data is available as 152,591 \ac{JSON} files. Each file represents one invoice document. 
 
-Each invoice contains specific header data, the detailed list of the 172 header fields is contained in the appendix (\ref{invoice-header}). 
-The items listed in one invoice are line items. The information about line items is contained in 32 features, also detailed in the appendix (\ref{invoice-lines}).
+Each invoice contains specific header data, the detailed list of the 172 header fields is contained in the Appendix (\ref{invoice-header}). 
+The items listed in one invoice are line items. The information about line items is contained in 32 features, detailed in the Appendix (\ref{invoice-lines}).
 
-All documents follow a specific schema (\ref{code:JSONSchema}). In the beginning, the metadata of the invoice is described, followed by an array of objects (l.7). Each item in the array contains two key value pairs. First, the label of the feature (e.g. "totalAmount"). Second, the value of the feature (e.g. "\$7").
+All documents follow a specific schema (\ac{JSON} Schema \ref{code:JSONSchema}). In the beginning, the metadata of the invoice is described, followed by an array of objects (l. 7). Each item in the array contains two key value pairs. First, the label of the feature (e.g. "totalAmount"). Second, the value of the feature (e.g. "\$7").
 
 
 \lstinputlisting[
@@ -33,15 +33,15 @@ lastline=23                 % Letzte Zeile welche ins LaTeX Dokument übernommen
 
 
 \section{Data Exploration}
-The exploration focuses on the descriptions and related metadata, as only this part of the data is used for modeling.
+The exploration focuses on the descriptions and related metadata, as this part of the data is of highest interest for later modeling.
 \paragraph{Descriptions}
 The descriptions of invoice items vary greatly in their length. While the largest portion of descriptions is under 600 characters, there are outliers with over 1000 characters. 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[height=6cm]{Bilder/hist_description.pdf}
-	\caption{Histogram of Description Length}
-	\label{fig:descr-length}
-\end{figure}
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[height=6cm]{Bilder/hist_description.pdf}
+%	\caption{Histogram of Description Length}
+%	\label{fig:descr-length}
+% \end{figure}
 
 \begin{figure}[!h]
 	\centering
@@ -57,7 +57,7 @@ The top ten most frequent descriptions are led by two values which will be remov
 	\caption{Percentage of Invoices by cumulative unique Descriptions}
 	\label{fig:descr-hist}
 \end{figure}
-The frequency distribution of unique descriptions shows that the top third (36\%) of the descriptions covers 80\% of the invoices. It is notable, that the slope shows an edge at the point of the 24212the description. After this point, each following description only occurs once in the whole dataset. In turn, this means that only 20\% of the descriptions occur more than once.
+The frequency distribution of unique descriptions shows that the top third (36\%) of the descriptions covers 80\% of the invoices. It is notable, that the slope shows an edge at the point of the 24212$^{th}$ description. After this point, each following description only occurs once in the whole dataset. In turn, this means that only 20\% of the descriptions occur more than once.
 \paragraph{Language Distribution}
 The description of the invoices is related to the feature 'language', which describes the language of the invoice and its text fields. The most popular languages are English, Spanish, and German. It is noticeable, that there are over 700 languages or combinations of more than one language. 58878 invoices were not assigned a language, which is roughly one third of the total number.
 \begin{figure}[h!]
@@ -75,7 +75,7 @@ The description of the invoices is related to the feature 'language', which desc
 \end{figure}
 
 
-From the chart (\ref{fig:languages-pareto}) it can be inferred, that 80\% of invoices are in the top 16 languages. The slow rise after the top 80 languages indicates, that there are a lot of languages with a small number of invoices. This is also explained with a huge number of possible combinations of more than one language.
+From the Figure \ref{fig:languages-pareto} it can be inferred that 80\% of invoices are in the top 16 languages. The slow rise after the top 80 languages indicates, that there are a lot of languages with a small number of invoices. This is also explained with a huge number of possible combinations of more than one language.
 
 
 \paragraph{Invoice Item total Amount}
@@ -96,11 +96,10 @@ The invoice item total amount stands for the charge corresponding to one line in
 The five-number summary shows that the values are skewed to the right in a considerable manner. The so-called tail of the price distribution reaches almost the 200,000 mark. For the further analysis, it will be interesting if very large charges belong into a similar group of spending.
 
 \section{Data Quality}
-In the analyses before several problems with the data could already be identified. Firstly, a lot of descriptions are empty or have the unusable value 'nan'. Secondly, the language distribution has shown that the spread is highly biased towards English. 
-Both the unusable values and the uneven language distribution will be addressed in the data cleaning part of the thesis.
+The prior section already identified some problems with the data. Firstly, a lot of descriptions are empty or have the unusable value 'nan'. Secondly, the language distribution has shown that the spread is highly biased towards English. 
+The data cleaning part of this thesis will address the unusable values and the uneven language distribution.
 
 The quality of data for text mining purposes can be evaluated using four elementary dimensions \cite[p.~1279]{dataQualityAzeroual} :
-
 \begin{table}[!ht]
 	\begin{tabular}{lll}
 		\vspace{0.5cm}
@@ -109,8 +108,7 @@ The quality of data for text mining purposes can be evaluated using four element
 		\textbf{Correctness} & The extent to which data is correct and reliable                                                                                                  &  \\
 		\vspace{0.5cm}
 		\textbf{Timeliness}                                                          & \begin{tabular}[c]{@{}l@{}}The extent to which the age of the data is appropriate \\ for the task at hand\end{tabular}                            &  \\
-		\vspace{0.5cm}
-		\textbf{Consistency}                                                         & \begin{tabular}[c]{@{}l@{}}The extent to which data are always presented in the same \\ format and are compatible with previous data\end{tabular} & 
+		\textbf{Consistency}                                                         & \begin{tabular}[c]{@{}l@{}}The extent to which data are always presented in the same \\ format and are compatible with previous data\end{tabular} & \\
 	\end{tabular}
 \end{table}
 
