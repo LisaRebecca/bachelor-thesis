@@ -3,7 +3,8 @@
 \section{Initial Data Collection}
 
 \paragraph{Data Requirements Planning}
-The business objective is the development of a solution for the automatic aggregation of documents based on their topics. To achieve this goal, a sufficient number of documents are required. Also, the documents must contain enough text to be assigned a topic. After clustering the value of each expense in a cluster have to be summed, to gain the desired insight of spending in one category. So the value an expense amounts to has to be included in the data.
+The business objective is the development of a solution for the automatic aggregation of documents based on their topics. To achieve this goal, a sufficient number of documents are required. Also, the documents must contain enough text to be assigned a topic. 
+To gain insight into a whole spending category, the expense values of all documents in one cluster has to be summed. So, the value an expense amounts to has to be included in the data.
 
 \paragraph{Selection Criteria}
 An initial look a the data has shown that each invoice item can easily contain more than 100 pieces of information, which can be considered as attributed in the dataset. The part of the data that is of interest for the research is the description and payment data. Other data needs to be retained for a coherent and informative presentation of the results, such as location information and information on seller and buyer.
@@ -27,7 +28,7 @@ caption=Shortened JSON Schema of one invoice document representation,
 captionpos=b,               % Position, an der die Caption angezeigt wird t(op) oder b(ottom)
 style=EigenerPythonStyle,   % Eigener Style der vor dem Dokument festgelegt wurde
 firstline=0,                % Zeilennummer im Dokument welche als erste angezeigt wird
-lastline=23                 % Letzte Zeile welche ins LaTeX Dokument übernommen wird
+lastline=28                 % Letzte Zeile welche ins LaTeX Dokument übernommen wird
 ]{Quellcode/json-schema.json}
 
 
@@ -49,17 +50,19 @@ The descriptions of invoice items vary greatly in their length. While the larges
 	\caption{Top ten most frequent Descriptions}
 	\label{fig:descr-most-frequent}
 \end{figure}
-The top ten most frequent descriptions are led by two values which will be removed during data cleaning. The first value ('nan') is short for 'not a number'. The second most frequent description is an empty value. Unfortunately, these descriptions amount for one fourth of all text elements. The next descriptions are more speaking, for example consulting fees, credit card transaction fees, and payments for room and board.
+The top ten most frequent descriptions (Figure \ref{fig:descr-most-frequent}) are led by two values which will be removed during data cleaning. The first value ('nan') is short for 'not a number'. The second most frequent description is an empty value. Unfortunately, these descriptions amount for one fourth of all text elements. The next descriptions are more speaking, for example consulting fees, credit card transaction fees, and payments for room and board.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[height=6cm]{Bilder/data_understanding/descriptions_pareto.pdf}
 	\caption{Percentage of Invoices by cumulative unique Descriptions}
-	\label{fig:descr-hist}
+	\label{fig:descr-pareto}
 \end{figure}
-The frequency distribution of unique descriptions shows that the top third (36\%) of the descriptions covers 80\% of the invoices. It is notable, that the slope shows an edge at the point of the 24212$^{th}$ description. After this point, each following description only occurs once in the whole dataset. In turn, this means that only 20\% of the descriptions occur more than once.
+Figure \ref{fig:descr-pareto} shows the distribution of description values over all invoices. Approximately on third of unique descriptions accounts for two thirds of described invoices. The slope in the chart shows an edge at the point of the 24212$^{th}$ description. After this point, each following description only occurs once in the whole dataset. In turn, this means that only 20\% of the descriptions occur more than once.
+
+
 \paragraph{Language Distribution}
-The description of the invoices is related to the feature 'language', which describes the language of the invoice and its text fields. The most popular languages are English, Spanish, and German. It is noticeable, that there are over 700 languages or combinations of more than one language. 58878 invoices were not assigned a language, which is roughly one third of the total number.
+The description of the invoices is related to the feature 'language', which describes the language of the invoice and its text fields. The most popular languages are English, Spanish, and German (see Figure \ref{fig:languages-bar}). It is noticeable, that there are over 700 languages or combinations of more than one language. 58878 invoices were not assigned a language, which is roughly one third of the total number.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[height=6.5cm]{Bilder/languages.pdf}
@@ -75,7 +78,7 @@ The description of the invoices is related to the feature 'language', which desc
 \end{figure}
 
 
-From the Figure \ref{fig:languages-pareto} it can be inferred that 80\% of invoices are in the top 16 languages. The slow rise after the top 80 languages indicates, that there are a lot of languages with a small number of invoices. This is also explained with a huge number of possible combinations of more than one language.
+From Figure \ref{fig:languages-pareto} it can be inferred that 80\% of invoices are in the top 16 languages. The slow rise after the top 80 languages indicates, that there are a lot of languages with a small number of invoices. This is also explained with a huge number of possible combinations of more than one language.
 
 
 \paragraph{Invoice Item total Amount}
@@ -123,4 +126,4 @@ The dataset consists of invoices in the time frame from 2015 to 2019, which make
 \paragraph{Consistency}
  Annotations supplied by the annotation service always follow the given structure detailed in example \ref{code:JSONSchema}. This ensures consistency of data generated over a time span.
  
- To sum the data quality report up, the data has flaws in the dimension of completeness, but these minor issues with data quality will likely not impact further data analyses.
+ To sum up the data quality report, the data has flaws in the dimension of completeness, but these minor issues with data quality will likely not impact further data analyses.

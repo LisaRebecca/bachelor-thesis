@@ -4,7 +4,7 @@
 	
 	The following sections detail this process. Both the data wrangling and feature extracting are divided into an assessment of alternatives, a theoretical implementation, and a practical implementation.	
 	
-	\section{Data processing and data wrangling}
+	\section{Data Processing and Data Wrangling}
 
         \subsection{Alternatives}
         The chosen dataset consists of files in \ac{JSON} format. Several alternatives for storage and transforming the data exist. 
@@ -39,10 +39,10 @@
             \label{tabelle:storage}
         \end{table}
     
-    	Since the transfer from one storage option to another is always possible, for now, the simplest option of local storage is the best one. A containment for possibly reaching capacity limits then is the transfer to another storage option.
+    	Since the transfer from one storage option to another is always possible, for now, the simplest option of local storage is the best one. A containment for possibly reaching capacity limits is the transfer to another storage option.
         
         \paragraph{Data Format}
-        The data is still available only in the from \ac{JSON} documents. Python allows for easy parsing of these objects, but this option is highly inefficient compared to native Python data structures.
+        The data is still available only in the form of \ac{JSON} documents. Python allows for easy parsing of these objects, but this option is highly inefficient compared to native Python data structures.
         The equivalent to \ac{JSON} in Python are combinations between lists and dictionaries. Dictionaries are an implementation of the \lstinline|Map| data structure.
         
         This option stands in contrast to a data format commonly used in data science tasks: the \lstinline|DataFrame|. Both formats, the dictionaries and DataFrames have specific advantages and disadvantages.
@@ -87,7 +87,7 @@
 	Data exploration shows, there are only 79.741 unique descriptions for the listed items. By saving only the unique values, the required space is reduced to less than one fourth compared to before. Additionally, this step is required by most machine learning models, as duplicate input values can skew the outcome. The model is chosen later, so this processing step leaves the model selection more open to different kinds of learning algorithms.
 	
 	After the deletion of duplicate descriptions, the relationship between one line item and its description is not one-to-one, but rather one description belonging to several different line items. Model outputs will be a classification of one description, so to restore the relationship between the classification result and one line item, a mapping is constructed.
-	This dictionary maps one description to all line items (more specifically, their ID) with this description.
+	This dictionary (Figure \ref{fig:mapping}) maps one description to all line items (more specifically, their ID) with this description.
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[width=\linewidth]{Bilder/description_map.png}
@@ -235,7 +235,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
             The occurrences of one word in one document is denoted as $ \#( t_{i}) $.
             One additional consideration needs to be made regarding the document length. In a document of length $ |d_{2}| = 6 $ and a document of length  $ |d_{3}| = 2 $, the word $ t_{i} $occurring once should be considered more important to $ d_{3} $, since it accounts for a larger share of the text. The measure resulting from this idea is the term frequency:
             
-            \[ TF(t_{i}, d_{j}) =   \dfrac{\#( t_{i})}{|d_{j}|} = \dfrac{occurences \; of \; word \; t_{i} \: in \; document \;\:   d_{j}}{legth \; of \; d_{j}} \]
+            \[ TF(t_{i}, d_{j}) =   \dfrac{\#( t_{i})}{|d_{j}|} = \dfrac{occurrences \; of \; word \; t_{i} \: in \; document \;\:   d_{j}}{length \; of \; d_{j}} \]
             
             \subparagraph{Inverse Document Frequency}
             Words occurring in many documents often are articles or pronouns (stop words) which do not provide value when inspecting the content of a text. The inverse document frequency is a measure accounting for this fact. The inverse document frequency of a word is the proportion between the number of documents in the corpus and the number of documents containing the word. The logarithm is applied, as the importance of a word does not increase proportionally to the number of occurrences.
@@ -281,18 +281,18 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
 					\vspace{0.1cm}
 					& from            &                                                                                                                                                                   \\
 					\vspace{0.1cm}
-					T & Transformers    & \begin{tabular}[c]{@{}l@{}}BERT belongs into the family of transformer models and \\ utilizes parts of the transformer architecture.\end{tabular}                
+					T & Transformers    & \begin{tabular}[c]{@{}l@{}}BERT belongs into the family of transformer models and \\ utilizes parts of the transformer architecture (see Figure \ref{fig:transformer}).\end{tabular}                
 				\end{tabular}
 			\end{table}
 
            
-           The model is trained on two tasks. Firstly, it is trained on word prediction (\ref{fig:mlm}). \ac{BERT} had to predict one missing word in a text unit. The objective of course is to get the right word. The loss in this task is measuring if and how wrong a prediction is. The second task is to predict the next sentence after a text section. The objective is to predict the correct words and their order. The model is trained by adjusting internal weights in such a way, that both losses are minimized. In turn this means, the model can predict missing words and next sentences with minimized error.
+           The model is trained on two tasks. Firstly, it is trained on word prediction (see Figure \ref{fig:mlm}). \ac{BERT} had to predict one missing word in a text unit. The objective of course is to get the right word. The loss in this task is measuring if and how wrong a prediction is. The second task is to predict the next sentence after a text section. The objective is to predict the correct words and their order. The model is trained by adjusting internal weights in such a way, that both losses are minimized. In turn this means, the model can predict missing words and next sentences with minimized error.
            
           
              \begin{figure}[h!]
              	
              	\centering
-             	\includegraphics[height=10cm]{ Bilder/preprocessing/BERT/BERT-language-modeling-masked-lm.png}
+             	\includegraphics[height=10cm]{ Bilder/preprocessing/BERT/BERT-language-modeling-masked-lm.pdf}
              	\caption[Training BERT with the MLM task]{Training BERT with the MLM task \cite{alammarIllustratedBERTELMo}}
          		\label{fig:mlm}    
          \end{figure}
@@ -311,12 +311,13 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
                	\item Finally, the results are normalized again.
                \end{enumerate}
        			
-       			 \begin{figure}[h!]
-       				\label{fig:encoder}
-       				\centering
-       				\includegraphics[height=7cm]{Bilder/preprocessing/BERT/encoder.png}
-       				\caption[The Transformer Encoder Architecture]{The Transformer Encoder Architecture  \cite{illustratedTransformer}}
-       			\end{figure}
+%       			 \begin{figure}[h!]
+%       				
+%       				\centering
+%       				\includegraphics[height=7cm]{Bilder/preprocessing/BERT/encoder.png}
+%       				\label{fig:encoder}
+%       				\caption[The Transformer Encoder Architecture]{The Transformer Encoder Architecture  \cite{illustratedTransformer}}
+%       			\end{figure}
 			
             
             Evaluating all different models for word vectorization, BERT clearly outperforms the distribustional representations:
@@ -328,7 +329,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
 
 			The advantage of BERT over the other presented options is obvious. But, now there are two unconsidered restrictions:
 			First, BERT only encodes words.
-			Second, BERT is only in one language.
+			Second, BERT can only handle one language.
 			
 			Luckily, researchers around BERT encountered similar tasks and developed a new BERT model to solve this. 
 			First, the Sentence-BERT embeddings are generated in a way that requires only minimal additions to the BERT architecture \cite[p.~2]{sentenceBERT}. Sentence-BERT is trained with a dataset of sentences, labeled with their relationship (contradiction, entailment, neutral) \cite[p.~4]{sentenceBERT}. Two sentences each pass through a BERT model. A pooling layer for each of the two calculates a weighted sum of all words in the sentence to create the embedding for the whole sentences. With the labels and the comparison of two sentence embeddings, the pooling layer is trained. The weights in both pooling layers are adjusted over time, creating a so-called Siamese Network.
@@ -347,7 +348,7 @@ $ python3 -c 'import cleaner; print(cleaner.clean("500grams of special baking fl
             	
             \subsection{Practical Implementation}
              
-             The model can be laded using the library \lstinline|sentence_transformers|. The library can create a model from the name of the transformer. Embeddings can be generated very easily, and are returned as a 2D-array. This inference takes about 30ms. For all 79.741 documents, this means an total time of about 40 minutes.
+             The model can be loaded using the library \lstinline|sentence_transformers|. The library can create a model from the name of the transformer. Embeddings can be generated very easily, and are returned as a 2D-array. This inference takes about 30ms. For all 79.741 documents, this means an total time of about 40 minutes.
              
 \begin{lstlisting}[language=python,
 	label=code:generate-embed,

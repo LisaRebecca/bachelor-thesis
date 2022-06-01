@@ -8,12 +8,13 @@ The task for this thesis is to identify means on how information from invoice do
 The solution consists of a full data mining project. Firstly, a suitable dataset is identified. The second step is forming an understanding on the business dimension of the problem. This is followed by an exploration of the data, and an evaluation of the dataset. After this, the data is prepared. The data is transformed into a structured tabular format, then cleaned. Further, a feature extraction mechanism maps textual content onto vectors. Each vector represents a line item from an invoice. These line item descriptions are grouped into clusters with the k-Means algorithm. The result is a 512-dimensional vector space of 79 741 data points, which are contained in 3250 clusters. Each cluster contains invoice items which concern similar topics. The topics of each cluster are described through the three words in the cluster which describe its content the best. Finally, all clusters are visualized in a dashboard. The deployment of this solution showcases the clusters with their associated cost. 
 
 % Zusammenfassung der Bewertung der Lösung
-The analysis in adds value to real business documents because it automates a process which would otherwise be highly time-consuming. By aggregating expense categories with respect to their associated spending, a broad overview on the largest expenses is created. The spending of a company or parts of it can now be analyzed on a high-level perspective, without the need of analyzing individual invoices.
+The analysis adds value to real business documents because it automates a process which would otherwise be expensive. With invoice processing amounting for about one third of an accounts-payable team's expenses \cite{manualInvoiceProcessing}, there is a lot of savings potential for automation.
+ By aggregating expense categories with respect to their associated spending, a broad overview on the largest expenses is created. The spending of a company or parts of it can now be analyzed on a high-level perspective, without the need of analyzing individual invoices.
 
 \section{Outlook}
 
 % Was konnte nicht bearbeitet werden, wäre aber sinnvoll?
-This thesis presents a full data mining workflow. Still, there are limitations to the presented solution.
+This thesis presents a full data mining workflow. Still, there are means for improvement and further research.
 
 The dataset is a static collection of documents. An improvement would be to use a data platform from which the data can be streamed. This can be from inside an \ac{ERP} system, or a connected Data Platform such as SAP Data Intelligence. A solution with larger data sets also requires more computing power. One offering to use is the SAP AI Foundation. With hyperscaler-agnostic deployment and operating options, AI Core is a viable option to make this solution enterprise-ready.
 
@@ -26,7 +27,7 @@ This thesis explores two clustering mechanisms in detail. Other algorithms such 
 While the generated cluster labels were quite speaking, they require interpretation effort from the reader. It would be desirable to generate more generalized labels, for example summarizing "tonic", "gin" and "teinacher" into the label "beverages".
 
 % Welche nächsten Fragestellungen/Schritte haben sich durch die Arbeit ergeben?
-The next question, further research can investigate is how this solution can be integrated into SAP's existing offerings. Section \ref{section:selected-dataset} explains that the data is already used in the context of document information extraction. Both solutions can be connected, creating a digitization accelerator, allowing a pipeline from paper to insight. Paper-based documents can be scanned, fed into the information extraction service, and processed with the presented solution. The result is an insight into spending, which would otherwise only be possible with tremendous time effort.
+The next question, further research can investigate, is, how this solution can be integrated into SAP's existing offerings. Section \ref{section:selected-dataset} explains that the data is already used in the context of document information extraction. Both solutions can be connected, creating a digitization accelerator, allowing a pipeline from paper to insight. Paper-based documents can be scanned, fed into the information extraction service, and processed with the presented solution. The result is an insight into spending, which would otherwise only be possible with tremendous time effort.
 
 
 
